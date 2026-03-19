@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://bd8u352dhbx70"]
+
+[ext_resource type="Script" uid="uid://bouqvxpom02vu" path="res://scripts/bullet.gd" id="1_mkf8s"]
+[ext_resource type="Texture2D" uid="uid://d17ggu6k3ljpo" path="res://assets/Bullet.png" id="2_y25gk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y25gk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_y25gk")
+}],
+"loop": false,
+"name": &"water",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y25gk"]
+size = Vector2(12, 12)
+
+[node name="Bullet" type="Area2D"]
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_mkf8s")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y25gk")
+animation = &"water"
+speed_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y25gk")
+
+[connection signal="body_entered" from="." to="." method="_on_bullet_body_entered"]
