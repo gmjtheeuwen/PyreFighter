@@ -1,6 +1,7 @@
 extends CharacterBody2D	
 
 signal fired_bullet(bullet, position, direction)
+signal used_equipment(direction)
 
 var WALKSPEED: float = 192.0
 var JOYSTICK_SENSITIVITY = 0.4
@@ -27,6 +28,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and time_since_last_shot > fire_delay:
 		shoot()
 		time_since_last_shot = 0.0
+	
+	if Input.is_action_just_pressed("equipment"):
+		use_equipment()
 
 func _physics_process(delta: float) -> void:	
 	velocity = delta * direction * WALKSPEED
@@ -70,9 +74,14 @@ func handle_keyboard_input() -> void:
 	
 
 func shoot():
+	if Bullet == null: return
 	var bullet_instance = Bullet.instantiate()
+	var bullet_position = position + aim_direction * 16
 	
-	emit_signal("fired_bullet", bullet_instance, position, aim_direction)
+	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction)
+	
+func use_equipment():
+	emit_signal("used_equipment", aim_direction)
 
 func handle_hit():
 	print("player hit")
