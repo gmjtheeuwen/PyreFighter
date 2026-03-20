@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://ckiqqe3qp8yc2"]
+
+[ext_resource type="Texture2D" uid="uid://p1hcqrpao1ti" path="res://assets/Player.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://b5brjda1u40bi" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="PackedScene" uid="uid://ckueivrkg8uso" path="res://scenes/gun.tscn" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://dfsywsppsvtwk" path="res://scripts/equipment.gd" id="4_dqkch"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
+size = Vector2(32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qhqgy"]
+font_size = 24
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource("1_g2els")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3vyb7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3vyb7")
+
+[node name="Gun" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
+player = NodePath("..")
+
+[node name="Equipment" type="Node2D" parent="."]
+position = Vector2(0, -24)
+script = ExtResource("4_dqkch")
+
+[node name="Label" type="Label" parent="Equipment"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -96.0
+offset_top = -32.0
+offset_right = 95.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Used Equipment"
+label_settings = SubResource("LabelSettings_qhqgy")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="Equipment"]
+one_shot = true
+
+[connection signal="used_equipment" from="." to="Equipment" method="on_use_equipment"]
+[connection signal="timeout" from="Equipment/Timer" to="Equipment" method="on_timeout"]

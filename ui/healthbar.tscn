@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr2sqs8a0t2pf"]
+
+[ext_resource type="Script" uid="uid://cvspfktk4pdpo" path="res://scripts/healthbar.gd" id="1_l4sgg"]
+
+[node name="Healthbar" type="Control"]
+layout_mode = 3
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l4sgg")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -16.0
+offset_right = 16.0
+offset_bottom = 4.0
+
+[node name="ColorRect" type="ColorRect" parent="Panel"]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 4.0
+color = Color(1, 0, 0, 1)
