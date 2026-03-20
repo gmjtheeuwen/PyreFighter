@@ -3,14 +3,13 @@ extends CharacterBody2D
 signal fired_bullet(bullet, position, direction)
 signal used_equipment(direction)
 
-var WALKSPEED: float = 192.0
+var WALKSPEED: float = 224.0
 var JOYSTICK_SENSITIVITY = 0.4
-var direction:= Vector2(0,0)
-var aim_direction:= Vector2(0,0)
+var direction:= Vector2.ZERO
+var aim_direction:= Vector2.RIGHT
 
 var fire_delay = 0.05
 var time_since_last_shot = 0.0
-
 
 @export var Bullet: PackedScene
 
@@ -32,9 +31,9 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("equipment"):
 		use_equipment()
 
-func _physics_process(delta: float) -> void:	
-	velocity = delta * direction * WALKSPEED
-	move_and_collide(velocity)
+func _physics_process(_delta: float) -> void:	
+	velocity = direction * WALKSPEED
+	move_and_slide()
 
 
 func handle_controller_input(joypads: Array[int]) -> void:
@@ -56,8 +55,9 @@ func handle_controller_input(joypads: Array[int]) -> void:
 	
 	var aim_input_x = Input.get_joy_axis(primary_joypad, JoyAxis.JOY_AXIS_RIGHT_X)
 	var aim_input_y = Input.get_joy_axis(primary_joypad, JoyAxis.JOY_AXIS_RIGHT_Y)
-		
-	aim_direction = Vector2(aim_input_x, aim_input_y).normalized()
+	
+	if (abs(aim_input_x) >= JOYSTICK_SENSITIVITY || abs(aim_input_y) >= JOYSTICK_SENSITIVITY):	
+		aim_direction = Vector2(aim_input_x, aim_input_y).normalized()
 
 
 func handle_keyboard_input() -> void:

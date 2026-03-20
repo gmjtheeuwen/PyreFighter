@@ -6,6 +6,7 @@ const MIN_VELOCTIY := 4.0
 
 var speed = MAX_SPEED
 var direction := Vector2.ZERO
+var damage := 1.0
 
 func _physics_process(delta: float) -> void:
 	if direction == Vector2.ZERO: return

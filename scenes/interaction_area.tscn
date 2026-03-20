@@ -29,6 +29,5 @@ offset_bottom = -14.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-text = "Interact"
 label_settings = SubResource("LabelSettings_40t11")
 horizontal_alignment = 1

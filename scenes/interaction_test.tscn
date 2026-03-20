@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://6aptfisjhfsi"]
+[gd_scene load_steps=3 format=3 uid="uid://6aptfisjhfsi"]
 
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="1_qv1cg"]
-[ext_resource type="Script" uid="uid://d4a35hekflrd1" path="res://scripts/interaction_test.gd" id="1_v5dfw"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v5dfw"]
 size = Vector2(16, 16)
 
 [node name="InteractionTest" type="Node2D"]
-script = ExtResource("1_v5dfw")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
