@@ -1,0 +1,837 @@
+[gd_scene format=3 uid="uid://c7qejvx6r0k8c"]
+
+[ext_resource type="Script" uid="uid://dfu8j3kb4wu4k" path="res://scripts/sorting_buttons.gd" id="1_yyk2a"]
+[ext_resource type="Script" uid="uid://i0o2i78wtg6y" path="res://scenes/equipment_list.gd" id="2_uae8j"]
+[ext_resource type="Script" uid="uid://fgysj2r4a76y" path="res://scripts/item_container.gd" id="2_yyk2a"]
+[ext_resource type="Texture2D" uid="uid://chej12o438dwd" path="res://icon.svg" id="3_uae8j"]
+[ext_resource type="Script" uid="uid://cyrndtfcvexl0" path="res://scripts/texture_rect.gd" id="4_s887n"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_l6pv2"]
+line_spacing = 0.0
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_nmp5a"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_yo0xd"]
+
+[sub_resource type="Animation" id="Animation_jk4bm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer/TextureRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_atvts"]
+resource_name = "fade_back"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer/TextureRect:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer/TextureRect:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wd58y"]
+_data = {
+&"RESET": SubResource("Animation_jk4bm"),
+&"fade_back": SubResource("Animation_atvts")
+}
+
+[sub_resource type="Animation" id="Animation_yo0xd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_e0dlw"]
+resource_name = "fade"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_e0dlw"]
+_data = {
+&"RESET": SubResource("Animation_yo0xd"),
+&"fade": SubResource("Animation_e0dlw")
+}
+
+[node name="Control" type="Control" unique_id=2038558900]
+layout_mode = 3
+anchor_right = 1.667
+anchor_bottom = 1.667
+offset_right = -0.3840332
+offset_bottom = -0.21606445
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=1265546953 node_paths=PackedStringArray("inventory_list")]
+custom_minimum_size = Vector2(1920, 0)
+layout_mode = 0
+offset_left = 10.0
+offset_right = 1930.0
+offset_bottom = 160.0
+theme_override_constants/h_separation = 40
+script = ExtResource("1_yyk2a")
+inventory_list = NodePath("../inventory_list/ScrollContainer/VBoxContainer")
+
+[node name="offensive_button" type="Button" parent="HFlowContainer" unique_id=738754756]
+custom_minimum_size = Vector2(480, 160)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "offensive equipment"
+
+[node name="defensive_button" type="Button" parent="HFlowContainer" unique_id=1308093622]
+custom_minimum_size = Vector2(480, 160)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "defensive equipment"
+
+[node name="utility_Button" type="Button" parent="HFlowContainer" unique_id=1799218747]
+custom_minimum_size = Vector2(480, 160)
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "utility equipment"
+
+[node name="inventory_list" type="Control" parent="." unique_id=1017678389]
+layout_mode = 1
+anchor_right = 1.005
+anchor_bottom = 1.148
+offset_left = 10.0
+offset_top = 160.0
+offset_right = 0.4000244
+offset_bottom = 0.16003418
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="inventory_list" unique_id=677679624]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 920.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer" unique_id=920373232]
+custom_minimum_size = Vector2(1920, 920)
+layout_mode = 2
+size_flags_vertical = 4
+script = ExtResource("2_uae8j")
+
+[node name="offensive_container" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer" unique_id=175859656]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="CategoryTitle" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container" unique_id=446145200]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "Offensive equipment"
+label_settings = SubResource("LabelSettings_l6pv2")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container" unique_id=1472892495]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+
+[node name="Item" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer" unique_id=184265042]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item" unique_id=1990614901]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer" unique_id=1948391119 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer/VBoxContainer" unique_id=1511314851]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer/VBoxContainer" unique_id=429927213]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer/VBoxContainer" unique_id=1933165484]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer/VBoxContainer" unique_id=1640404740]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer" unique_id=198132645 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item/PanelContainer/TextureRect" unique_id=1833063125]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Item2" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer" unique_id=872379601]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item2" unique_id=408286809]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item2/PanelContainer" unique_id=1559033109 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item2/PanelContainer/VBoxContainer" unique_id=1031389193]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item2/PanelContainer/VBoxContainer" unique_id=148123005]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item2/PanelContainer/VBoxContainer" unique_id=1451596035]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item2/PanelContainer/VBoxContainer" unique_id=558914789]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item2/PanelContainer" unique_id=1360905176 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item2/PanelContainer/TextureRect" unique_id=679019207]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Item3" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer" unique_id=1536865891]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item3" unique_id=734502500]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item3/PanelContainer" unique_id=951501153 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=157212071]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=528541534]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=1710127479]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=792981140]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item3/PanelContainer" unique_id=1132626492 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item3/PanelContainer/TextureRect" unique_id=367357510]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Item4" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer" unique_id=1196762633]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item4" unique_id=223020036]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item4/PanelContainer" unique_id=2141201012 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=625442016]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=370811091]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=53466871]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=1091220899]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item4/PanelContainer" unique_id=2072268242 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container/HFlowContainer/Item4/PanelContainer/TextureRect" unique_id=1091397869]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="defensive_container" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer" unique_id=596151728]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="CategoryTitle" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container" unique_id=681351857]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "Defensive equipment"
+label_settings = SubResource("LabelSettings_l6pv2")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container" unique_id=663565505]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+
+[node name="Item2" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer" unique_id=1870944653]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item2" unique_id=344191637]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item2/PanelContainer" unique_id=580838254 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item2/PanelContainer/VBoxContainer" unique_id=1447117328]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item2/PanelContainer/VBoxContainer" unique_id=2096526646]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item2/PanelContainer/VBoxContainer" unique_id=1560844699]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item2/PanelContainer/VBoxContainer" unique_id=1665228047]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item2/PanelContainer" unique_id=348262640 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item2/PanelContainer/TextureRect" unique_id=357407729]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Item3" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer" unique_id=775402311]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item3" unique_id=209830020]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item3/PanelContainer" unique_id=1659156851 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=98561701]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=916176021]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=809885221]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=2094796753]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item3/PanelContainer" unique_id=1069225789 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item3/PanelContainer/TextureRect" unique_id=1759363888]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Item4" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer" unique_id=1026856133]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item4" unique_id=1180116012]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item4/PanelContainer" unique_id=1655050178 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=1971993977]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=1776073311]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=1199660228]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=1100495150]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item4/PanelContainer" unique_id=868986057 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item4/PanelContainer/TextureRect" unique_id=430829015]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Item5" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer" unique_id=1746615964]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item5" unique_id=254324894]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item5/PanelContainer" unique_id=2061532468 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item5/PanelContainer/VBoxContainer" unique_id=239815572]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item5/PanelContainer/VBoxContainer" unique_id=1147545502]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item5/PanelContainer/VBoxContainer" unique_id=1930074464]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item5/PanelContainer/VBoxContainer" unique_id=506215697]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item5/PanelContainer" unique_id=717703914 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container/HFlowContainer/Item5/PanelContainer/TextureRect" unique_id=1296427340]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="utility_container" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer" unique_id=671962980]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="CategoryTitle" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container" unique_id=240690380]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "Utility equipment"
+label_settings = SubResource("LabelSettings_l6pv2")
+
+[node name="HFlowContainer" type="HFlowContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container" unique_id=1630894791]
+layout_mode = 2
+theme_override_constants/h_separation = 40
+theme_override_constants/v_separation = 20
+
+[node name="Item3" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer" unique_id=470961977]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item3" unique_id=886530168]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item3/PanelContainer" unique_id=1392401250 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=1714310122]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=996315890]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=2141497574]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item3/PanelContainer/VBoxContainer" unique_id=972755691]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item3/PanelContainer" unique_id=1124273129 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item3/PanelContainer/TextureRect" unique_id=255885062]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Item4" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer" unique_id=5012544]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item4" unique_id=315569289]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item4/PanelContainer" unique_id=854534655 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=1454439897]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=338216367]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=1611675401]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item4/PanelContainer/VBoxContainer" unique_id=295476085]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item4/PanelContainer" unique_id=1365887907 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item4/PanelContainer/TextureRect" unique_id=258655441]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Item5" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer" unique_id=1239845509]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item5" unique_id=1187537865]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item5/PanelContainer" unique_id=1368549658 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item5/PanelContainer/VBoxContainer" unique_id=376371816]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item5/PanelContainer/VBoxContainer" unique_id=1611921491]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item5/PanelContainer/VBoxContainer" unique_id=468105597]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item5/PanelContainer/VBoxContainer" unique_id=1437703397]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item5/PanelContainer" unique_id=1660494827 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item5/PanelContainer/TextureRect" unique_id=1985905401]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Item6" type="MarginContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer" unique_id=1512927169]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item6" unique_id=507954554]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item6/PanelContainer" unique_id=499743252 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+script = ExtResource("2_yyk2a")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="title" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item6/PanelContainer/VBoxContainer" unique_id=2119096198]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Title"
+label_settings = SubResource("LabelSettings_nmp5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Desc" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item6/PanelContainer/VBoxContainer" unique_id=509526644]
+custom_minimum_size = Vector2(80, 20)
+layout_mode = 2
+size_flags_vertical = 1
+text = "Description"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item6/PanelContainer/VBoxContainer" unique_id=656922859]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Equip"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item6/PanelContainer/VBoxContainer" unique_id=1795194441]
+root_node = NodePath("../../../../../../../..")
+libraries/ = SubResource("AnimationLibrary_wd58y")
+
+[node name="TextureRect" type="TextureRect" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item6/PanelContainer" unique_id=1148322571 node_paths=PackedStringArray("animation_player")]
+layout_mode = 2
+texture = ExtResource("3_uae8j")
+script = ExtResource("4_s887n")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container/HFlowContainer/Item6/PanelContainer/TextureRect" unique_id=881619143]
+libraries/ = SubResource("AnimationLibrary_e0dlw")
+
+[node name="Button" type="Button" parent="." unique_id=1833795955]
+custom_minimum_size = Vector2(360, 120)
+layout_mode = 0
+offset_left = 1500.0
+offset_top = 900.0
+offset_right = 1860.0
+offset_bottom = 1020.0
+theme_override_font_sizes/font_size = 48
+text = "start mission
+"
+
+[connection signal="pressed" from="HFlowContainer/offensive_button" to="HFlowContainer" method="_on_offensive_button_pressed"]
+[connection signal="pressed" from="HFlowContainer/defensive_button" to="HFlowContainer" method="_on_defensive_button_pressed"]
+[connection signal="pressed" from="HFlowContainer/utility_Button" to="HFlowContainer" method="_on_utility_button_pressed"]
