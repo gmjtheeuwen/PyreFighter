@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ckiqqe3qp8yc2"]
+[gd_scene format=3 uid="uid://ckiqqe3qp8yc2"]
 
 [ext_resource type="Texture2D" uid="uid://p1hcqrpao1ti" path="res://assets/Player.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://b5brjda1u40bi" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="PackedScene" uid="uid://ckueivrkg8uso" path="res://scenes/gun.tscn" id="3_qhqgy"]
 [ext_resource type="Script" uid="uid://dfsywsppsvtwk" path="res://scripts/equipment.gd" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="5_tuyoq"]
+[ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="6_fjrip"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
 size = Vector2(32, 32)
@@ -13,28 +15,29 @@ font_size = 24
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1149356595 node_paths=PackedStringArray("health_component") groups=["player"]]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_g2els")
+health_component = NodePath("HealthComponent")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2075834923]
 zoom = Vector2(2, 2)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1945389608]
 texture = ExtResource("1_3vyb7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1358564444]
 shape = SubResource("RectangleShape2D_3vyb7")
 
-[node name="Gun" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
+[node name="Gun" parent="." unique_id=558119626 node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
 player = NodePath("..")
 
-[node name="Equipment" type="Node2D" parent="."]
+[node name="Equipment" type="Node2D" parent="." unique_id=1325171638]
 position = Vector2(0, -24)
 script = ExtResource("4_dqkch")
 
-[node name="Label" type="Label" parent="Equipment"]
+[node name="Label" type="Label" parent="Equipment" unique_id=350679528]
 visible = false
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,8 +53,20 @@ text = "Used Equipment"
 label_settings = SubResource("LabelSettings_qhqgy")
 horizontal_alignment = 1
 
-[node name="Timer" type="Timer" parent="Equipment"]
+[node name="Timer" type="Timer" parent="Equipment" unique_id=922372761]
 one_shot = true
+
+[node name="HealthComponent" type="Node2D" parent="." unique_id=613862298]
+script = ExtResource("5_tuyoq")
+metadata/_custom_type_script = "uid://bpc7ctncys7f7"
+
+[node name="Healthbar" parent="." unique_id=375241332 instance=ExtResource("6_fjrip")]
+anchors_preset = 0
+offset_top = -24.0
+offset_bottom = -24.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="used_equipment" from="." to="Equipment" method="on_use_equipment"]
 [connection signal="timeout" from="Equipment/Timer" to="Equipment" method="on_timeout"]
+[connection signal="health_changed" from="HealthComponent" to="Healthbar" method="on_health_changed"]

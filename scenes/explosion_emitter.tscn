@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dsmjeru81rdu7"]
+
+[ext_resource type="Texture2D" uid="uid://nmr6tt7mog7d" path="res://assets/Smoke.png" id="1_yltqo"]
+
+[sub_resource type="Curve" id="Curve_yltqo"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_fxrdq"]
+width = 32
+curve = SubResource("Curve_yltqo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fxrdq"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+hue_variation_min = 0.09999997
+hue_variation_max = 0.34999996
+hue_variation_curve = SubResource("CurveTexture_fxrdq")
+
+[node name="ExplosionEmitter" type="GPUParticles2D" unique_id=733634665]
+emitting = false
+amount = 64
+texture = ExtResource("1_yltqo")
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_fxrdq")

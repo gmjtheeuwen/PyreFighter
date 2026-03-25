@@ -1,6 +1,7 @@
 extends CharacterBody2D	
+class_name Player
 
-signal fired_bullet(bullet, position, direction)
+signal fired_bullet(bullet, position, direction, source)
 signal used_equipment(direction)
 
 var WALKSPEED: float = 224.0
@@ -8,10 +9,15 @@ var JOYSTICK_SENSITIVITY = 0.4
 var direction:= Vector2.ZERO
 var aim_direction:= Vector2.RIGHT
 
+var is_knock_backed := false
+@export var knockback_friction : float
+@export var MIN_KNOCKBACK_SPEED : float
+
 var fire_delay = 0.05
 var time_since_last_shot = 0.0
 
 @export var Bullet: PackedScene
+@export var health_component: HealthComponent
 
 func _ready() -> void:
 	pass
@@ -31,8 +37,13 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("equipment"):
 		use_equipment()
 
-func _physics_process(_delta: float) -> void:	
-	velocity = direction * WALKSPEED
+func _physics_process(delta: float) -> void:	
+	if is_knock_backed:
+		velocity = velocity.normalized() * (velocity.length()-knockback_friction*delta)
+		if velocity.length() < MIN_KNOCKBACK_SPEED:
+			is_knock_backed = false
+	else: 
+		velocity = direction * WALKSPEED
 	move_and_slide()
 
 
@@ -78,10 +89,10 @@ func shoot():
 	var bullet_instance = Bullet.instantiate()
 	var bullet_position = position + aim_direction * 16
 	
-	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction)
+	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, self)
 	
 func use_equipment():
 	emit_signal("used_equipment", aim_direction)
 
 func handle_hit():
-	print("player hit")
+	pass
