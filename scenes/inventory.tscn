@@ -29,23 +29,28 @@ theme_override_constants/h_separation = 40
 script = ExtResource("1_yyk2a")
 inventory_list = NodePath("../inventory_list/ScrollContainer/VBoxContainer")
 
+[node name="all_button" type="Button" parent="HFlowContainer" unique_id=302470157]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "show all"
+
 [node name="offensive_button" type="Button" parent="HFlowContainer" unique_id=738754756]
 custom_minimum_size = Vector2(480, 160)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "offensive equipment"
+theme_override_font_sizes/font_size = 36
+text = "show offensive equipment"
 
 [node name="defensive_button" type="Button" parent="HFlowContainer" unique_id=1308093622]
 custom_minimum_size = Vector2(480, 160)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "defensive equipment"
+theme_override_font_sizes/font_size = 36
+text = "show defensive equipment"
 
 [node name="utility_Button" type="Button" parent="HFlowContainer" unique_id=1799218747]
 custom_minimum_size = Vector2(480, 160)
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "utility equipment"
+theme_override_font_sizes/font_size = 36
+text = "show utility equipment"
 
 [node name="inventory_list" type="Control" parent="." unique_id=1017678389]
 layout_mode = 1
@@ -140,6 +145,16 @@ offset_bottom = 867.0
 text = "equipment limit 0 / 1"
 label_settings = SubResource("LabelSettings_yyk2a")
 
+[node name="equipped_label" type="Label" parent="." unique_id=517052642]
+layout_mode = 0
+offset_left = 1117.0
+offset_top = 723.0
+offset_right = 1860.0
+offset_bottom = 790.0
+text = "currently equipped: none"
+label_settings = SubResource("LabelSettings_yyk2a")
+
+[connection signal="pressed" from="HFlowContainer/all_button" to="HFlowContainer" method="_on_all_button_pressed"]
 [connection signal="pressed" from="HFlowContainer/offensive_button" to="HFlowContainer" method="_on_offensive_button_pressed"]
 [connection signal="pressed" from="HFlowContainer/defensive_button" to="HFlowContainer" method="_on_defensive_button_pressed"]
 [connection signal="pressed" from="HFlowContainer/utility_Button" to="HFlowContainer" method="_on_utility_button_pressed"]

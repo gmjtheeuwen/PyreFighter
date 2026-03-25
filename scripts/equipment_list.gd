@@ -17,26 +17,37 @@ func _ready() -> void:
 	_populate_category(categorized[item_data.Type.DEFENSIVE], $defensive_container)
 	_populate_category(categorized[item_data.Type.UTILITY], $utility_container)
 	
+	show_category("offensive_container")
+	var first_card = $offensive_container/HFlowContainer.get_child(0)
+	if first_card:
+		first_card.grab_focus()
+
 func _populate_category(items: Array, container: Node):
 	var flow = container.get_node("HFlowContainer")
+	var cards = []
 	for data in items:
 		var card = ITEM_CARD.instantiate()
 		flow.add_child(card)
 		card.setup(data)
 		card.equipped_state_changed.connect(_on_equipped_state_changed)
-
-func _on_reorder_requested(category_name: String, direction: String):
-	print("request received for: ", category_name)
-	var node = get_node(category_name)
-	var current_pos = node.get_index()
 	
-	if direction == "up" and current_pos > 0:
-		move_child(node, 0)
-		print("up success")
-	elif direction == "down" and current_pos < get_child_count() - 1:
-		move_child(node, current_pos + 1)
-		print("down success")
+	for i in cards.size():
+		if i > 0:
+			cards[i].focus_neighbor_left = cards[i].get_path_to(cards[i - 1])
+			cards[i - 1].focus_neighbor_right = cards[i].get_path_to(cards[i])
 
-func _on_equipped_state_changed(is_equipped: bool):
+func show_category(category_name: String) -> void:
+	if category_name == "all":
+		$offensive_container.visible = true
+		$defensive_container.visible = true
+		$utility_container.visible = true
+	else:
+		$offensive_container.visible = false
+		$defensive_container.visible = false
+		$utility_container.visible = false
+		get_node(category_name).visible = true
+
+func _on_equipped_state_changed(is_equipped: bool, item_name: String):
 	var count = 1 if is_equipped else 0
 	get_node("../../../limit_label").text = "equipment limit " + str(count) + "/ 1"
+	get_node("../../../equipped_label").text = "currently equipped: " + str(item_name)

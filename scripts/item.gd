@@ -3,7 +3,7 @@ extends MarginContainer
 
 var item: item_data
 
-signal equipped_state_changed(is_equipped: bool)
+signal equipped_state_changed(is_equipped: bool, equipment_name: String)
 
 func setup(data: item_data):
 	item = data
@@ -26,4 +26,22 @@ func _on_button_pressed() -> void:
 		print("succesfully equiped:", inventory.equipped_item_id)
 	
 	ResourceSaver.save(inventory, "res://resources/inventory.tres")
-	emit_signal("equipped_state_changed", item.is_equipped)
+	emit_signal("equipped_state_changed", item.is_equipped, item.display_name)
+
+
+func _on_texture_rect_mouse_entered() -> void:
+	var tween = create_tween()
+	tween.tween_property($PanelContainer/TextureRect, "self_modulate", Color(1.3, 1.3, 1.3, 1.0), 0.1)
+
+
+func _on_texture_rect_mouse_exited() -> void:
+	var tween = create_tween()
+	tween.tween_property($PanelContainer/TextureRect, "self_modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1)
+
+func _on_focus_entered() -> void:
+	var tween = create_tween()
+	tween.tween_property($PanelContainer/TextureRect, "self_modulate", Color(1.3, 1.3, 1.3, 1.0), 0.1)
+
+func _on_focus_exited() -> void:
+	var tween = create_tween()
+	tween.tween_property($PanelContainer/TextureRect, "self_modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1)

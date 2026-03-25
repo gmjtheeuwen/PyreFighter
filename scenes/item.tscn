@@ -121,6 +121,7 @@ _data = {
 
 [node name="Item" type="MarginContainer" unique_id=782330622]
 custom_minimum_size = Vector2(180, 180)
+focus_mode = 2
 script = ExtResource("1_vljjh")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1749900862]
@@ -170,4 +171,8 @@ animation_player = NodePath("AnimationPlayer")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="PanelContainer/TextureRect" unique_id=648387256]
 libraries/ = SubResource("AnimationLibrary_e0dlw")
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="mouse_entered" from="PanelContainer/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
+[connection signal="mouse_exited" from="PanelContainer/TextureRect" to="." method="_on_texture_rect_mouse_exited"]
