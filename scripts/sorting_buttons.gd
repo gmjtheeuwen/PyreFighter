@@ -27,6 +27,8 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_page_left"):
 		current_index = max(0, current_index - 1)
 		inventory_list.show_category(categories[current_index])
+		get_child(current_index).grab_focus()
 	elif event.is_action_pressed("ui_page_right"):
 		current_index = min(categories.size() - 1, current_index + 1)
 		inventory_list.show_category(categories[current_index])
+		get_child(current_index).grab_focus()

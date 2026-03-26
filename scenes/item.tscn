@@ -176,3 +176,4 @@ libraries/ = SubResource("AnimationLibrary_e0dlw")
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/TextureRect" to="." method="_on_texture_rect_mouse_exited"]
+[connection signal="animation_finished" from="PanelContainer/TextureRect/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
