@@ -7,18 +7,18 @@ var _using_controller := false
 func _ready() -> void:
 	var inventory: inventory_data = load("res://resources/inventory.tres")
 	var categorized := {
-		item_data.Type.OFFENSIVE: [],
-		item_data.Type.DEFENSIVE: [],
-		item_data.Type.UTILITY: []
+		ItemData.Type.OFFENSIVE: [],
+		ItemData.Type.DEFENSIVE: [],
+		ItemData.Type.UTILITY: []
 	}
 	
 	for item in inventory.all_items:
 		if item.is_unlocked:
 			categorized[item.type].append(item)
 	
-	_populate_category(categorized[item_data.Type.OFFENSIVE], $offensive_container)
-	_populate_category(categorized[item_data.Type.DEFENSIVE], $defensive_container)
-	_populate_category(categorized[item_data.Type.UTILITY], $utility_container)
+	_populate_category(categorized[ItemData.Type.OFFENSIVE], $offensive_container)
+	_populate_category(categorized[ItemData.Type.DEFENSIVE], $defensive_container)
+	_populate_category(categorized[ItemData.Type.UTILITY], $utility_container)
 	
 	show_category("offensive_container")
 	var first_card = $offensive_container/HFlowContainer.get_child(0)

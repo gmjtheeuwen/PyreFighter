@@ -1,160 +1,44 @@
-[gd_scene format=3 uid="uid://c7qejvx6r0k8c"]
+[gd_scene format=3 uid="uid://bf02qxyci5f7m"]
 
 [ext_resource type="Script" uid="uid://dfu8j3kb4wu4k" path="res://scripts/sorting_buttons.gd" id="1_yyk2a"]
-[ext_resource type="Script" uid="uid://i0o2i78wtg6y" path="res://scripts/equipment_list.gd" id="2_uae8j"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_l6pv2"]
-line_spacing = 0.0
-font_size = 64
-
-[sub_resource type="LabelSettings" id="LabelSettings_yyk2a"]
-font_size = 48
+[ext_resource type="PackedScene" uid="uid://df1rgoboehe34" path="res://scenes/inventory_list.tscn" id="2_hj2ta"]
+[ext_resource type="PackedScene" uid="uid://cbxuo5pmdq37p" path="res://scenes/category_select_button.tscn" id="2_ty45s"]
 
 [node name="Control" type="Control" unique_id=2038558900]
 layout_mode = 3
-anchor_right = 1.667
-anchor_bottom = 1.667
-offset_right = -0.3840332
-offset_bottom = -0.21606445
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
-[node name="HFlowContainer" type="HFlowContainer" parent="." unique_id=1265546953 node_paths=PackedStringArray("inventory_list")]
-custom_minimum_size = Vector2(1920, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1763031687]
 layout_mode = 0
-offset_left = 10.0
-offset_right = 1930.0
-offset_bottom = 160.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer" unique_id=1265546953]
+custom_minimum_size = Vector2(1920, 160)
+layout_mode = 2
 theme_override_constants/h_separation = 40
 script = ExtResource("1_yyk2a")
-inventory_list = NodePath("../inventory_list/ScrollContainer/VBoxContainer")
+category_button = ExtResource("2_ty45s")
 
-[node name="all_button" type="Button" parent="HFlowContainer" unique_id=302470157]
+[node name="inventory_list" parent="VBoxContainer" unique_id=1017678389 instance=ExtResource("2_hj2ta")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "show all"
-
-[node name="offensive_button" type="Button" parent="HFlowContainer" unique_id=738754756]
-custom_minimum_size = Vector2(480, 160)
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "show offensive equipment"
-
-[node name="defensive_button" type="Button" parent="HFlowContainer" unique_id=1308093622]
-custom_minimum_size = Vector2(480, 160)
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "show defensive equipment"
-
-[node name="utility_Button" type="Button" parent="HFlowContainer" unique_id=1799218747]
-custom_minimum_size = Vector2(480, 160)
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "show utility equipment"
-
-[node name="inventory_list" type="Control" parent="." unique_id=1017678389]
-layout_mode = 1
-anchor_right = 1.005
-anchor_bottom = 1.148
-offset_left = 10.0
-offset_top = 160.0
-offset_right = 0.4000244
-offset_bottom = 0.16003418
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ScrollContainer" type="ScrollContainer" parent="inventory_list" unique_id=677679624]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 920.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="inventory_list/ScrollContainer" unique_id=920373232]
-custom_minimum_size = Vector2(1920, 920)
-layout_mode = 2
-size_flags_vertical = 4
-script = ExtResource("2_uae8j")
-
-[node name="offensive_container" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer" unique_id=175859656]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 20
-
-[node name="CategoryTitle" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container" unique_id=446145200]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-text = "Offensive equipment"
-label_settings = SubResource("LabelSettings_l6pv2")
-
-[node name="HFlowContainer" type="HFlowContainer" parent="inventory_list/ScrollContainer/VBoxContainer/offensive_container" unique_id=1472892495]
-layout_mode = 2
-theme_override_constants/h_separation = 40
-theme_override_constants/v_separation = 20
-
-[node name="defensive_container" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer" unique_id=596151728]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 20
-
-[node name="CategoryTitle" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container" unique_id=681351857]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-text = "Defensive equipment"
-label_settings = SubResource("LabelSettings_l6pv2")
-
-[node name="HFlowContainer" type="HFlowContainer" parent="inventory_list/ScrollContainer/VBoxContainer/defensive_container" unique_id=663565505]
-layout_mode = 2
-theme_override_constants/h_separation = 40
-theme_override_constants/v_separation = 20
-
-[node name="utility_container" type="VBoxContainer" parent="inventory_list/ScrollContainer/VBoxContainer" unique_id=671962980]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-size_flags_vertical = 4
-theme_override_constants/separation = 20
-
-[node name="CategoryTitle" type="Label" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container" unique_id=240690380]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-text = "Utility equipment"
-label_settings = SubResource("LabelSettings_l6pv2")
-
-[node name="HFlowContainer" type="HFlowContainer" parent="inventory_list/ScrollContainer/VBoxContainer/utility_container" unique_id=1630894791]
-layout_mode = 2
-theme_override_constants/h_separation = 40
-theme_override_constants/v_separation = 20
 
 [node name="Button" type="Button" parent="." unique_id=1833795955]
 custom_minimum_size = Vector2(360, 120)
 layout_mode = 0
-offset_left = 1500.0
-offset_top = 900.0
-offset_right = 1860.0
-offset_bottom = 1020.0
+offset_left = 1560.0
+offset_top = 960.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_font_sizes/font_size = 48
 text = "start mission
 "
 
-[node name="limit_label" type="Label" parent="." unique_id=1901186799]
-layout_mode = 0
-offset_left = 1378.0
-offset_top = 800.0
-offset_right = 1860.0
-offset_bottom = 867.0
-text = "equipment limit 0 / 1"
-label_settings = SubResource("LabelSettings_yyk2a")
-
-[node name="equipped_label" type="Label" parent="." unique_id=517052642]
-layout_mode = 0
-offset_left = 1117.0
-offset_top = 723.0
-offset_right = 1860.0
-offset_bottom = 790.0
-text = "currently equipped: none"
-label_settings = SubResource("LabelSettings_yyk2a")
-
-[connection signal="pressed" from="HFlowContainer/all_button" to="HFlowContainer" method="_on_all_button_pressed"]
-[connection signal="pressed" from="HFlowContainer/offensive_button" to="HFlowContainer" method="_on_offensive_button_pressed"]
-[connection signal="pressed" from="HFlowContainer/defensive_button" to="HFlowContainer" method="_on_defensive_button_pressed"]
-[connection signal="pressed" from="HFlowContainer/utility_Button" to="HFlowContainer" method="_on_utility_button_pressed"]
+[connection signal="selected_category_changed" from="VBoxContainer/HFlowContainer" to="VBoxContainer/inventory_list" method="_on_category_selected"]

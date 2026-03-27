@@ -1,0 +1,19 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/category.tscn" id="1_pippe"]
+
+[node name="ScrollContainer" type="ScrollContainer" unique_id=2071876843]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1931669628]
+custom_minimum_size = Vector2(1920, 720)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="OFFENSIVE_container" parent="VBoxContainer" unique_id=1430446171 instance=ExtResource("1_pippe")]
+layout_mode = 2
+
+[node name="DEFENSIVE_container" parent="VBoxContainer" unique_id=1776636435 instance=ExtResource("1_pippe")]
+layout_mode = 2
+
+[node name="UTILITY_container" parent="VBoxContainer" unique_id=723652304 instance=ExtResource("1_pippe")]
+layout_mode = 2

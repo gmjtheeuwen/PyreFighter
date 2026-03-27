@@ -1,13 +1,12 @@
 extends MarginContainer
 
-
-var item: item_data
+var item: ItemData
 
 signal equipped_state_changed(is_equipped: bool, equipment_name: String)
 signal fade_completed
 signal fade_back_completed
 
-func _setup(data: item_data):
+func _setup(data: ItemData):
 	item = data
 	$PanelContainer/TextureRect.texture = data.icon
 	$PanelContainer/VBoxContainer/title.text = data.display_name

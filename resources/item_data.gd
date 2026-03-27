@@ -1,4 +1,4 @@
-class_name item_data
+class_name ItemData
 extends Resource
 
 enum Type { OFFENSIVE, DEFENSIVE, UTILITY }
