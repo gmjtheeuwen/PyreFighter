@@ -1,8 +1,9 @@
-[gd_scene format=3 uid="uid://bf02qxyci5f7m"]
+[gd_scene format=3 uid="uid://c7qejvx6r0k8c"]
 
 [ext_resource type="Script" uid="uid://dfu8j3kb4wu4k" path="res://scripts/sorting_buttons.gd" id="1_yyk2a"]
-[ext_resource type="PackedScene" uid="uid://df1rgoboehe34" path="res://scenes/inventory_list.tscn" id="2_hj2ta"]
+[ext_resource type="PackedScene" uid="uid://ck608u5y31ner" path="res://scenes/inventory_list.tscn" id="2_hj2ta"]
 [ext_resource type="PackedScene" uid="uid://cbxuo5pmdq37p" path="res://scenes/category_select_button.tscn" id="2_ty45s"]
+[ext_resource type="Script" uid="uid://5iaanl5tubhd" path="res://scripts/menu_input.gd" id="4_53g1v"]
 
 [node name="Control" type="Control" unique_id=2038558900]
 layout_mode = 3
@@ -40,5 +41,11 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 48
 text = "start mission
 "
+
+[node name="InputHandler" type="Control" parent="." unique_id=2073318609]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_53g1v")
 
 [connection signal="selected_category_changed" from="VBoxContainer/HFlowContainer" to="VBoxContainer/inventory_list" method="_on_category_selected"]
