@@ -7,8 +7,8 @@ var _current_sort_index = 0
 @onready var inventory: Inventory = $"../VBoxContainer/inventory_list"
 @onready var category_container = $"../VBoxContainer/inventory_list/HBoxContainer/ScrollContainer/VBoxContainer"
 @onready var sorting_container: sorting_buttons = $"../VBoxContainer/HFlowContainer"
-@onready var button_selected_stylebox: StyleBoxFlat = preload("res://resources/button_selected.tres")
-@onready var button_unselected_stylebox: StyleBoxFlat = preload("res://resources/button_unselected.tres")
+@onready var button_selected_stylebox: StyleBoxFlat = preload("res://resources/styles/button_selected.tres")
+@onready var button_unselected_stylebox: StyleBoxFlat = preload("res://resources/styles/button_unselected.tres")
 
 func _ready():
 	_grab_first_visible_focus()

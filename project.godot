@@ -18,6 +18,7 @@ config/name="PyreFighter"
 run/main_scene="uid://cqhljh4l8xi4x"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://cqhljh4l8xi4x"
 
 [display]
 

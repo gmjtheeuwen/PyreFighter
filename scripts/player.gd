@@ -88,7 +88,6 @@ func shoot():
 	if Bullet == null: return
 	var bullet_instance = Bullet.instantiate()
 	var bullet_position = position + aim_direction * 16
-	
 	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, self)
 	
 func use_equipment():
