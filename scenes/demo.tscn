@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bd8u352dhbx70" path="res://scenes/bullet.tscn" id="4_e66cg"]
 [ext_resource type="Script" uid="uid://brjfhqnqjsrup" path="res://scripts/bullet_manager.gd" id="5_5fme1"]
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="6_5fme1"]
-[ext_resource type="PackedScene" uid="uid://b20irxk87enkx" path="res://scenes/enemy.tscn" id="7_7qr1p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
 texture = ExtResource("1_b0nem")
@@ -59,24 +58,6 @@ INTERACTION_TEXT = "Thanks for playing!"
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=345806468]
 script = ExtResource("5_5fme1")
-
-[node name="Enemy" parent="." unique_id=570300622 instance=ExtResource("7_7qr1p")]
-position = Vector2(-224, -288)
-
-[node name="Enemy2" parent="." unique_id=34253666 instance=ExtResource("7_7qr1p")]
-position = Vector2(-192, -80)
-
-[node name="Enemy3" parent="." unique_id=1405190122 instance=ExtResource("7_7qr1p")]
-position = Vector2(-352, 128)
-
-[node name="Enemy4" parent="." unique_id=1872304404 instance=ExtResource("7_7qr1p")]
-position = Vector2(-352, 304)
-
-[node name="Enemy5" parent="." unique_id=1864474484 instance=ExtResource("7_7qr1p")]
-position = Vector2(304, 112)
-
-[node name="Enemy6" parent="." unique_id=1336580214 instance=ExtResource("7_7qr1p")]
-position = Vector2(336, -80)
 
 [connection signal="fired_bullet" from="Player" to="BulletManager" method="_on_player_fired_bullet"]
 [connection signal="body_entered" from="InteractionTest/InteractionArea" to="InteractionTest/InteractionArea" method="on_body_entered"]
