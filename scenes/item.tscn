@@ -52,10 +52,39 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_s8enn"]
+resource_name = "fade_back"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e0dlw"]
 _data = {
 &"RESET": SubResource("Animation_yo0xd"),
-&"fade": SubResource("Animation_e0dlw")
+&"fade": SubResource("Animation_e0dlw"),
+&"fade_back": SubResource("Animation_s8enn")
 }
 
 [node name="Item" type="MarginContainer" unique_id=782330622]
@@ -103,6 +132,7 @@ mouse_filter = 1
 text = "Equip"
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer" unique_id=1391193508]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("2_vljjh")
 
@@ -119,4 +149,4 @@ libraries/ = SubResource("AnimationLibrary_e0dlw")
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Button" to="." method="on_button_pressed"]
 [connection signal="mouse_entered" from="PanelContainer/TextureRect" to="." method="_on_texture_rect_mouse_entered"]
 [connection signal="mouse_exited" from="PanelContainer/TextureRect" to="." method="_on_texture_rect_mouse_exited"]
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_end"]

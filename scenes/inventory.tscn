@@ -49,3 +49,4 @@ offset_bottom = 40.0
 script = ExtResource("4_53g1v")
 
 [connection signal="selected_category_changed" from="VBoxContainer/HFlowContainer" to="VBoxContainer/inventory_list" method="_on_category_selected"]
+[connection signal="category_changed" from="VBoxContainer/inventory_list" to="InputHandler" method="_on_category_changed"]

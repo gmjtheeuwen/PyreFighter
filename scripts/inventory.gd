@@ -2,9 +2,12 @@ extends Node
 class_name Inventory
 
 signal equipped_item_changed(item: ItemData)
+signal category_changed(category: String)
 
 @export var CATEGORY: PackedScene
 var INVENTORY_DATA = preload("res://resources/inventory.tres")
+
+@onready var input_handler = $"../../InputHandler"
 @onready var category_container = $HBoxContainer/ScrollContainer/VBoxContainer
 @onready var limit_label = $HBoxContainer/MarginContainer/Control/limit_label
 @onready var equipped_label = $HBoxContainer/MarginContainer/Control/equipped_label
@@ -24,11 +27,12 @@ func _ready() -> void:
 	
 	for item in INVENTORY_DATA.items:
 		var type = ItemData.Type.keys()[item.type]
-		categories[type].add_item(item, on_item_equipped)
+		categories[type].add_item(item, on_item_equipped, input_handler.on_item_fade_end)
 
 func _on_category_selected(category: String):	
-	selected_category = category
-	show_category(selected_category)
+	show_category(category)
+	category_changed.emit(category)
+	
 
 func show_category(category_name: String) -> void:
 	for container in category_container.get_children():
