@@ -14,7 +14,7 @@ func setup(data: ItemData):
 	item = data
 	$PanelContainer/TextureRect.texture = data.icon
 	$PanelContainer/VBoxContainer/title.text = data.display_name
-	$PanelContainer/VBoxContainer/Desc.text = str(get_index())
+	$PanelContainer/VBoxContainer/Desc.text = data.description
 
 func on_button_pressed() -> void:
 	equip_button_pressed.emit(item)

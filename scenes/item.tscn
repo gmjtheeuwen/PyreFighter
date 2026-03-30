@@ -132,7 +132,6 @@ mouse_filter = 1
 text = "Equip"
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer" unique_id=1391193508]
-self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 texture = ExtResource("2_vljjh")
 

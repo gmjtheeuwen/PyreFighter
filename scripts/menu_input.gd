@@ -20,6 +20,7 @@ func _input(event: InputEvent) -> void:
 	
 	if event.is_action_pressed("ui_page_left") or event.is_action_pressed("ui_page_right"):
 		_handle_sort_navigation(event)
+		_update_sort_buttons()
 		get_viewport().set_input_as_handled()
 		return
 	
@@ -49,7 +50,6 @@ func _handle_directional(event: InputEvent, focused: Node) -> void:
 	get_viewport().set_input_as_handled()
 	var card = focused.get_parent().get_parent().get_parent() as Item
 	var flow = card.get_parent()
-	print(flow)
 	var card_index = card.get_index()
 	var category_index = flow.get_parent().get_index()
 	
@@ -77,14 +77,13 @@ func _navigate(category_index: int, card_index: int):
 	
 	category.get_child(1).get_child(card_index).grab_focus()
 	
-func _on_category_changed(_category: String):
+func _on_category_changed(category: String):
 	_grab_first_visible_focus()
 
 func _get_visible_categories() -> Array:
 	return inventory.category_container.get_children().filter(func(c): return c.visible)
 
 func _focus_sort_buttons() -> void:
-	print(sorting_container)
 	if sorting_container and sorting_container.get_child_count() > 0:
 		sorting_container.get_child(0).grab_focus()
 
@@ -109,6 +108,7 @@ func _handle_sort_navigation(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_page_right"):
 		_current_sort_index = wrap(_current_sort_index + 1, 0, sorting_container.get_child_count())
 		
+func _update_sort_buttons():
 	for c in sorting_container.get_children():
 		var button = c as Button
 		if (button.get_index() != _current_sort_index):	button.add_theme_stylebox_override("normal", button_unselected_stylebox)
