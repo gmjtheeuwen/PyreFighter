@@ -1,27 +1,64 @@
 extends CharacterBody2D
-signal health_changed
+class_name Enemy
 
-@onready var Sprite = $AnimatedSprite2D
+@export var stats : EnemyStats
+var cloned_stats: EnemyStats
 
-@export var MAX_HP = 10.0
-var hp = 0.0
+@export var MIN_KNOCKBACK_SPEED: float = 8.0
 
-var is_invinsible := false
+var is_invincible := false
+var is_knock_backed := false
+
+@onready var health_component = $HealthComponent
+@onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var hitflash = $AnimatedSprite2D/HitFlash
+@onready var timer = $InvincibilityTimer
+@onready var explosion_emitter: GPUParticles2D = $VFX/ExplosionEmitter
 
 func _ready() -> void:
-	hp = MAX_HP
-
-func on_hit(bullet):
-	bullet.queue_free()
+	cloned_stats = stats.duplicate()
+	health_component.MAX_HEALTH = cloned_stats.max_health
+	health_component.health = health_component.MAX_HEALTH
 	
-	if (!is_invinsible):
-		Sprite.play("hurt")
-		hp -= bullet.damage
-		if (hp <= 0):	queue_free()
-		is_invinsible = true
-		
-	health_changed.emit(hp/MAX_HP)
+	var at = AtlasTexture.new()
+	at.atlas = cloned_stats.sprite_sheet
+	var animation_name = "idle_" + cloned_stats.type
+	sprite.sprite_frames.add_animation(animation_name)
+	for i in range(0,8):
+		var temp_atlas := AtlasTexture.new()
+		temp_atlas.atlas = at.atlas
+		temp_atlas.filter_clip = true
+		temp_atlas.region = Rect2(i*32,0,32,32)
+		sprite.sprite_frames.add_frame(animation_name, temp_atlas)
+	sprite.animation = animation_name
+	sprite.play()
+	
 
-func on_animation_finished():
-	Sprite.play("default")
-	is_invinsible = false
+func _on_hit(attack: AttackComponent):
+	if is_invincible: return
+	health_component.damage(attack.damage)
+	
+	if attack.knockback > 0:
+		velocity = (global_position - attack.global_position).normalized() * attack.knockback
+		is_knock_backed = true
+		
+	timer.start()
+	hitflash.play("hit_flash")
+
+	is_invincible = true
+	
+	cloned_stats.resolve_effects(attack.attack_type, attack.source, self)
+	
+func _physics_process(delta: float) -> void:
+	if is_knock_backed:
+		velocity = velocity.normalized() * (velocity.length()-cloned_stats.knockback_friction*delta)
+		if velocity.length() < MIN_KNOCKBACK_SPEED:
+			is_knock_backed = false 
+	move_and_slide()
+	
+func _invincibility_ended():
+	is_invincible = false
+
+func _on_death():
+	get_parent().remove(self)
+	queue_free()

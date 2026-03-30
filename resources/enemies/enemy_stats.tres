@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://dwg21iamnu7s1"]
+
+[ext_resource type="Script" uid="uid://tdihdt4rkmdq" path="res://resources/enemies/enemy_stats.gd" id="1_qgrkh"]
+[ext_resource type="Texture2D" uid="uid://jc8p6d33gm80" path="res://assets/Pyre_Solid_Sheet.png" id="2_b824s"]
+
+[resource]
+script = ExtResource("1_qgrkh")
+sprite_sheet = ExtResource("2_b824s")

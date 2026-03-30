@@ -12,12 +12,18 @@ config_version=5
 
 config/name="PyreFighter"
 run/main_scene="uid://cqhljh4l8xi4x"
-config/features=PackedStringArray("4.5", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
+
+[dotnet]
+
+project/assembly_name="PyreFighter"
 
 [global_group]
 
@@ -74,8 +80,9 @@ equipment={
 
 2d_physics/layer_1="Terrain"
 2d_physics/layer_2="Player"
-2d_physics/layer_3="Enemies"
-2d_physics/layer_4="Bullets"
+2d_physics/layer_3="PlayerAttacks"
+2d_physics/layer_4="Enemies"
+2d_physics/layer_5="EnemyAttacks"
 
 [physics]
 

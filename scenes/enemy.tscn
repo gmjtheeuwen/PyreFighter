@@ -1,64 +1,157 @@
-[gd_scene load_steps=9 format=3 uid="uid://b20irxk87enkx"]
+[gd_scene format=3 uid="uid://b20irxk87enkx"]
 
 [ext_resource type="Script" uid="uid://bpb6xw4sderk" path="res://scripts/enemy.gd" id="1_md0e3"]
-[ext_resource type="Texture2D" uid="uid://ch7dfr4i8all6" path="res://assets/Enemy.png" id="2_md0e3"]
+[ext_resource type="Texture2D" uid="uid://jc8p6d33gm80" path="res://assets/Pyre_Solid_Sheet.png" id="2_5uy6h"]
+[ext_resource type="Shader" uid="uid://bgmhar483cefk" path="res://shaders/enemy.gdshader" id="2_xwavj"]
 [ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="3_4ra3w"]
+[ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="4_xwavj"]
+[ext_resource type="PackedScene" uid="uid://dsmjeru81rdu7" path="res://scenes/explosion_emitter.tscn" id="5_c4w8v"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
-atlas = ExtResource("2_md0e3")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nenq2"]
+resource_local_to_scene = true
+shader = ExtResource("2_xwavj")
+shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
+shader_parameter/hit_flash_on = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
+atlas = ExtResource("2_5uy6h")
 region = Rect2(0, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5uy6h"]
-atlas = ExtResource("2_md0e3")
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwavj"]
+atlas = ExtResource("2_5uy6h")
 region = Rect2(32, 0, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ra3w"]
-atlas = ExtResource("2_md0e3")
-region = Rect2(0, 0, 32, 32)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]
+atlas = ExtResource("2_5uy6h")
+region = Rect2(64, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_5uy6h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
+atlas = ExtResource("2_5uy6h")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipns3"]
+atlas = ExtResource("2_5uy6h")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qclf"]
+atlas = ExtResource("2_5uy6h")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8i8w"]
+atlas = ExtResource("2_5uy6h")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otmr2"]
+atlas = ExtResource("2_5uy6h")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4ra3w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_md0e3")
-}],
-"loop": false,
-"name": &"default",
-"speed": 10.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5uy6h")
+"texture": SubResource("AtlasTexture_c4w8v")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4ra3w")
+"texture": SubResource("AtlasTexture_xwavj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nenq2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md484")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipns3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qclf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8i8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otmr2")
 }],
-"loop": false,
-"name": &"hurt",
-"speed": 10.0
+"loop": true,
+"name": &"idle",
+"speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3vyb7"]
+[sub_resource type="Animation" id="Animation_xwavj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_fgpka"]
+resource_name = "hit_flash"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/hit_flash_on")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ovi"]
+_data = {
+&"RESET": SubResource("Animation_xwavj"),
+&"hit_flash": SubResource("Animation_fgpka")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4w8v"]
 size = Vector2(32, 32)
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
-collision_layer = 4
-collision_mask = 11
+[node name="Enemy" type="CharacterBody2D" unique_id=2018764647 groups=["enemy"]]
 script = ExtResource("1_md0e3")
-MAX_HP = 8.0
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_5uy6h")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2092398911]
+material = SubResource("ShaderMaterial_nenq2")
+position = Vector2(0, -8)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_4ra3w")
+animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_3vyb7")
+[node name="HitFlash" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1452202564]
+libraries/ = SubResource("AnimationLibrary_a2ovi")
 
-[node name="Healthbar" parent="." instance=ExtResource("3_4ra3w")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=345625917]
+shape = SubResource("RectangleShape2D_c4w8v")
+
+[node name="HealthComponent" type="Node2D" parent="." unique_id=85940192]
+script = ExtResource("4_xwavj")
+metadata/_custom_type_script = "uid://bpc7ctncys7f7"
+
+[node name="Healthbar" parent="." unique_id=236410912 instance=ExtResource("3_4ra3w")]
 anchors_preset = 0
-offset_top = -24.0
-offset_bottom = -24.0
+offset_top = -32.0
+offset_bottom = -32.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[connection signal="health_changed" from="." to="Healthbar" method="on_health_changed"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="on_animation_finished"]
+[node name="InvincibilityTimer" type="Timer" parent="." unique_id=1025565188]
+one_shot = true
+
+[node name="VFX" type="Node2D" parent="." unique_id=1154165267]
+
+[node name="ExplosionEmitter" parent="VFX" unique_id=733634665 instance=ExtResource("5_c4w8v")]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[connection signal="health_changed" from="HealthComponent" to="Healthbar" method="on_health_changed"]
+[connection signal="heatlh_depleted" from="HealthComponent" to="." method="_on_death"]
+[connection signal="timeout" from="InvincibilityTimer" to="." method="_invincibility_ended"]
