@@ -4,6 +4,8 @@ const MAX_SPEED := 320.0
 const FRICTION := 0.6
 const MIN_VELOCTIY := 4.0
 
+@onready var attack_component = $AttackComponent
+
 var speed = MAX_SPEED
 var direction := Vector2.ZERO
 
@@ -27,3 +29,6 @@ func _on_body_entered(body: Node2D):
 
 func _resolve():
 	queue_free()
+
+func _set_bullet_type(ammo_type: AttackComponent.AmmoType):
+	attack_component.attack_type = ammo_type

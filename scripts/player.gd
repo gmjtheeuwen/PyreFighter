@@ -19,6 +19,9 @@ var time_since_last_shot = 0.0
 @export var Bullet: PackedScene
 @export var health_component: HealthComponent
 
+var bullet_scene = preload("res://assets/Bullet.png")
+var bullet_types = ["water", "foam", "powder", "carbondioxide"]
+
 func _ready() -> void:
 	pass
 
@@ -96,3 +99,15 @@ func use_equipment():
 
 func handle_hit():
 	pass
+
+func _change_ammo(ammo_index: String):
+	var bullet = bullet_scene.instantiate()
+	var ammo_type = bullet.get_node(AttackComponent)
+	if ammo_index == bullet_types[0]:
+		ammo_type.attack_type = ammo_type.AmmoType.WATER
+	elif ammo_index == bullet_types[1]:
+		ammo_type.attack_type = ammo_type.AmmoType.FOAM
+	elif ammo_index == bullet_types[2]:
+		ammo_type.attack_type = ammo_type.AmmoType.POWDER
+	elif ammo_index == bullet_types[3]:
+		ammo_type.attack_type = ammo_type.AmmoType.CARBONDIOXIDE

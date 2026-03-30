@@ -1,10 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckueivrkg8uso"]
+[gd_scene format=3 uid="uid://ckueivrkg8uso"]
 
 [ext_resource type="Script" uid="uid://c8qbr67wjmw8g" path="res://scripts/gun.gd" id="1_og67c"]
 [ext_resource type="Texture2D" uid="uid://crfrlqdi2bx5q" path="res://assets/Gun.png" id="1_x77fm"]
+[ext_resource type="Texture2D" uid="uid://cttbcqaqnflk8" path="res://assets/gun ammo type identifier.png" id="3_gp1hk"]
 
-[node name="Gun" type="Node2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_qd4js"]
+atlas = ExtResource("3_gp1hk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6b133"]
+atlas = ExtResource("3_gp1hk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haq8l"]
+atlas = ExtResource("3_gp1hk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmp1f"]
+atlas = ExtResource("3_gp1hk")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6oi81"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qd4js")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6b133")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haq8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmp1f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Gun" type="Node2D" unique_id=1434693298]
 script = ExtResource("1_og67c")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=451434619]
 texture = ExtResource("1_x77fm")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1636357920]
+sprite_frames = SubResource("SpriteFrames_6oi81")
+speed_scale = 0.0
