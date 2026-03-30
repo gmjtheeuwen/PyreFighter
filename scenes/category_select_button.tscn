@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cbxuo5pmdq37p"]
+
+[node name="CategorySelectButton" type="Button" unique_id=1412320174]
+custom_minimum_size = Vector2(160, 160)
+offset_right = 160.0
+offset_bottom = 160.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 36
