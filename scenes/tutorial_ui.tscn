@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://cbe62met8hqlq"]
+
+[ext_resource type="Script" uid="uid://y5nu3pn06vht" path="res://scripts/tutorial_ui.gd" id="1_6gjci"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6gjci"]
+font_size = 48
+
+[sub_resource type="Animation" id="Animation_oi6as"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6gjci"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_58d3m"]
+_data = {
+&"RESET": SubResource("Animation_oi6as"),
+&"fade_out": SubResource("Animation_6gjci")
+}
+
+[node name="TutorialUI" type="CanvasLayer" unique_id=63562129]
+script = ExtResource("1_6gjci")
+
+[node name="Control" type="Control" parent="." unique_id=1357078220]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Control" unique_id=1151415429]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -300.0
+offset_right = 535.0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/PanelContainer" unique_id=1175647946]
+layout_mode = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer" unique_id=1324224256]
+custom_minimum_size = Vector2(240, 180)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_6gjci")
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="." unique_id=1241488063]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=517501260]
+libraries/ = SubResource("AnimationLibrary_58d3m")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timeout"]

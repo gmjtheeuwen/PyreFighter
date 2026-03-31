@@ -1,8 +1,8 @@
 extends AttackComponent
 
-const MAX_SPEED := 320.0
-const FRICTION := 0.6
-const MIN_VELOCTIY := 4.0
+const MAX_SPEED := 400.0
+const FRICTION := 0.7
+const MIN_VELOCTIY := 16.0
 
 var speed = MAX_SPEED
 var direction := Vector2.ZERO
@@ -16,7 +16,7 @@ func _physics_process(delta: float) -> void:
 	if (velocity.length() < MIN_VELOCTIY):
 		queue_free()
 	
-	position += velocity * delta
+	global_position += velocity * delta
 	
 func _on_body_entered(body: Node2D):
 	if (body.is_in_group("environment")):

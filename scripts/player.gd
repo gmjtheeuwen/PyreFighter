@@ -13,7 +13,7 @@ var is_knock_backed := false
 @export var knockback_friction : float
 @export var MIN_KNOCKBACK_SPEED : float
 
-var fire_delay = 0.05
+var fire_delay = 0.02
 var time_since_last_shot = 0.0
 
 @export var Bullet: PackedScene
