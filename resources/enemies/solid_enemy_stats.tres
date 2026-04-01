@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_prbi6")
 type = "solid"
-max_health = 10.0
+max_health = 5.0
 max_speed = 64.0
 knockback_friction = 64.0
 sprite_sheet = ExtResource("2_2hdp3")

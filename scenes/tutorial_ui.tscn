@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://cbe62met8hqlq"]
 
 [ext_resource type="Script" uid="uid://y5nu3pn06vht" path="res://scripts/tutorial_ui.gd" id="1_6gjci"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_6gjci"]
-font_size = 48
+[ext_resource type="Script" uid="uid://c005168h7m23y" path="res://addons/button_prompts_for_godot/Scripts/ui_button_prompt.gd" id="2_6gjci"]
 
 [sub_resource type="Animation" id="Animation_oi6as"]
 length = 0.001
@@ -68,11 +66,14 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 60
 
-[node name="Label" type="Label" parent="Control/PanelContainer/MarginContainer" unique_id=1324224256]
-custom_minimum_size = Vector2(240, 180)
+[node name="ButtonPromptLabel" type="RichTextLabel" parent="Control/PanelContainer/MarginContainer" unique_id=1588202793]
 layout_mode = 2
-label_settings = SubResource("LabelSettings_6gjci")
-vertical_alignment = 1
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+script = ExtResource("2_6gjci")
+PROMPT_SCALE = 10.0
+metadata/_custom_type_script = "uid://c005168h7m23y"
 
 [node name="Timer" type="Timer" parent="." unique_id=1241488063]
 one_shot = true

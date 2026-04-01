@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Mission" format=3 uid="uid://dctjw2a0nxho4"]
+
+[ext_resource type="Script" uid="uid://c2kjpndudpyj0" path="res://resources/missions/mission.gd" id="1_ekvuo"]
+[ext_resource type="Resource" uid="uid://cgfokupr7xfl8" path="res://resources/missions/mission_2.tres" id="2_u1ml7"]
+
+[resource]
+script = ExtResource("1_ekvuo")
+difficulty = 2
+location = Vector2(0.5, 0.1)
+unlocks = Array[ExtResource("1_ekvuo")]([ExtResource("2_u1ml7")])
+metadata/_custom_type_script = "uid://c2kjpndudpyj0"

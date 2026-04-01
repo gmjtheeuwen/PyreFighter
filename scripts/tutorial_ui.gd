@@ -1,11 +1,11 @@
 extends CanvasLayer
 
+signal finished
 @export var tutorial_data: TutorialData
-@export var next_scene: PackedScene
 
-@onready var label = $Control/PanelContainer/MarginContainer/Label
 @onready var timer = $Timer
 @onready var animation = $AnimationPlayer
+@onready var label_container = $Control/PanelContainer/MarginContainer
 
 var current_index = 0
 var accept_input = false
@@ -13,7 +13,7 @@ var accept_input = false
 func _ready() -> void:
 	if (tutorial_data):
 		if tutorial_data.text:	
-			label.text = tutorial_data.text[current_index]
+			_update_label()			
 			timer.start()
 	else:
 		animation.play("fade_out")
@@ -27,11 +27,21 @@ func _process(_delta: float) -> void:
 		
 	if current_index == tutorial_data.text.size(): 
 		animation.play("fade_out")
-		timer.start(10)
+		timer.start()
 	else:
-		label.text = tutorial_data.text[current_index]
+		_update_label()
 		timer.start()
 		
+func _update_label():
+	label_container.visible = false
+	if label_container.get_child_count() > 0:	
+		for child in label_container.get_children():
+			child.free()
+	var label = ButtonPromptLabel.new()
+	label.text = tutorial_data.text[current_index]
+	label_container.add_child(label)
+	label_container.visible = true
+	
 func _check_input() -> bool:
 	var input := tutorial_data.inputs[current_index]
 	if !input.contains(','): return Input.is_action_pressed(input)
@@ -43,5 +53,5 @@ func _check_input() -> bool:
 	return false
 
 func _on_timeout():
-	if current_index == tutorial_data.text.size(): get_tree().call_deferred("change_scene_to_packed", next_scene)
+	if current_index == tutorial_data.text.size(): finished.emit()
 	else: accept_input = true

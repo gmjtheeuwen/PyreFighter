@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_jif4s")
-text = Array[StringName]([&"Use WASD to move", &"Press LMB to shoot"])
+text = Array[String](["Use {up} to move", "Press {shoot} to shoot"])
 inputs = Array[StringName]([&"up,down,left,right", &"shoot"])

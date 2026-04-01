@@ -13,7 +13,7 @@ var is_knock_backed := false
 @export var knockback_friction : float
 @export var MIN_KNOCKBACK_SPEED : float
 
-var fire_delay = 0.02
+var fire_delay = 0.018
 var time_since_last_shot = 0.0
 
 @export var Bullet: PackedScene
@@ -23,6 +23,9 @@ func _ready() -> void:
 	pass
 
 func _process(delta: float) -> void:
+	if health_component.health <= 0:
+		on_death()
+		return
 	var joypads := Input.get_connected_joypads()
 	if Input.get_connected_joypads().size() > 0:
 		handle_controller_input(joypads)
@@ -83,6 +86,9 @@ func handle_keyboard_input() -> void:
 	var aim_y = mouse_position.y - rect.size.y/2
 	aim_direction = Vector2(aim_x, aim_y).normalized()
 	
+	
+func on_death():
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func shoot():
 	if Bullet == null: return

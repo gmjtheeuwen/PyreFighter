@@ -1,5 +1,8 @@
 extends Node2D
 
+signal all_enemies_defeated
+var disabled = false
+
 @export var player: CharacterBody2D
 
 var enemies: Array[Enemy]
@@ -12,7 +15,10 @@ func _ready() -> void:
 			
 
 func _process(_delta: float) -> void:
-	if !player : return
+	if !player or disabled: return
+	if enemies.size() == 0:
+		all_enemies_defeated.emit()
+		disabled = true
 	for enemy in enemies:
 		if !enemy.is_knock_backed:
 			enemy.velocity = (player.position - enemy.position).normalized() * enemy.cloned_stats.max_speed
