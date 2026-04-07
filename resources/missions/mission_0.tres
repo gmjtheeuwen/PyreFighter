@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("2_xqcam")
-scene = &"res://scenes/tutorial_water.tscn"
-title = &"First Tutorial"
+scene = &"res://scenes/missions/mission_0.tscn"
+title = &"Pyrefighting basics"
 description = &"Learn how to move and shoot"
 location = Vector2(0.1, 0.1)
 unlocks = Array[int]([1])

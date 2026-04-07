@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="TutorialData" format=3 uid="uid://dct8fj6nqrgct"]
-
-[ext_resource type="Script" uid="uid://djt144amifhra" path="res://resources/tutorials/tutorial_data.gd" id="1_jif4s"]
-
-[resource]
-script = ExtResource("1_jif4s")
-text = Array[String](["Use {up} to move", "Press {shoot} to shoot"])
-inputs = Array[StringName]([&"up,down,left,right", &"shoot"])

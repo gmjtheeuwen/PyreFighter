@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cnq7ik3ol088w"]
 
 [ext_resource type="Texture2D" uid="uid://c5p1em1pvvltl" path="res://assets/Tilemap_Grass.png" id="1_gqrfn"]
+[ext_resource type="Texture2D" uid="uid://d0122ryekpufo" path="res://assets/TrainingOfficer.png" id="1_iumv4"]
 [ext_resource type="Texture2D" uid="uid://2ih8ljdc8x37" path="res://assets/Tilemap_Sidewalk.png" id="2_67bpm"]
 [ext_resource type="Texture2D" uid="uid://hb4gfpg27p31" path="res://assets/Tilemap_Water.png" id="3_iumv4"]
 [ext_resource type="Texture2D" uid="uid://cgelhwhxbivkp" path="res://assets/tilemap_packed.png" id="4_ui5fb"]
@@ -25,6 +26,13 @@ tile_data = PackedInt32Array(0, 524293, 17, 65536, 65541, 16, 131072, 524293, 16
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_iea7p"]
 tile_data = PackedInt32Array(0, 65541, 15, 65536, 65541, 16, 131072, 524293, 16, 1, 65541, 15, 65537, 589829, 16, 131073, 196613, 17, 2, 65541, 15, 65538, 65541, 16, 131074, 458757, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ui5fb"]
+texture = ExtResource("1_iumv4")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wkpoi"]
 texture = ExtResource("1_gqrfn")
@@ -1691,6 +1699,7 @@ sources/1 = SubResource("TileSetAtlasSource_wkpoi")
 sources/3 = SubResource("TileSetAtlasSource_xgxy7")
 sources/4 = SubResource("TileSetAtlasSource_iyc2t")
 sources/5 = SubResource("TileSetAtlasSource_sy7ow")
+sources/0 = SubResource("TileSetAtlasSource_ui5fb")
 pattern_0 = SubResource("TileMapPattern_67bpm")
 pattern_1 = SubResource("TileMapPattern_iumv4")
 pattern_2 = SubResource("TileMapPattern_ui5fb")
