@@ -55,6 +55,7 @@ enabled=PackedStringArray("res://addons/button_prompts_for_godot/plugin.cfg")
 environment=""
 player=""
 enemy=""
+flame=""
 
 [input]
 
@@ -132,6 +133,7 @@ ui_page_right={
 2d_physics/layer_3="PlayerAttacks"
 2d_physics/layer_4="Enemies"
 2d_physics/layer_5="EnemyAttacks"
+2d_physics/layer_6="Flames"
 
 [physics]
 

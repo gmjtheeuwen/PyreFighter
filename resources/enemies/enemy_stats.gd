@@ -1,7 +1,7 @@
 extends Resource
 class_name EnemyStats
 
-@export var type: String = ""
+@export var fuel_type: Flame.FuelType
 @export var max_health: float
 @export var max_speed: float
 @export var knockback_friction: float

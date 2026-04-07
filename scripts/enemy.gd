@@ -21,7 +21,7 @@ func _ready() -> void:
 	
 	var at = AtlasTexture.new()
 	at.atlas = cloned_stats.sprite_sheet
-	var animation_name = "idle_" + cloned_stats.type
+	var animation_name = "idle_" + Flame.FuelType.keys()[cloned_stats.fuel_type]
 	if !sprite.sprite_frames.has_animation(animation_name):
 		sprite.sprite_frames.add_animation(animation_name)
 		for i in range(0,at.atlas.get_width()/at.atlas.get_height()):

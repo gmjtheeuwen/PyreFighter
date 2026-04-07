@@ -20,7 +20,7 @@ texture = ExtResource("2_y25gk")
 
 [node name="HitboxComponent" type="Area2D" parent="." unique_id=354907579]
 collision_layer = 4
-collision_mask = 9
+collision_mask = 41
 script = ExtResource("3_l5glv")
 metadata/_custom_type_script = "uid://bphl6wklne5ps"
 
@@ -31,4 +31,5 @@ shape = SubResource("CircleShape2D_eoqba")
 script = ExtResource("2_l5glv")
 metadata/_custom_type_script = "uid://b1piybr4d3lcl"
 
+[connection signal="area_entered" from="HitboxComponent" to="." method="_on_area_entered"]
 [connection signal="body_entered" from="HitboxComponent" to="." method="_on_body_entered"]

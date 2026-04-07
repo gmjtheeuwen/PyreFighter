@@ -8,7 +8,7 @@
 
 [resource]
 script = ExtResource("2_i4ptp")
-type = "gas"
+fuel_type = 2
 max_health = 5.0
 max_speed = 64.0
 knockback_friction = 32.0

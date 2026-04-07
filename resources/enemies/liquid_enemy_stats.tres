@@ -12,4 +12,5 @@ max_health = 5.0
 max_speed = 72.0
 knockback_friction = 64.0
 sprite_sheet = ExtResource("2_cmqw3")
+fuel_type = 1
 effects = Array[ExtResource("1_fnhko")]([ExtResource("3_eyp5x")])
