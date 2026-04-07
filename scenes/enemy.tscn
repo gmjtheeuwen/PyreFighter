@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bpb6xw4sderk" path="res://scripts/enemy.gd" id="1_md0e3"]
 [ext_resource type="Texture2D" uid="uid://jc8p6d33gm80" path="res://assets/Pyre_Solid_Sheet.png" id="2_5uy6h"]
 [ext_resource type="Resource" uid="uid://dwg21iamnu7s1" path="res://resources/enemies/enemy_stats.tres" id="2_nenq2"]
-[ext_resource type="Shader" uid="uid://bgmhar483cefk" path="res://shaders/enemy.gdshader" id="2_xwavj"]
+[ext_resource type="Shader" uid="uid://bgmhar483cefk" path="res://shaders/hitflash.gdshader" id="2_xwavj"]
 [ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="4_xwavj"]
 [ext_resource type="PackedScene" path="res://scenes/explosion_emitter.tscn" id="5_c4w8v"]

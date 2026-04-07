@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bbtwfwweug1qw"]
+
+[ext_resource type="Texture2D" uid="uid://uchvieroutrh" path="res://assets/FireParticle.png" id="1_g7p42"]
+[ext_resource type="Script" uid="uid://dbpu16ex4fmhj" path="res://scripts/fire_particle.gd" id="1_le575"]
+[ext_resource type="Script" uid="uid://bphl6wklne5ps" path="res://scripts/components/hitbox_component.gd" id="3_iednk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_au7au"]
+radius = 8.0
+
+[node name="FireParticle" type="Sprite2D" unique_id=1700438796]
+texture = ExtResource("1_g7p42")
+script = ExtResource("1_le575")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=876166575]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("3_iednk")
+metadata/_custom_type_script = "uid://bphl6wklne5ps"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1975199981]
+shape = SubResource("CircleShape2D_au7au")
+
+[connection signal="body_entered" from="HitboxComponent" to="." method="_on_body_entered"]

@@ -1,12 +1,13 @@
-[gd_resource type="Resource" format=3 uid="uid://bc58rov2bfbk1"]
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bc58rov2bfbk1"]
 
-[ext_resource type="Script" uid="uid://devjc4mwa432" path="res://resources/enemies/solid_enemy_stats.gd" id="1_prbi6"]
+[ext_resource type="Script" uid="uid://dtp4xir6rrequ" path="res://resources/enemies/effects/effect.gd" id="1_2hdp3"]
 [ext_resource type="Texture2D" uid="uid://jc8p6d33gm80" path="res://assets/Pyre_Solid_Sheet.png" id="2_2hdp3"]
+[ext_resource type="Script" uid="uid://tdihdt4rkmdq" path="res://resources/enemies/enemy_stats.gd" id="2_7diwf"]
 
 [resource]
-script = ExtResource("1_prbi6")
+script = ExtResource("2_7diwf")
 type = "solid"
-max_health = 5.0
-max_speed = 64.0
+max_health = 8.0
+max_speed = 32.0
 knockback_friction = 64.0
 sprite_sheet = ExtResource("2_2hdp3")

@@ -27,6 +27,7 @@ tile_map_data = PackedByteArray("AAD5//7/BQACAAoAAAD5////BQACAAoAAAD5/wAABQACAAo
 
 [node name="Player" parent="." unique_id=1149356595 instance=ExtResource("2_nc7i2")]
 position = Vector2(64, 48)
+has_control = false
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=673478104]
 script = ExtResource("3_fewcj")
@@ -51,6 +52,7 @@ START_TEXT = ""
 INTERACTION_TEXT = ""
 disabled = true
 
+[connection signal="finished" from="TutorialUI" to="Player" method="give_control"]
 [connection signal="finished" from="TutorialUI" to="EnemyManager" method="_enable"]
 [connection signal="fired_bullet" from="Player" to="BulletManager" method="_on_player_fired_bullet"]
 [connection signal="all_enemies_defeated" from="EnemyManager" to="InteractionArea" method="toggle"]

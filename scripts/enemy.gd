@@ -39,12 +39,11 @@ func _on_hit(attack: AttackComponent):
 	
 	if attack.knockback > 0 && !is_knock_backed:
 		velocity = attack.direction * attack.knockback
+		cloned_stats.resolve_effects(attack.attack_type, attack.source, self)
 		is_knock_backed = true
 		
 	timer.start()
-	hitflash.play("hit_flash")
-
-	cloned_stats.resolve_effects(attack.attack_type, attack.source, self)
+	hitflash.play("hit_flash")	
 	
 func _physics_process(delta: float) -> void:
 	if is_knock_backed:

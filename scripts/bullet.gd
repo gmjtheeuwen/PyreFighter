@@ -6,13 +6,10 @@ const MIN_VELOCTIY := 16.0
 
 var speed = MAX_SPEED
 
-var count = 0
-
 func _init():
 	pass
 
 func _physics_process(delta: float) -> void:
-	count += 1
 	if direction == Vector2.ZERO: return
 	
 	speed *= (1-FRICTION*delta)

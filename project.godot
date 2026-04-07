@@ -26,7 +26,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="PyreFighter"
-run/main_scene="uid://cqhljh4l8xi4x"
+run/main_scene="uid://cerk1fb2dxohd"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="uid://cqhljh4l8xi4x"

@@ -4,6 +4,8 @@ class_name Player
 signal fired_bullet(bullet, position, direction, source)
 signal used_equipment(direction)
 
+@export var has_control: bool
+
 var WALKSPEED: float = 224.0
 var JOYSTICK_SENSITIVITY = 0.4
 var direction:= Vector2.ZERO
@@ -19,13 +21,17 @@ var time_since_last_shot = 0.0
 @export var Bullet: PackedScene
 @export var health_component: HealthComponent
 
+@onready var hitflash = $AnimatedSprite2D/HitFlash
+
 func _ready() -> void:
-	pass
+	set_process_input(has_control)
 
 func _process(delta: float) -> void:
 	if health_component.health <= 0:
-		on_death()
+		_on_death()
 		return
+		
+	if !is_processing_input(): return
 	var joypads := Input.get_connected_joypads()
 	if Input.get_connected_joypads().size() > 0:
 		handle_controller_input(joypads)
@@ -85,9 +91,12 @@ func handle_keyboard_input() -> void:
 	var aim_x = mouse_position.x - rect.size.x/2
 	var aim_y = mouse_position.y - rect.size.y/2
 	aim_direction = Vector2(aim_x, aim_y).normalized()
+
+func _on_hit(damage: float):
+	hitflash.play("hit_flash")
+	health_component.damage(damage)
 	
-	
-func on_death():
+func _on_death():
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func shoot():
@@ -99,5 +108,8 @@ func shoot():
 func use_equipment():
 	emit_signal("used_equipment", aim_direction)
 
-func handle_hit():
-	pass
+func give_control():
+	set_process_input(true)
+
+func take_control():
+	set_process_input(false)
