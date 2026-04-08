@@ -2,7 +2,6 @@
 
 [ext_resource type="Texture2D" uid="uid://v05viytf67gi" path="res://assets/Flame.png" id="1_ktous"]
 [ext_resource type="Script" uid="uid://7hjckucudlh7" path="res://scripts/flame.gd" id="2_hmmd7"]
-[ext_resource type="Script" uid="uid://bphl6wklne5ps" path="res://scripts/components/hitbox_component.gd" id="2_x50ei"]
 [ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="4_rp4rw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmmd7"]
@@ -84,8 +83,6 @@ autoplay = "default"
 position = Vector2(0, -4)
 collision_layer = 32
 collision_mask = 4
-script = ExtResource("2_x50ei")
-metadata/_custom_type_script = "uid://bphl6wklne5ps"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1669760279]
 position = Vector2(0, -4)
@@ -93,7 +90,7 @@ shape = SubResource("RectangleShape2D_hmmd7")
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=1621744978]
 script = ExtResource("4_rp4rw")
-MAX_HEALTH = 0.5
+MAX_HEALTH = 2.0
 metadata/_custom_type_script = "uid://bpc7ctncys7f7"
 
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_changed"]

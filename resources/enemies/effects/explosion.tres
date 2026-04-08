@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_8m0fh")
-explosion_force = 256.0
+explosion_force = 192.0
 explosion_range = 128.0
 explosion_damage = 5.0
 metadata/_custom_type_script = "uid://dtp4xir6rrequ"

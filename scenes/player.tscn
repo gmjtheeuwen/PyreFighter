@@ -247,7 +247,7 @@ collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_g2els")
 has_control = true
-knockback_friction = 256.0
+knockback_friction = 128.0
 MIN_KNOCKBACK_SPEED = 4.0
 Bullet = ExtResource("2_fjrip")
 health_component = NodePath("HealthComponent")
@@ -266,7 +266,6 @@ animation = &"idle_down"
 libraries/ = SubResource("AnimationLibrary_fjrip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1358564444]
-visible = false
 shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="Gun" parent="." unique_id=558119626 node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
@@ -307,5 +306,6 @@ grow_horizontal = 1
 grow_vertical = 1
 
 [connection signal="used_equipment" from="." to="Equipment" method="on_use_equipment"]
+[connection signal="animation_finished" from="AnimatedSprite2D/HitFlash" to="." method="invincibility_ended"]
 [connection signal="timeout" from="Equipment/Timer" to="Equipment" method="on_timeout"]
 [connection signal="health_changed" from="HealthComponent" to="Healthbar" method="on_health_changed"]
