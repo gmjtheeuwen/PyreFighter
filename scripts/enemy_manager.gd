@@ -19,8 +19,9 @@ func _process(_delta: float) -> void:
 		all_enemies_defeated.emit()
 		disabled = true
 	for enemy in enemies:
-		if !enemy.is_knock_backed:
-			enemy.velocity = (player.position - enemy.position).normalized() * enemy.cloned_stats.max_speed
+		if enemy.is_knock_backed: continue
+		
+		enemy.velocity = (player.position - enemy.position).normalized() * enemy.cloned_stats.max_speed
 
 func _disable():
 	disabled = true

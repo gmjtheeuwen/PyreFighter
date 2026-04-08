@@ -1,18 +1,27 @@
 extends CharacterBody2D
 class_name Enemy
 
+
+enum State {
+	IDLE,
+	CHASING,
+	ATTACKING
+}
+
 @export var stats : EnemyStats
 var cloned_stats: EnemyStats
 
 @export var MIN_KNOCKBACK_SPEED: float = 8.0
 
 var is_knock_backed := false
+var has_line_of_sight := false
 
 @onready var health_component = $HealthComponent
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitflash = $AnimatedSprite2D/HitFlash
 @onready var timer = $InvincibilityTimer
 @onready var explosion_emitter: GPUParticles2D = $VFX/ExplosionEmitter
+@onready var raycast: RayCast2D = $RayCast2D
 
 func _ready() -> void:
 	cloned_stats = stats.duplicate()

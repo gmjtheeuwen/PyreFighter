@@ -119,6 +119,8 @@ _data = {
 size = Vector2(32, 32)
 
 [node name="Enemy" type="CharacterBody2D" unique_id=2018764647 groups=["enemy"]]
+collision_layer = 8
+collision_mask = 7
 script = ExtResource("1_md0e3")
 stats = ExtResource("2_nenq2")
 
@@ -155,6 +157,8 @@ one_shot = true
 [node name="ExplosionEmitter" parent="VFX" unique_id=733634665 instance=ExtResource("5_c4w8v")]
 amount = 300
 lifetime = 0.7
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=280921731]
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
 [connection signal="health_changed" from="HealthComponent" to="Healthbar" method="on_health_changed"]
