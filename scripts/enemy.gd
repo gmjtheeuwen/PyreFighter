@@ -1,13 +1,6 @@
 extends CharacterBody2D
 class_name Enemy
 
-
-enum State {
-	IDLE,
-	CHASING,
-	ATTACKING
-}
-
 @export var stats : EnemyStats
 var cloned_stats: EnemyStats
 
