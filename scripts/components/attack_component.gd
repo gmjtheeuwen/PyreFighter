@@ -11,6 +11,7 @@ enum AmmoType{
 
 @export var damage: float
 @export var knockback: float
+var direction := Vector2.ZERO
 var source: Node2D
 
 @export var attack_type: AmmoType

@@ -3,8 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://b3g8j0f1dk02v" path="res://assets/Grass.png" id="1_b0nem"]
 [ext_resource type="Texture2D" uid="uid://cna4udp132le7" path="res://assets/Wall.png" id="2_x0xbu"]
 [ext_resource type="PackedScene" uid="uid://ckiqqe3qp8yc2" path="res://scenes/player.tscn" id="3_7qr1p"]
-[ext_resource type="PackedScene" uid="uid://bd8u352dhbx70" path="res://scenes/bullet.tscn" id="4_e66cg"]
-[ext_resource type="Script" uid="uid://brjfhqnqjsrup" path="res://scripts/bullet_manager.gd" id="5_5fme1"]
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="6_5fme1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tbgi4"]
@@ -39,7 +37,6 @@ tile_set = SubResource("TileSet_o6xl0")
 position = Vector2(224, -288)
 knockback_friction = 256.0
 MIN_KNOCKBACK_SPEED = 4.0
-Bullet = ExtResource("4_e66cg")
 
 [node name="InteractionTest" type="Node2D" parent="." unique_id=1531776095]
 position = Vector2(416, -320)
@@ -56,9 +53,5 @@ texture = SubResource("PlaceholderTexture2D_v5dfw")
 START_TEXT = "Finish"
 INTERACTION_TEXT = "Thanks for playing!"
 
-[node name="BulletManager" type="Node2D" parent="." unique_id=345806468]
-script = ExtResource("5_5fme1")
-
-[connection signal="fired_bullet" from="Player" to="BulletManager" method="_on_player_fired_bullet"]
 [connection signal="body_entered" from="InteractionTest/InteractionArea" to="InteractionTest/InteractionArea" method="on_body_entered"]
 [connection signal="body_exited" from="InteractionTest/InteractionArea" to="InteractionTest/InteractionArea" method="on_body_exited"]

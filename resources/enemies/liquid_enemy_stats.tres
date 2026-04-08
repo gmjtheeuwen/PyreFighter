@@ -1,15 +1,16 @@
-[gd_resource type="Resource" format=3 uid="uid://l2qf754bjlc1"]
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://l2qf754bjlc1"]
 
-[ext_resource type="Script" uid="uid://bxsghrcwuw7w4" path="res://resources/enemies/liquid_enemy_stats.gd" id="1_5aja3"]
+[ext_resource type="Script" uid="uid://dtp4xir6rrequ" path="res://resources/enemies/effects/effect.gd" id="1_fnhko"]
 [ext_resource type="Texture2D" uid="uid://oovjplmsrwsa" path="res://assets/Pyre_Liquid_Sheet.png" id="2_cmqw3"]
+[ext_resource type="Script" uid="uid://tdihdt4rkmdq" path="res://resources/enemies/enemy_stats.gd" id="3_a6b1y"]
+[ext_resource type="Resource" uid="uid://ciavoaqv7dvww" path="res://resources/enemies/effects/fire_spread.tres" id="3_eyp5x"]
 
 [resource]
-script = ExtResource("1_5aja3")
-explosion_force = 256.0
-explosion_range = 128.0
-explosion_damage = 2.0
+script = ExtResource("3_a6b1y")
 type = "liquid"
 max_health = 5.0
 max_speed = 72.0
 knockback_friction = 64.0
 sprite_sheet = ExtResource("2_cmqw3")
+fuel_type = 1
+effects = Array[ExtResource("1_fnhko")]([ExtResource("3_eyp5x")])

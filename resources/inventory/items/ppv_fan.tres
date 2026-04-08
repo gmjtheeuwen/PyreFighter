@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://lrvfo82iu8js"]
+
+[ext_resource type="Script" uid="uid://btfs3f54fo7s4" path="res://resources/inventory/item_data.gd" id="1_3la7j"]
+[ext_resource type="Texture2D" uid="uid://chej12o438dwd" path="res://icon.svg" id="1_b1p5i"]
+
+[resource]
+script = ExtResource("1_3la7j")
+id = "3"
+display_name = "ppv fan"
+icon = ExtResource("1_b1p5i")
+description = "when placed on a window deals continuos damage to all enemies in a room"
+is_unlocked = true
+metadata/_custom_type_script = "uid://btfs3f54fo7s4"

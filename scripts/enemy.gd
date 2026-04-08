@@ -1,19 +1,27 @@
 extends CharacterBody2D
 class_name Enemy
 
+
+enum State {
+	IDLE,
+	CHASING,
+	ATTACKING
+}
+
 @export var stats : EnemyStats
 var cloned_stats: EnemyStats
 
 @export var MIN_KNOCKBACK_SPEED: float = 8.0
 
-var is_invincible := false
 var is_knock_backed := false
+var has_line_of_sight := false
 
 @onready var health_component = $HealthComponent
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitflash = $AnimatedSprite2D/HitFlash
 @onready var timer = $InvincibilityTimer
 @onready var explosion_emitter: GPUParticles2D = $VFX/ExplosionEmitter
+@onready var raycast: RayCast2D = $RayCast2D
 
 func _ready() -> void:
 	cloned_stats = stats.duplicate()
@@ -22,32 +30,29 @@ func _ready() -> void:
 	
 	var at = AtlasTexture.new()
 	at.atlas = cloned_stats.sprite_sheet
-	var animation_name = "idle_" + cloned_stats.type
-	sprite.sprite_frames.add_animation(animation_name)
-	for i in range(0,8):
-		var temp_atlas := AtlasTexture.new()
-		temp_atlas.atlas = at.atlas
-		temp_atlas.filter_clip = true
-		temp_atlas.region = Rect2(i*32,0,32,32)
-		sprite.sprite_frames.add_frame(animation_name, temp_atlas)
+	var animation_name = "idle_" + Flame.FuelType.keys()[cloned_stats.fuel_type]
+	if !sprite.sprite_frames.has_animation(animation_name):
+		sprite.sprite_frames.add_animation(animation_name)
+		for i in range(0,at.atlas.get_width()/at.atlas.get_height()):
+			var temp_atlas := AtlasTexture.new()
+			temp_atlas.atlas = at.atlas
+			temp_atlas.filter_clip = true
+			temp_atlas.region = Rect2(i*at.atlas.get_height(),0,at.atlas.get_height(),at.atlas.get_height())
+			sprite.sprite_frames.add_frame(animation_name, temp_atlas)
 	sprite.animation = animation_name
 	sprite.play()
 	
 
 func _on_hit(attack: AttackComponent):
-	if is_invincible: return
 	health_component.damage(attack.damage)
 	
-	if attack.knockback > 0:
-		velocity = (global_position - attack.global_position).normalized() * attack.knockback
+	if attack.knockback > 0 && !is_knock_backed:
+		velocity = attack.direction * attack.knockback
+		cloned_stats.resolve_effects(attack.attack_type, attack.source, self)
 		is_knock_backed = true
 		
 	timer.start()
-	hitflash.play("hit_flash")
-
-	is_invincible = true
-	
-	cloned_stats.resolve_effects(attack.attack_type, attack.source, self)
+	hitflash.play("hit_flash")	
 	
 func _physics_process(delta: float) -> void:
 	if is_knock_backed:
@@ -55,9 +60,6 @@ func _physics_process(delta: float) -> void:
 		if velocity.length() < MIN_KNOCKBACK_SPEED:
 			is_knock_backed = false 
 	move_and_slide()
-	
-func _invincibility_ended():
-	is_invincible = false
 
 func _on_death():
 	get_parent().remove(self)

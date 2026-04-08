@@ -1,7 +1,5 @@
 extends VBoxContainer
-const ITEM_CARD = preload("res://scenes/item.tscn")
-
-
+const ITEM_CARD: = preload("res://scenes/item.tscn")
 
 func _ready() -> void:
 	var inventory: inventory_data = load("res://resources/inventory.tres")
