@@ -19,6 +19,8 @@ outline_color = Color(0, 0, 0, 1)
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_g2els")
+knockback_friction = null
+MIN_KNOCKBACK_SPEED = null
 health_component = NodePath("HealthComponent")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2075834923]

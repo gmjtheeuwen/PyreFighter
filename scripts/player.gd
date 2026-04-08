@@ -15,15 +15,15 @@ var is_knock_backed := false
 
 var fire_delay = 0.05
 var time_since_last_shot = 0.0
+var ammo_type := AttackComponent.AmmoType.WATER
+var current_ammo = 1
 
 @export var Bullet: PackedScene
 @export var health_component: HealthComponent
 
-var bullet_scene = preload("res://assets/Bullet.png")
-var bullet_types = ["water", "foam", "powder", "carbondioxide"]
+var bullet_scene = preload("res://scenes/bullet.tscn")
 
-func _ready() -> void:
-	pass
+var ammo_list = AttackComponent.AmmoType.values()
 
 func _process(delta: float) -> void:
 	var joypads := Input.get_connected_joypads()
@@ -39,6 +39,20 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("equipment"):
 		use_equipment()
+		
+	if Input.is_action_just_pressed("ui_page_right"):
+		var next = (current_ammo + 1) % ammo_list.size()
+		while not InventoryManager.inventory_data.unlocked_ammo[ammo_list[next]]:
+			next = (next + 1) % ammo_list.size()
+		current_ammo = next
+		ammo_type = ammo_list[current_ammo]
+	
+	if Input.is_action_just_pressed("ui_page_left"):
+		var next = (current_ammo - 1 + ammo_list.size()) % ammo_list.size()
+		while not InventoryManager.inventory_data.unlocked_ammo[ammo_list[next]]:
+			next = (next - 1 + ammo_list.size()) % ammo_list.size()
+		current_ammo = next
+		ammo_type = ammo_list[current_ammo]
 
 func _physics_process(delta: float) -> void:	
 	if is_knock_backed:
@@ -91,6 +105,7 @@ func shoot():
 	if Bullet == null: return
 	var bullet_instance = Bullet.instantiate()
 	var bullet_position = position + aim_direction * 16
+	bullet_instance.ammo_type = ammo_type
 	
 	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, self)
 	
@@ -99,15 +114,3 @@ func use_equipment():
 
 func handle_hit():
 	pass
-
-func _change_ammo(ammo_index: String):
-	var bullet = bullet_scene.instantiate()
-	var ammo_type = bullet.get_node(AttackComponent)
-	if ammo_index == bullet_types[0]:
-		ammo_type.attack_type = ammo_type.AmmoType.WATER
-	elif ammo_index == bullet_types[1]:
-		ammo_type.attack_type = ammo_type.AmmoType.FOAM
-	elif ammo_index == bullet_types[2]:
-		ammo_type.attack_type = ammo_type.AmmoType.POWDER
-	elif ammo_index == bullet_types[3]:
-		ammo_type.attack_type = ammo_type.AmmoType.CARBONDIOXIDE

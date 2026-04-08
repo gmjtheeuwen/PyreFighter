@@ -3,11 +3,22 @@ extends AttackComponent
 const MAX_SPEED := 320.0
 const FRICTION := 0.6
 const MIN_VELOCTIY := 4.0
-
-@onready var attack_component = $AttackComponent
+@onready var sprite = $Sprite2D
 
 var speed = MAX_SPEED
 var direction := Vector2.ZERO
+
+const AMMO_COLOR_MAP = {
+	AttackComponent.AmmoType.WATER: Color.WHITE,
+	AttackComponent.AmmoType.FOAM: Color(2.0, 2.0, 1.0, 1.0),
+	AttackComponent.AmmoType.POWDER: Color(3.0, 2.0, 0, 1.0),
+	AttackComponent.AmmoType.CARBONDIOXIDE: Color(0.0, 2.0, 1.0, 1.0)
+}
+
+var ammo_type:= AttackComponent.AmmoType.WATER
+
+func _ready() -> void:
+	sprite.self_modulate = AMMO_COLOR_MAP[ammo_type]
 
 func _physics_process(delta: float) -> void:
 	if direction == Vector2.ZERO: return
@@ -29,6 +40,3 @@ func _on_body_entered(body: Node2D):
 
 func _resolve():
 	queue_free()
-
-func _set_bullet_type(ammo_type: AttackComponent.AmmoType):
-	attack_component.attack_type = ammo_type

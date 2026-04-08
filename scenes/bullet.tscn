@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bd8u352dhbx70"]
 
 [ext_resource type="Script" uid="uid://bouqvxpom02vu" path="res://scripts/bullet.gd" id="1_mkf8s"]
-[ext_resource type="Script" uid="uid://b1piybr4d3lcl" path="res://scripts/components/attack_component.gd" id="2_l5glv"]
 [ext_resource type="Texture2D" uid="uid://d17ggu6k3ljpo" path="res://assets/Bullet.png" id="2_y25gk"]
 [ext_resource type="Script" uid="uid://bphl6wklne5ps" path="res://scripts/components/hitbox_component.gd" id="3_l5glv"]
 
@@ -25,9 +24,5 @@ metadata/_custom_type_script = "uid://bphl6wklne5ps"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1012548219]
 shape = SubResource("CircleShape2D_eoqba")
-
-[node name="AttackComponent" type="Node2D" parent="." unique_id=1838544385]
-script = ExtResource("2_l5glv")
-metadata/_custom_type_script = "uid://b1piybr4d3lcl"
 
 [connection signal="body_entered" from="HitboxComponent" to="." method="_on_body_entered"]
