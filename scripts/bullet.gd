@@ -9,10 +9,10 @@ var speed = MAX_SPEED
 var direction := Vector2.ZERO
 
 const AMMO_COLOR_MAP = {
-	AttackComponent.AmmoType.WATER: Color.WHITE,
-	AttackComponent.AmmoType.FOAM: Color(2.0, 2.0, 1.0, 1.0),
-	AttackComponent.AmmoType.POWDER: Color(3.0, 2.0, 0, 1.0),
-	AttackComponent.AmmoType.CARBONDIOXIDE: Color(0.0, 2.0, 1.0, 1.0)
+	AttackComponent.AmmoType.WATER: Color("639bff"),
+	AttackComponent.AmmoType.FOAM: Color("#D4EEF7"),
+	AttackComponent.AmmoType.POWDER: Color("#F0EDE0"),
+	AttackComponent.AmmoType.CARBONDIOXIDE: Color("#7DD4E8")
 }
 
 var ammo_type:= AttackComponent.AmmoType.WATER

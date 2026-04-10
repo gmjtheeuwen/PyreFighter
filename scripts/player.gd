@@ -3,6 +3,8 @@ class_name Player
 
 signal fired_bullet(bullet, position, direction, source)
 signal used_equipment(direction)
+signal ammo_changed(ammo_type)
+signal change_ribbon(ammo_type)
 
 var WALKSPEED: float = 224.0
 var JOYSTICK_SENSITIVITY = 0.4
@@ -46,6 +48,8 @@ func _process(delta: float) -> void:
 			next = (next + 1) % ammo_list.size()
 		current_ammo = next
 		ammo_type = ammo_list[current_ammo]
+		emit_signal("ammo_changed", ammo_type)
+		emit_signal("change_ribbon", ammo_type)
 	
 	if Input.is_action_just_pressed("ui_page_left"):
 		var next = (current_ammo - 1 + ammo_list.size()) % ammo_list.size()
@@ -53,6 +57,8 @@ func _process(delta: float) -> void:
 			next = (next - 1 + ammo_list.size()) % ammo_list.size()
 		current_ammo = next
 		ammo_type = ammo_list[current_ammo]
+		emit_signal("ammo_changed", ammo_type)
+		emit_signal("change_ribbon", ammo_type)
 
 func _physics_process(delta: float) -> void:	
 	if is_knock_backed:
@@ -114,3 +120,7 @@ func use_equipment():
 
 func handle_hit():
 	pass
+
+
+func _on_ammo_changed(ammo_type: Variant) -> void:
+	pass # Replace with function body.

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bd8u352dhbx70"]
 
 [ext_resource type="Script" uid="uid://bouqvxpom02vu" path="res://scripts/bullet.gd" id="1_mkf8s"]
-[ext_resource type="Texture2D" uid="uid://d17ggu6k3ljpo" path="res://assets/Bullet.png" id="2_y25gk"]
+[ext_resource type="Texture2D" uid="uid://dkceulhdme6f" path="res://assets/White Bullet.png" id="2_l5glv"]
 [ext_resource type="Script" uid="uid://bphl6wklne5ps" path="res://scripts/components/hitbox_component.gd" id="3_l5glv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_eoqba"]
@@ -14,7 +14,7 @@ knockback = 64.0
 attack_type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=543529990]
-texture = ExtResource("2_y25gk")
+texture = ExtResource("2_l5glv")
 
 [node name="HitboxComponent" type="Area2D" parent="." unique_id=354907579]
 collision_layer = 4

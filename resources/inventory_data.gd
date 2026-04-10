@@ -8,4 +8,4 @@ extends Resource
 func _init() -> void:
 	for ammo in AttackComponent.AmmoType.values():
 		unlocked_ammo[ammo] = false
-	unlocked_ammo[AttackComponent.AmmoType.WATER] = true
+	unlocked_ammo[AttackComponent.AmmoType.CARBONDIOXIDE] = true

@@ -9,3 +9,14 @@ func _process(_delta: float) -> void:
 		scale.y = -1
 	else:
 		scale.y = 1
+
+
+func _on_player_change_ribbon(ammo_type: Variant) -> void:
+	if ammo_type == AttackComponent.AmmoType.WATER:
+		$AnimatedSprite2D.frame = 1
+	elif ammo_type == AttackComponent.AmmoType.FOAM:
+		$AnimatedSprite2D.frame = 2
+	elif ammo_type == AttackComponent.AmmoType.POWDER:
+		$AnimatedSprite2D.frame = 3
+	elif ammo_type == AttackComponent.AmmoType.CARBONDIOXIDE:
+		$AnimatedSprite2D.frame = 4
