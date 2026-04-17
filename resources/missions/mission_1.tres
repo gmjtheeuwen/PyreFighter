@@ -5,9 +5,11 @@
 [resource]
 script = ExtResource("2_5yigp")
 scene = &"res://scenes/missions/mission_1.tscn"
-title = &"First Kill"
+title = &"Solid Pyres"
 description = &"Defeat your first Pyre"
+experience = 5
+enemy_types = Array[int]([0])
 difficulty = 1
-location = Vector2(0.3, 0.1)
+location = Vector2(0.45, 0.3)
 unlocks = Array[int]([2])
 metadata/_custom_type_script = "uid://c2kjpndudpyj0"

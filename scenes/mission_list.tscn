@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://qmospeu6hgfu"]
+
+[ext_resource type="Script" uid="uid://b3i2o3hssi5cn" path="res://scripts/mission_list.gd" id="1_lrlku"]
+
+[node name="MissionList" type="VBoxContainer" unique_id=2110430555]
+script = ExtResource("1_lrlku")
+metadata/_custom_type_script = "uid://b3i2o3hssi5cn"
