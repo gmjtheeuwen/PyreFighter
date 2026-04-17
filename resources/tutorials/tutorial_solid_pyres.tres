@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TutorialData" format=3 uid="uid://cwu7ymguiaebr"]
+
+[ext_resource type="Script" uid="uid://djt144amifhra" path="res://resources/tutorials/tutorial_data.gd" id="1_voeac"]
+
+[resource]
+script = ExtResource("1_voeac")
+text = Array[String](["Your objective as a Pyrefighter is to extinguish Pyres", "Pyres are living fire monsters that are born from regular fires, we call these fires Mother Flames", "Their characteristics are based on the fuel type of their Mother Flame", "These Pyres are born from burning solids, such as wood and cloth"])
+final_text = &"Extinguish all Pyres to complete this training"
+metadata/_custom_type_script = "uid://djt144amifhra"

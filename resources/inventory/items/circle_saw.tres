@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://0rbo5hvjgth4"]
+
+[ext_resource type="Script" uid="uid://btfs3f54fo7s4" path="res://resources/inventory/item_data.gd" id="1_3akvx"]
+[ext_resource type="Texture2D" uid="uid://chej12o438dwd" path="res://icon.svg" id="1_51roo"]
+
+[resource]
+script = ExtResource("1_3akvx")
+id = "8"
+display_name = "circle saw"
+type = 2
+icon = ExtResource("1_51roo")
+description = "can be used to break open reinforced doors"
+is_unlocked = true
+metadata/_custom_type_script = "uid://btfs3f54fo7s4"

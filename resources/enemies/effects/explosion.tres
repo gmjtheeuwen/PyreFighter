@@ -1,0 +1,10 @@
+[gd_resource type="Resource" format=3 uid="uid://hwf1u3ygseqx"]
+
+[ext_resource type="Script" uid="uid://c6a1m5lg04u0j" path="res://resources/enemies/effects/explosion.gd" id="1_8m0fh"]
+
+[resource]
+script = ExtResource("1_8m0fh")
+explosion_force = 256.0
+explosion_range = 128.0
+explosion_damage = 5.0
+metadata/_custom_type_script = "uid://dtp4xir6rrequ"

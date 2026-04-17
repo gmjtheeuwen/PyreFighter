@@ -8,6 +8,17 @@
 
 config_version=5
 
+[Addons]
+
+ButtonPrompts/prompts/light_themed_keyboard_and_mouse=false
+ButtonPrompts/prompts/positional_controller_button_prompts=false
+ButtonPrompts/optional_supported_controllers/dualshock_4=true
+ButtonPrompts/optional_supported_controllers/dualshock_3=true
+ButtonPrompts/optional_supported_controllers/xbox_one=true
+ButtonPrompts/optional_supported_controllers/xbox_360=true
+ButtonPrompts/optional_supported_controllers/steam_deck=true
+ButtonPrompts/optional_supported_controllers/nintendo_switch=true
+
 [animation]
 
 compatibility/default_parent_skeleton_in_mesh_instance_3d=true
@@ -15,9 +26,15 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="PyreFighter"
-run/main_scene="uid://cqhljh4l8xi4x"
+run/main_scene="uid://cerk1fb2dxohd"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://cqhljh4l8xi4x"
+
+[autoload]
+
+button_prompts_manager="*uid://cy31x45v8vmkc"
+MissionManager="*uid://d0rr0opwrd7u4"
 
 [autoload]
 
@@ -33,11 +50,16 @@ window/size/mode=3
 
 project/assembly_name="PyreFighter"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/button_prompts_for_godot/plugin.cfg")
+
 [global_group]
 
 environment=""
 player=""
 enemy=""
+flame=""
 
 [input]
 
@@ -115,6 +137,7 @@ ui_page_right={
 2d_physics/layer_3="PlayerAttacks"
 2d_physics/layer_4="Enemies"
 2d_physics/layer_5="EnemyAttacks"
+2d_physics/layer_6="Flames"
 
 [physics]
 
@@ -123,4 +146,3 @@ ui_page_right={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"

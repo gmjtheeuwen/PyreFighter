@@ -33,17 +33,24 @@ func _physics_process(delta: float) -> void:
 	speed *= (1-FRICTION*delta)
 	var velocity = direction * speed
 	
-	if (velocity.length() < MIN_VELOCTIY):
-		queue_free()
+	if (velocity.length() < MIN_VELOCTIY):	queue_free()
 	
-	position += velocity * delta
+	global_position += velocity * delta
+	scale = Vector2(1,1)*(6.4+log(2/speed))
 	
 func _on_body_entered(body: Node2D):
 	if (body.is_in_group("environment")):
 		_resolve()
+	elif body.is_in_group("flame"):
+		body._on_hit(self)
+		_resolve()
 	elif (body.is_in_group("enemy")):
 		body._on_hit(self)
 		_resolve()
+
+func _on_area_entered(area: Area2D):
+	var body = area.get_parent()
+	_on_body_entered(body)
 
 func _resolve():
 	queue_free()

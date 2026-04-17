@@ -5,7 +5,7 @@ signal equipped_item_changed(item: ItemData)
 signal category_changed(category: String)
 
 @export var CATEGORY: PackedScene
-var INVENTORY_DATA = preload("res://resources/inventory.tres")
+var INVENTORY_DATA = preload("res://resources/inventory/inventory.tres")
 
 @onready var input_handler = $"../../InputHandler"
 @onready var category_container = $HBoxContainer/ScrollContainer/VBoxContainer
