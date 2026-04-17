@@ -6,7 +6,6 @@ const MIN_VELOCTIY := 16.0
 @onready var sprite = $Sprite2D
 
 var speed = MAX_SPEED
-var direction := Vector2.ZERO
 var lifetime: float = 2.0
 
 const AMMO_COLOR_MAP = {

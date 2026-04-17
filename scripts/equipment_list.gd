@@ -25,7 +25,7 @@ func _ready() -> void:
 func _populate_category(items: Array, container: Node) -> void:
 	var flow = container.get_node("HFlowContainer")
 	for data in items:
-		var card = ITEM_CARD.instantiate()
+		var card: Item = ITEM_CARD.instantiate()
 		flow.add_child(card)
 		card._setup(data)
 		card.equipped_state_changed.connect(_on_equipped_state_changed)
