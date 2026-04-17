@@ -25,12 +25,13 @@ var current_ammo = 1
 @export var Bullet: PackedScene
 @export var health_component: HealthComponent
 
-func _ready() -> void:
-	set_process_input(has_control)
-	
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 var ammo_list = AttackComponent.AmmoType.values()
+@onready var hitflash = $AnimatedSprite2D/HitFlash
+
+func _ready() -> void:
+	set_process_input(has_control)
 
 func _process(delta: float) -> void:
 	if health_component.health <= 0:

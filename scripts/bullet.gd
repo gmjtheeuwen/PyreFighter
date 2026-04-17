@@ -1,8 +1,8 @@
 extends AttackComponent
 
-var MAX_SPEED : float = 320.0
-const FRICTION := 0.6
-const MIN_VELOCTIY := 4.0
+var MAX_SPEED : float = 800
+const FRICTION := 0.8
+const MIN_VELOCTIY := 16.0
 @onready var sprite = $Sprite2D
 
 var speed = MAX_SPEED
