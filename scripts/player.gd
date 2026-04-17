@@ -1,7 +1,7 @@
 extends CharacterBody2D	
 class_name Player
 
-signal fired_bullet(bullet, position, direction, source)
+signal fired_bullet(bullet, position, direction, source, bullet_type)
 signal used_equipment(direction)
 signal ammo_changed(ammo_type)
 signal change_ribbon(ammo_type)
@@ -113,7 +113,7 @@ func shoot():
 	var bullet_position = position + aim_direction * 16
 	bullet_instance.ammo_type = ammo_type
 	
-	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, self)
+	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, ammo_type, self)
 	
 func use_equipment():
 	emit_signal("used_equipment", aim_direction)

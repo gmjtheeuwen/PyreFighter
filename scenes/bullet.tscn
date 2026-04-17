@@ -17,6 +17,7 @@ attack_type = 1
 texture = ExtResource("2_l5glv")
 
 [node name="HitboxComponent" type="Area2D" parent="." unique_id=354907579]
+visible = false
 collision_layer = 4
 collision_mask = 9
 script = ExtResource("3_l5glv")
