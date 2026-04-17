@@ -6,6 +6,8 @@ signal used_equipment(direction)
 signal ammo_changed(ammo_type)
 signal change_ribbon(ammo_type)
 
+@export var has_control: bool
+
 var WALKSPEED: float = 224.0
 var JOYSTICK_SENSITIVITY = 0.4
 var direction:= Vector2.ZERO
@@ -15,7 +17,7 @@ var is_knock_backed := false
 @export var knockback_friction : float
 @export var MIN_KNOCKBACK_SPEED : float
 
-var fire_delay = 0.05
+var fire_delay = 0.018
 var time_since_last_shot = 0.0
 var ammo_type := AttackComponent.AmmoType.WATER
 var current_ammo = 1
@@ -26,8 +28,17 @@ var current_ammo = 1
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 var ammo_list = AttackComponent.AmmoType.values()
+@onready var hitflash = $AnimatedSprite2D/HitFlash
+
+func _ready() -> void:
+	set_process_input(has_control)
 
 func _process(delta: float) -> void:
+	if health_component.health <= 0:
+		_on_death()
+		return
+		
+	if !is_processing_input(): return
 	var joypads := Input.get_connected_joypads()
 	if Input.get_connected_joypads().size() > 0:
 		handle_controller_input(joypads)
@@ -105,7 +116,13 @@ func handle_keyboard_input() -> void:
 	var aim_x = mouse_position.x - rect.size.x/2
 	var aim_y = mouse_position.y - rect.size.y/2
 	aim_direction = Vector2(aim_x, aim_y).normalized()
+
+func _on_hit(damage: float):
+	hitflash.play("hit_flash")
+	health_component.damage(damage)
 	
+func _on_death():
+	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 
 func shoot():
 	if Bullet == null: return
@@ -124,3 +141,8 @@ func handle_hit():
 
 func _on_ammo_changed(ammo_type: Variant) -> void:
 	pass # Replace with function body.
+func give_control():
+	set_process_input(true)
+
+func take_control():
+	set_process_input(false)

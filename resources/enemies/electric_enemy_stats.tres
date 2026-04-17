@@ -1,9 +1,14 @@
-[gd_resource type="Resource" format=3 uid="uid://bbdjst24272rx"]
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bbdjst24272rx"]
 
-[ext_resource type="Script" uid="uid://85q22m5bgb0w" path="res://resources/enemies/electric_enemy_stats.gd" id="1_606s1"]
+[ext_resource type="Script" uid="uid://dtp4xir6rrequ" path="res://resources/enemies/effects/effect.gd" id="1_oemkm"]
+[ext_resource type="Script" uid="uid://tdihdt4rkmdq" path="res://resources/enemies/enemy_stats.gd" id="2_4j21u"]
 [ext_resource type="Texture2D" uid="uid://bt2subgc1ploq" path="res://assets/Pyre_Electric_Sheet.png" id="2_oemkm"]
 
 [resource]
-script = ExtResource("1_606s1")
+script = ExtResource("2_4j21u")
 type = "electric"
+max_health = 10.0
+max_speed = 80.0
+knockback_friction = 64.0
 sprite_sheet = ExtResource("2_oemkm")
+fuel_type = 3

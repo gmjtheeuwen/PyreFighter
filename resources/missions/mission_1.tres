@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Mission" format=3 uid="uid://dn07b6sdmpeqq"]
+
+[ext_resource type="Script" uid="uid://c2kjpndudpyj0" path="res://resources/missions/mission.gd" id="2_5yigp"]
+
+[resource]
+script = ExtResource("2_5yigp")
+scene = &"res://scenes/missions/mission_1.tscn"
+title = &"First Kill"
+description = &"Defeat your first Pyre"
+difficulty = 1
+location = Vector2(0.3, 0.1)
+unlocks = Array[int]([2])
+metadata/_custom_type_script = "uid://c2kjpndudpyj0"

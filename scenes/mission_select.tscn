@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://cerk1fb2dxohd"]
+
+[ext_resource type="Texture2D" uid="uid://c17xkop2ri5rt" path="res://assets/Map.png" id="1_f8bqk"]
+[ext_resource type="Script" uid="uid://c26qckolpnq27" path="res://scripts/missions/mission_select.gd" id="1_wh8vx"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_qrooi"]
+frame_0/texture = ExtResource("1_f8bqk")
+
+[sub_resource type="LabelSettings" id="LabelSettings_qrooi"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_wh8vx"]
+font_size = 32
+
+[node name="MissionSelect" type="Control" unique_id=249058742]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wh8vx")
+
+[node name="Background" type="PanelContainer" parent="." unique_id=119231478]
+layout_mode = 0
+offset_right = 1924.0
+offset_bottom = 1080.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=197223050]
+layout_mode = 0
+offset_right = 1924.0
+offset_bottom = 1080.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=1976893364]
+custom_minimum_size = Vector2(1080, 0)
+layout_mode = 2
+
+[node name="Map" type="TextureRect" parent="HBoxContainer/CenterContainer" unique_id=19707004]
+custom_minimum_size = Vector2(960, 960)
+layout_mode = 2
+texture = SubResource("AnimatedTexture_qrooi")
+expand_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer" unique_id=628419353]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer2" unique_id=1945065466]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=1544280280]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_qrooi")
+
+[node name="Description" type="Label" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=187200954]
+layout_mode = 2
+text = "Description"
+label_settings = SubResource("LabelSettings_wh8vx")

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c3yj2kghqy271"]
+
+[ext_resource type="Script" uid="uid://dcong6tni6uxw" path="res://scripts/game_over.gd" id="1_xeevv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0nqlu"]
+font_size = 72
+
+[node name="PanelContainer" type="PanelContainer" unique_id=1717710922]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xeevv")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1124412165]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2109145331]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer" unique_id=395465291]
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_0nqlu")
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer" unique_id=1396256161]
+layout_mode = 2
+theme_override_font_sizes/font_size = 56
+text = "Restart"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/Button" to="." method="_on_restart"]

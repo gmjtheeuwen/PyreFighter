@@ -44,6 +44,10 @@ animations = [{
 script = ExtResource("1_og67c")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=451434619]
+[node name="Gun" type="Node2D" unique_id=911789491]
+script = ExtResource("1_og67c")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=948681915]
 texture = ExtResource("1_x77fm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1636357920]

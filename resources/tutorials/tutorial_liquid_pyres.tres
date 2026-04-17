@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TutorialData" format=3 uid="uid://ctmbn5rtedcro"]
+
+[ext_resource type="Script" uid="uid://djt144amifhra" path="res://resources/tutorials/tutorial_data.gd" id="1_k4i51"]
+
+[resource]
+script = ExtResource("1_k4i51")
+text = Array[String](["These Pyres are born from liquid fires, such as oil and grease", "They spread fire when hit by water, so watch out"])
+final_text = &"Extinguish all Pyres to complete this training"
+metadata/_custom_type_script = "uid://djt144amifhra"
