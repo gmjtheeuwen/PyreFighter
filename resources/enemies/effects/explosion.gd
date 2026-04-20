@@ -8,7 +8,10 @@ func resolve(ammo_type: AttackComponent.AmmoType, attacker: Player, target: Enem
 	if ammo_type == AttackComponent.AmmoType.WATER and !target.explosion_emitter.emitting:
 		var distance = (attacker.position - target.position).length()
 		if distance <= explosion_range:
-			attacker.velocity = (attacker.position - target.position).normalized() * explosion_force
-			attacker.is_knock_backed = true
-			attacker.health_component.damage(explosion_damage)
+			var attack = AttackComponent.new()
+			attack.damage = explosion_damage
+			attack.source = target
+			attack.direction = (attacker.position - target.position).normalized()
+			attack.knockback = explosion_force
+			attacker.on_hit(attack)
 		target.explosion_emitter.restart()

@@ -7,10 +7,11 @@
 
 [resource]
 script = ExtResource("3_a6b1y")
-type = "liquid"
+fuel_type = 1
 max_health = 5.0
 max_speed = 72.0
+damage = 2.0
+knockback = 128.0
 knockback_friction = 64.0
 sprite_sheet = ExtResource("2_cmqw3")
-fuel_type = 1
 effects = Array[ExtResource("1_fnhko")]([ExtResource("3_eyp5x")])

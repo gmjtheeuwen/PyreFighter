@@ -34,7 +34,6 @@ script = ExtResource("3_kcc1b")
 
 [node name="EnemyManager" type="Node2D" parent="." unique_id=1029336241 node_paths=PackedStringArray("player")]
 script = ExtResource("4_70wbi")
-disabled = true
 player = NodePath("../Player")
 
 [node name="Enemy" parent="EnemyManager" unique_id=2018764647 instance=ExtResource("5_k5k56")]
