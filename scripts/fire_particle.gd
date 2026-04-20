@@ -28,7 +28,7 @@ func _on_body_entered(body: Node2D):
 			if flammable: _on_flammable_hit(global_position)
 				
 	elif body.is_in_group("player"):
-		body._on_hit(damage)
+		body.on_hit(self)
 		queue_free()
 
 func _on_flammable_hit(hit_position: Vector2):

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://drbfrqq1blkd3"]
+
+[ext_resource type="Script" uid="uid://cmb635xvganeu" path="res://scripts/enemy_type_icon_container.gd" id="1_367il"]
+
+[node name="EnemyTypes" type="HBoxContainer" unique_id=1637518939]
+script = ExtResource("1_367il")

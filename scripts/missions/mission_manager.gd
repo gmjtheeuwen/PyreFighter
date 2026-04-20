@@ -1,6 +1,6 @@
 extends Node
 var mission_data: MissionData = preload("res://resources/missions/mission_data.tres")
-var mission_select: PackedScene = preload("res://scenes/mission_select.tscn")
+var mission_select: PackedScene = preload("res://scenes/mission_select_b.tscn")
 
 func _init() -> void:
 	mission_data.missions[0].is_locked = false
