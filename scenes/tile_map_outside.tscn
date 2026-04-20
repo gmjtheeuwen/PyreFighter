@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d0122ryekpufo" path="res://assets/TrainingOfficer.png" id="1_iumv4"]
 [ext_resource type="Texture2D" uid="uid://2ih8ljdc8x37" path="res://assets/Tilemap_Sidewalk.png" id="2_67bpm"]
 [ext_resource type="Texture2D" uid="uid://hb4gfpg27p31" path="res://assets/Tilemap_Water.png" id="3_iumv4"]
-[ext_resource type="Texture2D" uid="uid://cgelhwhxbivkp" path="res://assets/tilemap_packed.png" id="4_ui5fb"]
+[ext_resource type="Texture2D" uid="uid://cgelhwhxbivkp" path="res://assets/tilemap_outside.png" id="4_ui5fb"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_67bpm"]
 tile_data = PackedInt32Array(0, 5, 15, 65536, 5, 16, 131072, 5, 17)

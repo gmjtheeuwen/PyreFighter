@@ -4,7 +4,7 @@ extends Control
 @onready var mission_pin_scene = preload("res://scenes/mission_pin.tscn")
 @onready var mission_list_scene = preload("res://scenes/mission_list.tscn")
 
-@onready var mission_list_container = $HBoxContainer/MissionListContainer
+@onready var mission_list_container = $HBoxContainer/CenterContainer2/VBoxContainer/MissionListContainer
 @onready var map = $HBoxContainer/MapContainer/Map
 @onready var details_container = $HBoxContainer/CenterContainer/DetailsContainer
 @onready var title_label = $HBoxContainer/CenterContainer/DetailsContainer/Title
@@ -79,3 +79,7 @@ func _on_selected_mission_changed(mission: Mission):
 
 func start_mission(mission: Mission):
 	get_tree().call_deferred("change_scene_to_file", mission.scene)
+	
+func back_button_pressed():
+	HubManager.set_player_position(Hub.Position.MISSION)
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/hub.tscn")

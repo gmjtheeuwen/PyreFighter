@@ -50,3 +50,8 @@ func on_item_equipped(item: ItemData):
 		equipped_item = item
 		limit_label.text = "equipment limit: 1/1"
 		equipped_label.text = "currently equipped: \n%s " % item.display_name
+
+func on_confirm_button_pressed():
+#	InventoryManager.save_equipment(equipped_item)
+	HubManager.set_player_position(Hub.Position.EQUIPMENT)
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/hub.tscn")

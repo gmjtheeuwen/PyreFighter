@@ -35,6 +35,7 @@ config/icon="res://icon.svg"
 
 button_prompts_manager="*uid://cy31x45v8vmkc"
 MissionManager="*uid://d0rr0opwrd7u4"
+HubManager="*uid://dsp6xi3ythiaa"
 
 [display]
 

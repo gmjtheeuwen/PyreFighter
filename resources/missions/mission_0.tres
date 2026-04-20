@@ -9,5 +9,6 @@ title = &"Pyrefighting basics"
 description = &"Learn how to move and shoot"
 experience = 5
 location = Vector2(0.45, 0.3)
+player_hub_position = 1
 unlocks = Array[int]([1])
 metadata/_custom_type_script = "uid://c2kjpndudpyj0"

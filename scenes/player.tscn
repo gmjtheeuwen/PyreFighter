@@ -8,7 +8,6 @@
 [ext_resource type="Script" uid="uid://dfsywsppsvtwk" path="res://scripts/equipment.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="5_tuyoq"]
 [ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="6_fjrip"]
-[ext_resource type="PackedScene" uid="uid://e74j3ts2yaaj" path="res://scenes/selected_ammo.tscn" id="7_fjrip"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ur7pv"]
 shader = ExtResource("3_smehm")
@@ -302,8 +301,8 @@ metadata/_custom_type_script = "uid://bpc7ctncys7f7"
 
 [node name="Healthbar" parent="." unique_id=375241332 instance=ExtResource("6_fjrip")]
 anchors_preset = 0
-offset_top = -48.0
-offset_bottom = -48.0
+offset_top = -32.0
+offset_bottom = -32.0
 grow_horizontal = 1
 grow_vertical = 1
 
@@ -325,22 +324,6 @@ offset_top = 865.0
 offset_right = 1850.0
 offset_bottom = 1025.0
 
-[node name="selected_ammo" parent="CanvasLayer/Control/Panel" unique_id=2136188646 instance=ExtResource("7_fjrip")]
-layout_mode = 1
-anchors_preset = 15
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[connection signal="ammo_changed" from="." to="CanvasLayer/Control/Panel/selected_ammo" method="_on_player_ammo_changed"]
-[connection signal="change_ribbon" from="." to="Gun" method="_on_player_change_ribbon"]
 [connection signal="used_equipment" from="." to="Equipment" method="on_use_equipment"]
 [connection signal="timeout" from="Equipment/Timer" to="Equipment" method="on_timeout"]
 [connection signal="health_changed" from="HealthComponent" to="Healthbar" method="on_health_changed"]
