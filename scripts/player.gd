@@ -30,10 +30,16 @@ var bullet_scene = preload("res://scenes/bullet.tscn")
 var ammo_list = AttackComponent.AmmoType.values()
 @onready var hitflash = $AnimatedSprite2D/HitFlash
 
+var ammo_switch_cooldown := 0.0
+const SCROLL_COOLDOWN := 0.15
+
 func _ready() -> void:
 	set_process_input(has_control)
 
 func _process(delta: float) -> void:
+	if ammo_switch_cooldown > 0.0:
+		ammo_switch_cooldown -= delta
+	
 	if health_component.health <= 0:
 		_on_death()
 		return
@@ -54,22 +60,10 @@ func _process(delta: float) -> void:
 		use_equipment()
 		
 	if Input.is_action_just_pressed("ui_page_right"):
-		var next = (current_ammo + 1) % ammo_list.size()
-		while not InventoryManager.inventory_data.unlocked_ammo[ammo_list[next]]:
-			next = (next + 1) % ammo_list.size()
-		current_ammo = next
-		ammo_type = ammo_list[current_ammo]
-		emit_signal("ammo_changed", ammo_type)
-		emit_signal("change_ribbon", ammo_type)
+		_switch_ammo(1)
 	
 	if Input.is_action_just_pressed("ui_page_left"):
-		var next = (current_ammo - 1 + ammo_list.size()) % ammo_list.size()
-		while not InventoryManager.inventory_data.unlocked_ammo[ammo_list[next]]:
-			next = (next - 1 + ammo_list.size()) % ammo_list.size()
-		current_ammo = next
-		ammo_type = ammo_list[current_ammo]
-		emit_signal("ammo_changed", ammo_type)
-		emit_signal("change_ribbon", ammo_type)
+		_switch_ammo(-1)
 
 func _physics_process(delta: float) -> void:	
 	if is_knock_backed:
@@ -79,7 +73,6 @@ func _physics_process(delta: float) -> void:
 	else: 
 		velocity = direction * WALKSPEED
 	move_and_slide()
-
 
 func handle_controller_input(joypads: Array[int]) -> void:
 	var primary_joypad = joypads[0]
@@ -103,7 +96,6 @@ func handle_controller_input(joypads: Array[int]) -> void:
 	
 	if (abs(aim_input_x) >= JOYSTICK_SENSITIVITY || abs(aim_input_y) >= JOYSTICK_SENSITIVITY):	
 		aim_direction = Vector2(aim_input_x, aim_input_y).normalized()
-
 
 func handle_keyboard_input() -> void:
 	var move_input_x = Input.get_axis("left", "right")
@@ -138,7 +130,6 @@ func use_equipment():
 func handle_hit():
 	pass
 
-
 func _on_ammo_changed(ammo_type: Variant) -> void:
 	pass # Replace with function body.
 func give_control():
@@ -146,3 +137,12 @@ func give_control():
 
 func take_control():
 	set_process_input(false)
+
+func _switch_ammo(direction: int):
+	var next = (current_ammo + direction + ammo_list.size()) % ammo_list.size()
+	while not InventoryManager.inventory_data.unlocked_ammo[ammo_list[next]]:
+		next = (next + direction + ammo_list.size()) % ammo_list.size()
+	current_ammo = next
+	ammo_type = ammo_list[current_ammo]
+	emit_signal("ammo_changed", ammo_type)
+	emit_signal("change_ribbon", ammo_type)

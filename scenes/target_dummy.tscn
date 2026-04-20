@@ -1,52 +1,52 @@
-[gd_scene format=3 uid="uid://b20irxk87enkx"]
+[gd_scene format=3 uid="uid://cetebtns8h7aa"]
 
-[ext_resource type="Script" uid="uid://bpb6xw4sderk" path="res://scripts/enemy.gd" id="1_md0e3"]
-[ext_resource type="Texture2D" uid="uid://jc8p6d33gm80" path="res://assets/Pyre_Solid_Sheet.png" id="2_5uy6h"]
-[ext_resource type="Resource" uid="uid://dwg21iamnu7s1" path="res://resources/enemies/enemy_stats.tres" id="2_nenq2"]
-[ext_resource type="Shader" uid="uid://bgmhar483cefk" path="res://shaders/hitflash.gdshader" id="2_xwavj"]
-[ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="3_4ra3w"]
-[ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="4_xwavj"]
-[ext_resource type="PackedScene" uid="uid://dsmjeru81rdu7" path="res://scenes/explosion_emitter.tscn" id="5_c4w8v"]
+[ext_resource type="Script" uid="uid://cx7up4mbcroa0" path="res://scripts/target_dummy.gd" id="1_y5ib8"]
+[ext_resource type="Resource" uid="uid://dwg21iamnu7s1" path="res://resources/enemies/enemy_stats.tres" id="2_2xfog"]
+[ext_resource type="Shader" uid="uid://bgmhar483cefk" path="res://shaders/hitflash.gdshader" id="3_pvpe8"]
+[ext_resource type="Texture2D" uid="uid://jc8p6d33gm80" path="res://assets/Pyre_Solid_Sheet.png" id="4_5uffm"]
+[ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="5_2xfog"]
+[ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="6_3r11e"]
+[ext_resource type="PackedScene" uid="uid://dsmjeru81rdu7" path="res://scenes/explosion_emitter.tscn" id="7_ojjxg"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nenq2"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2xfog"]
 resource_local_to_scene = true
-shader = ExtResource("2_xwavj")
+shader = ExtResource("3_pvpe8")
 shader_parameter/hit_flash_color = Color(1, 1, 1, 1)
 shader_parameter/hit_flash_on = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c4w8v"]
-atlas = ExtResource("2_5uy6h")
+atlas = ExtResource("4_5uffm")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xwavj"]
-atlas = ExtResource("2_5uy6h")
+atlas = ExtResource("4_5uffm")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nenq2"]
-atlas = ExtResource("2_5uy6h")
+atlas = ExtResource("4_5uffm")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_md484"]
-atlas = ExtResource("2_5uy6h")
+atlas = ExtResource("4_5uffm")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ipns3"]
-atlas = ExtResource("2_5uy6h")
+atlas = ExtResource("4_5uffm")
 region = Rect2(128, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qclf"]
-atlas = ExtResource("2_5uy6h")
+atlas = ExtResource("4_5uffm")
 region = Rect2(160, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w8i8w"]
-atlas = ExtResource("2_5uy6h")
+atlas = ExtResource("4_5uffm")
 region = Rect2(192, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_otmr2"]
-atlas = ExtResource("2_5uy6h")
+atlas = ExtResource("4_5uffm")
 region = Rect2(224, 0, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4ra3w"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3r11e"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -109,58 +109,61 @@ tracks/0/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ovi"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ojjxg"]
 _data = {
 &"RESET": SubResource("Animation_xwavj"),
 &"hit_flash": SubResource("Animation_fgpka")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4w8v"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2861"]
 size = Vector2(32, 32)
 
-[node name="Enemy" type="CharacterBody2D" unique_id=2018764647 groups=["enemy"]]
+[node name="TargetDummy" type="CharacterBody2D" unique_id=691078236 groups=["enemy"]]
 collision_layer = 8
 collision_mask = 7
-script = ExtResource("1_md0e3")
-stats = ExtResource("2_nenq2")
+script = ExtResource("1_y5ib8")
+stats = ExtResource("2_2xfog")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2092398911]
-material = SubResource("ShaderMaterial_nenq2")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1787439744]
+material = SubResource("ShaderMaterial_2xfog")
 position = Vector2(0, -8)
 scale = Vector2(2, 2)
-sprite_frames = SubResource("SpriteFrames_4ra3w")
+sprite_frames = SubResource("SpriteFrames_3r11e")
 animation = &"idle"
 
-[node name="HitFlash" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1452202564]
-libraries/ = SubResource("AnimationLibrary_a2ovi")
+[node name="HitFlash" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=243134681]
+libraries/ = SubResource("AnimationLibrary_ojjxg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=345625917]
-shape = SubResource("RectangleShape2D_c4w8v")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2046341775]
+shape = SubResource("RectangleShape2D_f2861")
 
-[node name="HealthComponent" type="Node2D" parent="." unique_id=85940192]
-script = ExtResource("4_xwavj")
+[node name="HealthComponent" type="Node2D" parent="." unique_id=1001867064]
+script = ExtResource("5_2xfog")
 metadata/_custom_type_script = "uid://bpc7ctncys7f7"
 
-[node name="Healthbar" parent="." unique_id=236410912 instance=ExtResource("3_4ra3w")]
+[node name="Healthbar" parent="." unique_id=573592500 instance=ExtResource("6_3r11e")]
 anchors_preset = 0
 offset_top = -32.0
 offset_bottom = -32.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="InvincibilityTimer" type="Timer" parent="." unique_id=1025565188]
+[node name="InvincibilityTimer" type="Timer" parent="." unique_id=1775886103]
 wait_time = 0.8
 one_shot = true
 
-[node name="VFX" type="Node2D" parent="." unique_id=1154165267]
+[node name="VFX" type="Node2D" parent="." unique_id=1922284977]
 
-[node name="ExplosionEmitter" parent="VFX" unique_id=733634665 instance=ExtResource("5_c4w8v")]
+[node name="ExplosionEmitter" parent="VFX" unique_id=733634665 instance=ExtResource("7_ojjxg")]
 amount = 300
 lifetime = 0.7
 
-[node name="RayCast2D" type="RayCast2D" parent="." unique_id=280921731]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=811450403]
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
-[connection signal="health_changed" from="HealthComponent" to="Healthbar" method="on_health_changed"]
+[node name="Label" type="Label" parent="." unique_id=1078665302]
+offset_left = -20.0
+offset_top = -57.0
+offset_right = 20.0
+offset_bottom = -34.0
+
 [connection signal="heatlh_depleted" from="HealthComponent" to="." method="_on_death"]
-[connection signal="timeout" from="InvincibilityTimer" to="." method="_invincibility_ended"]
