@@ -339,6 +339,14 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="AmmoName" type="Label" parent="CanvasLayer/Control/Panel" unique_id=1165816369]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 135.0
+offset_right = 94.0
+offset_bottom = 158.0
+text = "water"
+
 [connection signal="ammo_changed" from="." to="CanvasLayer/Control/Panel/selected_ammo" method="_on_player_ammo_changed"]
 [connection signal="change_ribbon" from="." to="Gun" method="_on_player_change_ribbon"]
 [connection signal="used_equipment" from="." to="Equipment" method="on_use_equipment"]
