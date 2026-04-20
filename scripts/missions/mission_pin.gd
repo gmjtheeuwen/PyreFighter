@@ -8,6 +8,8 @@ signal mission_selected(Mission)
 @export var LockedMarker: CompressedTexture2D
 @export var Markers: Array[CompressedTexture2D]
 @export var MarkersFocus: Array[CompressedTexture2D]
+
+var focused: bool
 var mission : Mission
 
 enum Difficulty {
@@ -30,11 +32,24 @@ func setup(m: Mission) -> void:
 		disabled = true
 		return
 	texture_normal = Markers[m.difficulty]
-	texture_hover = MarkersFocus[m.difficulty]
 	texture_focused = MarkersFocus[m.difficulty]
 
+	
+func _process(_delta: float) -> void:
+	if focused:
+		texture_normal = MarkersFocus[mission.difficulty]
+		texture_hover = MarkersFocus[mission.difficulty]
+	else: 
+		texture_normal = Markers[mission.difficulty]
+		texture_hover = Markers[mission.difficulty]
+
 func _on_pressed():
-	mission_pressed.emit(mission)
+	if not disabled:
+		mission_pressed.emit(mission)
 
 func _on_focus_entered():
+	focused = true
 	mission_selected.emit(mission)
+	
+func _on_focus_exited():
+	focused = false

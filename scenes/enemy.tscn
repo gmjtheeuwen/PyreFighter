@@ -6,7 +6,18 @@
 [ext_resource type="Shader" uid="uid://bgmhar483cefk" path="res://shaders/hitflash.gdshader" id="2_xwavj"]
 [ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="4_xwavj"]
-[ext_resource type="PackedScene" uid="uid://dsmjeru81rdu7" path="res://scenes/explosion_emitter.tscn" id="5_c4w8v"]
+[ext_resource type="PackedScene" path="res://scenes/explosion_emitter.tscn" id="5_c4w8v"]
+[ext_resource type="Script" uid="uid://bchr0uicd0p2c" path="res://scripts/states/state_machine.gd" id="8_md484"]
+[ext_resource type="Script" uid="uid://gg4qaf331wqb" path="res://scripts/states/enemy/idle.gd" id="9_ipns3"]
+[ext_resource type="Script" uid="uid://clebqagstgvol" path="res://scripts/states/enemy/knocked.gd" id="10_w8i8w"]
+[ext_resource type="Script" uid="uid://0bfvhp1kfqew" path="res://scripts/states/enemy/chase.gd" id="11_otmr2"]
+[ext_resource type="Script" uid="uid://bmbvlflja1708" path="res://scripts/states/enemy/investigate.gd" id="12_otmr2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4w8v"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_otmr2"]
+size = Vector2(36, 36)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nenq2"]
 resource_local_to_scene = true
@@ -115,14 +126,27 @@ _data = {
 &"hit_flash": SubResource("Animation_fgpka")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4w8v"]
-size = Vector2(32, 32)
-
-[node name="Enemy" type="CharacterBody2D" unique_id=2018764647 groups=["enemy"]]
+[node name="Enemy" type="CharacterBody2D" unique_id=831774596 groups=["enemy"]]
 collision_layer = 8
 collision_mask = 7
 script = ExtResource("1_md0e3")
 stats = ExtResource("2_nenq2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=550327943]
+shape = SubResource("RectangleShape2D_c4w8v")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=140974128]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1872217142]
+shape = SubResource("RectangleShape2D_otmr2")
+
+[node name="VFX" type="Node2D" parent="." unique_id=1154165267]
+
+[node name="ExplosionEmitter" parent="VFX" unique_id=733634665 instance=ExtResource("5_c4w8v")]
+amount = 300
+lifetime = 0.7
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2092398911]
 material = SubResource("ShaderMaterial_nenq2")
@@ -133,9 +157,6 @@ animation = &"idle"
 
 [node name="HitFlash" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1452202564]
 libraries/ = SubResource("AnimationLibrary_a2ovi")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=345625917]
-shape = SubResource("RectangleShape2D_c4w8v")
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=85940192]
 script = ExtResource("4_xwavj")
@@ -152,15 +173,31 @@ grow_vertical = 1
 wait_time = 0.8
 one_shot = true
 
-[node name="VFX" type="Node2D" parent="." unique_id=1154165267]
-
-[node name="ExplosionEmitter" parent="VFX" unique_id=733634665 instance=ExtResource("5_c4w8v")]
-amount = 300
-lifetime = 0.7
-
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=280921731]
+collision_mask = 3
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animation_finished"]
+[node name="StateMachine" type="Node" parent="." unique_id=1372934407 node_paths=PackedStringArray("initial_state")]
+script = ExtResource("8_md484")
+initial_state = NodePath("idle")
+metadata/_custom_type_script = "uid://bchr0uicd0p2c"
+
+[node name="idle" type="Node" parent="StateMachine" unique_id=1677608580]
+script = ExtResource("9_ipns3")
+metadata/_custom_type_script = "uid://dgt6b7ul0lqfa"
+
+[node name="knocked" type="Node" parent="StateMachine" unique_id=654257207]
+script = ExtResource("10_w8i8w")
+metadata/_custom_type_script = "uid://dgt6b7ul0lqfa"
+
+[node name="chase" type="Node" parent="StateMachine" unique_id=2060962155]
+script = ExtResource("11_otmr2")
+metadata/_custom_type_script = "uid://dgt6b7ul0lqfa"
+
+[node name="investigate" type="Node" parent="StateMachine" unique_id=1060791857]
+script = ExtResource("12_otmr2")
+metadata/_custom_type_script = "uid://dgt6b7ul0lqfa"
+
+[connection signal="body_entered" from="HitboxComponent" to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimatedSprite2D/HitFlash" to="." method="invincibility_ended"]
 [connection signal="health_changed" from="HealthComponent" to="Healthbar" method="on_health_changed"]
 [connection signal="heatlh_depleted" from="HealthComponent" to="." method="_on_death"]
-[connection signal="timeout" from="InvincibilityTimer" to="." method="_invincibility_ended"]

@@ -32,19 +32,6 @@ has_control = false
 [node name="BulletManager" type="Node2D" parent="." unique_id=673478104]
 script = ExtResource("3_fewcj")
 
-[node name="EnemyManager" type="Node2D" parent="." unique_id=2025347032 node_paths=PackedStringArray("player")]
-script = ExtResource("4_nb75p")
-disabled = true
-player = NodePath("../Player")
-
-[node name="Enemy" parent="EnemyManager" unique_id=2018764647 instance=ExtResource("4_nc7i2")]
-position = Vector2(-304, 208)
-stats = ExtResource("5_fewcj")
-
-[node name="Enemy2" parent="EnemyManager" unique_id=712576833 instance=ExtResource("4_nc7i2")]
-position = Vector2(416, 80)
-stats = ExtResource("5_fewcj")
-
 [node name="InteractionArea" parent="." unique_id=712516511 instance=ExtResource("9_d36dx")]
 position = Vector2(-32, 0)
 collision_layer = 0
@@ -52,8 +39,19 @@ START_TEXT = ""
 INTERACTION_TEXT = ""
 disabled = true
 
+[node name="EnemyManager" type="Node2D" parent="." unique_id=142538598 node_paths=PackedStringArray("player")]
+script = ExtResource("4_nb75p")
+player = NodePath("../Player")
+
+[node name="Enemy" parent="EnemyManager" unique_id=2018764647 instance=ExtResource("4_nc7i2")]
+position = Vector2(-304, 208)
+stats = ExtResource("5_fewcj")
+
+[node name="Enemy2" parent="EnemyManager" unique_id=266001581 instance=ExtResource("4_nc7i2")]
+position = Vector2(416, 80)
+stats = ExtResource("5_fewcj")
+
 [connection signal="finished" from="TutorialUI" to="Player" method="give_control"]
-[connection signal="finished" from="TutorialUI" to="EnemyManager" method="_enable"]
 [connection signal="fired_bullet" from="Player" to="BulletManager" method="_on_player_fired_bullet"]
-[connection signal="all_enemies_defeated" from="EnemyManager" to="InteractionArea" method="toggle"]
 [connection signal="interacted" from="InteractionArea" to="." method="on_mission_finish"]
+[connection signal="all_enemies_defeated" from="EnemyManager" to="InteractionArea" method="toggle"]

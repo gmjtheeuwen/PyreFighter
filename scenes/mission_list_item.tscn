@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://d1lxk0pu4f5aq"]
+
+[ext_resource type="Script" uid="uid://cbxjmavlqdcdd" path="res://scripts/mission_list_item.gd" id="1_qhyax"]
+[ext_resource type="Script" uid="uid://cmb635xvganeu" path="res://scripts/enemy_type_icon_container.gd" id="2_yieqh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_4mne6"]
+font_size = 48
+
+[node name="MissionListItem" type="PanelContainer" unique_id=520442576]
+offset_right = 101.0
+offset_bottom = 67.0
+focus_mode = 2
+script = ExtResource("1_qhyax")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=850273758]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=244468119]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=682172777]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_4mne6")
+
+[node name="EnemyTypeIconContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=2011619737]
+custom_minimum_size = Vector2(256, 32)
+layout_mode = 2
+script = ExtResource("2_yieqh")
+metadata/_custom_type_script = "uid://cmb635xvganeu"
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

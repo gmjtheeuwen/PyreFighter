@@ -13,7 +13,7 @@ var JOYSTICK_SENSITIVITY = 0.4
 var direction:= Vector2.ZERO
 var aim_direction:= Vector2.RIGHT
 
-var is_knock_backed := false
+var knocked = false
 @export var knockback_friction : float
 @export var MIN_KNOCKBACK_SPEED : float
 
@@ -28,6 +28,8 @@ var current_ammo = 1
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 var ammo_list = AttackComponent.AmmoType.values()
+
+var invincible = false
 @onready var hitflash = $AnimatedSprite2D/HitFlash
 
 var ammo_switch_cooldown := 0.0
@@ -46,7 +48,7 @@ func _process(delta: float) -> void:
 		
 	if !is_processing_input(): return
 	var joypads := Input.get_connected_joypads()
-	if Input.get_connected_joypads().size() > 0:
+	if joypads.size() > 0:
 		handle_controller_input(joypads)
 	else:
 		handle_keyboard_input()
@@ -66,10 +68,10 @@ func _process(delta: float) -> void:
 		_switch_ammo(-1)
 
 func _physics_process(delta: float) -> void:	
-	if is_knock_backed:
+	if knocked:
 		velocity = velocity.normalized() * (velocity.length()-knockback_friction*delta)
 		if velocity.length() < MIN_KNOCKBACK_SPEED:
-			is_knock_backed = false
+			knocked = false
 	else: 
 		velocity = direction * WALKSPEED
 	move_and_slide()
@@ -109,15 +111,24 @@ func handle_keyboard_input() -> void:
 	var aim_y = mouse_position.y - rect.size.y/2
 	aim_direction = Vector2(aim_x, aim_y).normalized()
 
-func _on_hit(damage: float):
-	hitflash.play("hit_flash")
-	health_component.damage(damage)
+func on_hit(attack: AttackComponent):
+	if invincible: return
+	hitflash.play("hit_flash")	
+	invincible = true
+	health_component.damage(attack.damage)
+	
+	if attack.knockback > 0:
+		knocked = true
+		velocity = attack.direction * attack.knockback
 	
 func _on_death():
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+	
+func invincibility_ended(anim_name: StringName):
+	invincible = false
 
 func shoot():
-	if Bullet == null: return
+	if knocked or Bullet == null: return
 	var bullet_instance = Bullet.instantiate()
 	var bullet_position = position + aim_direction * 16
 	bullet_instance.ammo_type = ammo_type

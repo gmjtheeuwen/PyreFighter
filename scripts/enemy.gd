@@ -6,9 +6,10 @@ var cloned_stats: EnemyStats
 
 @export var MIN_KNOCKBACK_SPEED: float = 8.0
 
-var is_knock_backed := false
 var has_line_of_sight := false
+var invincible := false
 
+@onready var state_machine = $StateMachine
 @onready var health_component = $HealthComponent
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var hitflash = $AnimatedSprite2D/HitFlash
@@ -32,28 +33,37 @@ func _ready() -> void:
 			temp_atlas.filter_clip = true
 			temp_atlas.region = Rect2(i*at.atlas.get_height(),0,at.atlas.get_height(),at.atlas.get_height())
 			sprite.sprite_frames.add_frame(animation_name, temp_atlas)
-	sprite.animation = animation_name
-	sprite.play()
-	
+	sprite.play(animation_name)
 
 func _on_hit(attack: AttackComponent):
+	if invincible: return
+	if state_machine.state is EnemyState:
+		state_machine.state.on_hit(attack)
 	health_component.damage(attack.damage)
-	
-	if attack.knockback > 0 && !is_knock_backed:
-		velocity = attack.direction * attack.knockback
-		cloned_stats.resolve_effects(attack.attack_type, attack.source, self)
-		is_knock_backed = true
-		
-	timer.start()
+	cloned_stats.resolve_effects(attack.attack_type, attack.source, self)
 	hitflash.play("hit_flash")	
+	invincible = true	
+
+func _on_body_entered(body: Node2D):
+	if body is not Player: return
+	var attack = AttackComponent.new()
+	attack.damage = cloned_stats.damage
+	attack.direction = raycast.target_position.normalized()
+	attack.source = self
+	attack.attack_type = AttackComponent.AmmoType.NONE
+	attack.knockback = cloned_stats.knockback
+	body.on_hit(attack)
+
+func _process(_delta: float) -> void:
+	var player: Player = get_tree().current_scene.find_child("Player")
+	if not player: return
+	raycast.target_position = player.global_position - global_position
 	
-func _physics_process(delta: float) -> void:
-	if is_knock_backed:
-		velocity = velocity.normalized() * (velocity.length()-cloned_stats.knockback_friction*delta)
-		if velocity.length() < MIN_KNOCKBACK_SPEED:
-			is_knock_backed = false 
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
+	
+func invincibility_ended(anim_name: StringName):
+	invincible = false
 
 func _on_death():
-	get_parent().remove(self)
 	queue_free()
