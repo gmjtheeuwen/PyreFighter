@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://bka3ob7ne5ogp"]
+[gd_scene format=3 uid="uid://c34vghata588j"]
 
-[ext_resource type="Script" uid="uid://5d2hgkck5alk" path="res://scripts/missions/mission_select_b.gd" id="1_6twap"]
-[ext_resource type="Script" uid="uid://cmb635xvganeu" path="res://scripts/enemy_type_icon_container.gd" id="2_jr4rs"]
+[ext_resource type="Script" path="res://scripts/missions/mission_select_b.gd" id="1_6twap"]
+[ext_resource type="Script" path="res://scripts/enemy_type_icon_container.gd" id="2_jr4rs"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6twap"]
 font_size = 64
@@ -75,7 +75,6 @@ text = "Present Enemy Types:"
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 script = ExtResource("2_jr4rs")
-metadata/_custom_type_script = "uid://cmb635xvganeu"
 
 [node name="StartButton" type="Button" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=405346280]
 layout_mode = 2

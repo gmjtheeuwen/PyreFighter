@@ -5,10 +5,10 @@ var icon_scene = preload("res://scenes/enemy_type_icon.tscn")
 
 @onready var mission_pin_scene = preload("res://scenes/mission_pin.tscn")
 @onready var map = $HBoxContainer/CenterContainer/Map
-@onready var title_label = $HBoxContainer/CenterContainer2/VBoxContainer/Title
-@onready var description_label = $HBoxContainer/CenterContainer2/VBoxContainer/Description
-@onready var reward_label = $HBoxContainer/CenterContainer2/VBoxContainer/Rewards
-@onready var icon_container = $HBoxContainer/CenterContainer2/VBoxContainer/EnemyTypes
+@onready var title_label = $HBoxContainer/VBoxContainer/CenterContainer2/VBoxContainer/Title
+@onready var description_label = $HBoxContainer/VBoxContainer/CenterContainer2/VBoxContainer/Description
+@onready var reward_label = $HBoxContainer/VBoxContainer/CenterContainer2/VBoxContainer/Rewards
+@onready var icon_container = $HBoxContainer/VBoxContainer/CenterContainer2/VBoxContainer/EnemyTypes
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN

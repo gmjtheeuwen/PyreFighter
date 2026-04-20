@@ -1,7 +1,8 @@
-[gd_scene format=3 uid="uid://b63pglm3k82e3"]
+[gd_scene format=3 uid="uid://c2y8672uwnui5"]
 
 [ext_resource type="Script" uid="uid://c26qckolpnq27" path="res://scripts/missions/mission_select.gd" id="1_nl0ch"]
 [ext_resource type="Texture2D" uid="uid://bv6sr7575lmfd" path="res://assets/MiniMap.png" id="2_nl0ch"]
+[ext_resource type="Script" uid="uid://c005168h7m23y" path="res://addons/button_prompts_for_godot/Scripts/ui_button_prompt.gd" id="3_drwh8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qrooi"]
 font_size = 64
@@ -42,27 +43,39 @@ layout_mode = 2
 texture = ExtResource("2_nl0ch")
 expand_mode = 2
 
-[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer" unique_id=628419353]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=605552849]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer2" unique_id=1945065466]
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/VBoxContainer" unique_id=628419353]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/CenterContainer2" unique_id=1945065466]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=1544280280]
+[node name="Title" type="Label" parent="HBoxContainer/VBoxContainer/CenterContainer2/VBoxContainer" unique_id=1544280280]
 layout_mode = 2
 text = "Title"
 label_settings = SubResource("LabelSettings_qrooi")
 
-[node name="Description" type="Label" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=187200954]
+[node name="Description" type="Label" parent="HBoxContainer/VBoxContainer/CenterContainer2/VBoxContainer" unique_id=187200954]
 layout_mode = 2
 text = "Description"
 label_settings = SubResource("LabelSettings_wh8vx")
 
-[node name="Rewards" type="Label" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=2110492544]
+[node name="Rewards" type="Label" parent="HBoxContainer/VBoxContainer/CenterContainer2/VBoxContainer" unique_id=2110492544]
 layout_mode = 2
 text = "Rewards"
 label_settings = SubResource("LabelSettings_nl0ch")
 
-[node name="EnemyTypes" type="HBoxContainer" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=672731267]
+[node name="EnemyTypes" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/CenterContainer2/VBoxContainer" unique_id=672731267]
 layout_mode = 2
+
+[node name="ButtonPromptLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=1078564281]
+layout_mode = 2
+bbcode_enabled = true
+text = "Press {ui_accept} to start"
+fit_content = true
+scroll_active = false
+script = ExtResource("3_drwh8")
+metadata/_custom_type_script = "uid://c005168h7m23y"
