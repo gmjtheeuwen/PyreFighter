@@ -7,7 +7,7 @@
 [ext_resource type="Shader" uid="uid://bgmhar483cefk" path="res://shaders/hitflash.gdshader" id="3_smehm"]
 [ext_resource type="Script" uid="uid://dfsywsppsvtwk" path="res://scripts/equipment.gd" id="4_dqkch"]
 [ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="5_tuyoq"]
-[ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="6_fjrip"]
+[ext_resource type="Script" uid="uid://cvspfktk4pdpo" path="res://scripts/healthbar.gd" id="8_smehm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ur7pv"]
 shader = ExtResource("3_smehm")
@@ -243,6 +243,7 @@ outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody2D" unique_id=1149356595 node_paths=PackedStringArray("health_component") groups=["player"]]
+z_index = 1
 collision_layer = 2
 collision_mask = 9
 script = ExtResource("1_g2els")
@@ -257,7 +258,7 @@ zoom = Vector2(1.5, 1.5)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1202607698]
 material = SubResource("ShaderMaterial_ur7pv")
-position = Vector2(0, -16)
+position = Vector2(0, -24)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_smehm")
 animation = &"idle_down"
@@ -266,7 +267,7 @@ animation = &"idle_down"
 libraries/ = SubResource("AnimationLibrary_fjrip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1358564444]
-visible = false
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_3vyb7")
 
 [node name="Gun" parent="." unique_id=558119626 node_paths=PackedStringArray("player") instance=ExtResource("3_qhqgy")]
@@ -299,14 +300,8 @@ one_shot = true
 script = ExtResource("5_tuyoq")
 metadata/_custom_type_script = "uid://bpc7ctncys7f7"
 
-[node name="Healthbar" parent="." unique_id=375241332 instance=ExtResource("6_fjrip")]
-anchors_preset = 0
-offset_top = -32.0
-offset_bottom = -32.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=902911179]
+visible = false
 
 [node name="Control" type="Control" parent="CanvasLayer" unique_id=1356985881]
 layout_mode = 3
@@ -315,6 +310,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Healthbar" type="Control" parent="CanvasLayer/Control" unique_id=375241332]
+anchors_preset = 0
+script = ExtResource("8_smehm")
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control/Healthbar" unique_id=2124388829]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 64.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control/Healthbar/Panel" unique_id=1267126365]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 64.0
+color = Color(1, 0, 0, 1)
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Control" unique_id=1832138539]
 custom_minimum_size = Vector2(160, 160)
@@ -325,5 +335,6 @@ offset_right = 1850.0
 offset_bottom = 1025.0
 
 [connection signal="used_equipment" from="." to="Equipment" method="on_use_equipment"]
+[connection signal="animation_finished" from="AnimatedSprite2D/HitFlash" to="." method="invincibility_ended"]
 [connection signal="timeout" from="Equipment/Timer" to="Equipment" method="on_timeout"]
-[connection signal="health_changed" from="HealthComponent" to="Healthbar" method="on_health_changed"]
+[connection signal="health_changed" from="HealthComponent" to="CanvasLayer/Control/Healthbar" method="on_health_changed"]

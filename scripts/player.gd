@@ -21,12 +21,22 @@ var time_since_last_shot = 0.0
 @export var Bullet: PackedScene
 @export var health_component: HealthComponent
 
+@onready var gun = $Gun
+var gun_position: Vector2
+var last_direction: String = "down"
+var show_gun: bool = true
+
+@onready var sprite = $AnimatedSprite2D
 
 var invincible = false
 @onready var hitflash = $AnimatedSprite2D/HitFlash
 
 func _ready() -> void:
 	set_process_input(has_control)
+	gun_position = gun.position
+	
+	hitflash.play("RESET")
+	get_node("CanvasLayer").visible = true
 
 func _process(delta: float) -> void:
 	if health_component.health <= 0:
@@ -47,6 +57,32 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("equipment"):
 		use_equipment()
+	
+	if direction.y > 0.2:
+		sprite.play("walk_down")
+		last_direction = "down"
+		show_gun = true
+		gun_position = Vector2.ZERO
+	elif direction.y < -0.2:
+		sprite.play("walk_up")
+		last_direction = "up"
+		show_gun = false
+	elif direction.x > 0.2:
+		sprite.play("walk_right")
+		last_direction = "right"
+		show_gun = true
+		gun_position = Vector2(2, 0)*sprite.scale.x
+	elif direction.x < -0.2:
+		sprite.play("walk_left")
+		last_direction = "left"
+		show_gun = true
+		gun_position = Vector2(-2, 0)*sprite.scale.x
+	else:
+		sprite.play("idle_%s" % last_direction)
+		
+	if (gun):
+		gun.position = gun_position
+		gun.visible = show_gun
 
 func _physics_process(delta: float) -> void:	
 	if knocked:
@@ -105,9 +141,13 @@ func on_hit(attack: AttackComponent):
 		velocity = attack.direction * attack.knockback
 	
 func _on_death():
-	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+	var level = get_parent()
+	if level != null:
+		MissionManager.call_deferred("on_mission_fail", get_parent().mission)
+	else:
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")
 	
-func invincibility_ended(anim_name: StringName):
+func invincibility_ended(_anim_name: StringName):
 	invincible = false
 
 func shoot():

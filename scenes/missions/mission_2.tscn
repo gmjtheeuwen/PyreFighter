@@ -12,6 +12,9 @@
 [ext_resource type="Resource" uid="uid://l2qf754bjlc1" path="res://resources/enemies/liquid_enemy_stats.tres" id="6_h88gb"]
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="9_70wbi"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h88gb"]
+size = Vector2(128, 128)
+
 [node name="mission_2" type="Node2D" unique_id=1975849052]
 script = ExtResource("1_kcc1b")
 mission = ExtResource("2_70wbi")
@@ -50,6 +53,9 @@ collision_layer = 0
 START_TEXT = ""
 INTERACTION_TEXT = ""
 disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=883679071]
+shape = SubResource("RectangleShape2D_h88gb")
 
 [connection signal="finished" from="TutorialUI" to="Player" method="give_control"]
 [connection signal="finished" from="TutorialUI" to="EnemyManager" method="_enable"]

@@ -3,18 +3,13 @@
 [ext_resource type="Script" uid="uid://qoj4nlblpqc4" path="res://scripts/interaction_area.gd" id="1_40t11"]
 [ext_resource type="Script" uid="uid://c005168h7m23y" path="res://addons/button_prompts_for_godot/Scripts/ui_button_prompt.gd" id="2_8sep7"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dp2ob"]
-size = Vector2(128, 128)
-
 [node name="InteractionArea" type="Area2D" unique_id=712516511]
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_40t11")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1367160760]
-shape = SubResource("RectangleShape2D_dp2ob")
-
 [node name="Label" type="RichTextLabel" parent="." unique_id=120078035]
+z_index = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

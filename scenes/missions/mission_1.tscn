@@ -12,6 +12,9 @@
 [ext_resource type="Resource" uid="uid://bc58rov2bfbk1" path="res://resources/enemies/solid_enemy_stats.tres" id="5_fewcj"]
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="9_d36dx"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvd1y"]
+size = Vector2(128, 128)
+
 [node name="mission_1" type="Node2D" unique_id=1421702512]
 script = ExtResource("1_16hht")
 mission = ExtResource("2_3vyre")
@@ -38,6 +41,9 @@ collision_layer = 0
 START_TEXT = ""
 INTERACTION_TEXT = ""
 disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=32462471]
+shape = SubResource("RectangleShape2D_jvd1y")
 
 [node name="EnemyManager" type="Node2D" parent="." unique_id=142538598 node_paths=PackedStringArray("player")]
 script = ExtResource("4_nb75p")

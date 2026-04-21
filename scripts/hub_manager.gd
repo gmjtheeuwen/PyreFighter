@@ -2,9 +2,9 @@ extends Node
 
 var _positions = [
 	Vector2(0, 144),
-	Vector2(96, 16),
-	Vector2(-32, 48),
-	Vector2(352, 176)
+	Vector2(96, 32),
+	Vector2(-32, 64),
+	Vector2(352, 192)
 ]
 
 var _player_position: Vector2 = _positions[0]

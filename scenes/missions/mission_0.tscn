@@ -9,6 +9,9 @@
 [ext_resource type="Script" uid="uid://brjfhqnqjsrup" path="res://scripts/bullet_manager.gd" id="7_8i01k"]
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="8_5xjhs"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibu7v"]
+size = Vector2(128, 128)
+
 [node name="mission_0" type="Node2D" unique_id=1773008054]
 script = ExtResource("1_ibu7v")
 mission = ExtResource("2_ugm08")
@@ -36,6 +39,9 @@ collision_layer = 0
 START_TEXT = ""
 INTERACTION_TEXT = ""
 disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=1934258523]
+shape = SubResource("RectangleShape2D_ibu7v")
 
 [connection signal="finished" from="TutorialUI" to="InteractionArea" method="toggle"]
 [connection signal="fired_bullet" from="Player" to="BulletManager" method="_on_player_fired_bullet"]
