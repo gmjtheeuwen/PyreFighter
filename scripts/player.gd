@@ -6,7 +6,7 @@ signal used_equipment(direction)
 
 @export var has_control: bool
 
-var WALKSPEED: float = 224.0
+var WALKSPEED: float = 256.0
 var JOYSTICK_SENSITIVITY = 0.4
 var direction:= Vector2.ZERO
 var aim_direction:= Vector2.RIGHT

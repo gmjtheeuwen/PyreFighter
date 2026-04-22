@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://ckiqqe3qp8yc2" path="res://scenes/player.tscn" id="2_eqx5o"]
 [ext_resource type="PackedScene" uid="uid://cbe62met8hqlq" path="res://scenes/tutorial_ui.tscn" id="3_k5k56"]
 [ext_resource type="Script" uid="uid://brjfhqnqjsrup" path="res://scripts/bullet_manager.gd" id="3_kcc1b"]
-[ext_resource type="Script" uid="uid://b6p8qhmarrw4l" path="res://scripts/enemy_manager.gd" id="4_70wbi"]
 [ext_resource type="Resource" uid="uid://ctmbn5rtedcro" path="res://resources/tutorials/tutorial_liquid_pyres.tres" id="4_h88gb"]
 [ext_resource type="PackedScene" uid="uid://b20irxk87enkx" path="res://scenes/enemy.tscn" id="5_k5k56"]
 [ext_resource type="Resource" uid="uid://l2qf754bjlc1" path="res://resources/enemies/liquid_enemy_stats.tres" id="6_h88gb"]
+[ext_resource type="PackedScene" uid="uid://ba0kgofmt0jnq" path="res://scenes/enemy_manager.tscn" id="8_h88gb"]
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="9_70wbi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h88gb"]
@@ -35,15 +35,14 @@ has_control = false
 [node name="BulletManager" type="Node2D" parent="." unique_id=1429464225]
 script = ExtResource("3_kcc1b")
 
-[node name="EnemyManager" type="Node2D" parent="." unique_id=1029336241 node_paths=PackedStringArray("player")]
-script = ExtResource("4_70wbi")
+[node name="EnemyManager" parent="." unique_id=1376360526 node_paths=PackedStringArray("player") instance=ExtResource("8_h88gb")]
 player = NodePath("../Player")
 
-[node name="Enemy" parent="EnemyManager" unique_id=2018764647 instance=ExtResource("5_k5k56")]
+[node name="Enemy" parent="EnemyManager" unique_id=831774596 instance=ExtResource("5_k5k56")]
 position = Vector2(-304, 208)
 stats = ExtResource("6_h88gb")
 
-[node name="Enemy2" parent="EnemyManager" unique_id=1937182272 instance=ExtResource("5_k5k56")]
+[node name="Enemy2" parent="EnemyManager" unique_id=1797015728 instance=ExtResource("5_k5k56")]
 position = Vector2(416, 80)
 stats = ExtResource("6_h88gb")
 
@@ -58,7 +57,6 @@ disabled = true
 shape = SubResource("RectangleShape2D_h88gb")
 
 [connection signal="finished" from="TutorialUI" to="Player" method="give_control"]
-[connection signal="finished" from="TutorialUI" to="EnemyManager" method="_enable"]
 [connection signal="fired_bullet" from="Player" to="BulletManager" method="_on_player_fired_bullet"]
 [connection signal="all_enemies_defeated" from="EnemyManager" to="InteractionArea" method="toggle"]
 [connection signal="interacted" from="InteractionArea" to="." method="on_mission_finish"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d1lxk0pu4f5aq"]
 
-[ext_resource type="Script" uid="uid://cbxjmavlqdcdd" path="res://scripts/mission_list_item.gd" id="1_qhyax"]
-[ext_resource type="Script" uid="uid://cmb635xvganeu" path="res://scripts/enemy_type_icon_container.gd" id="2_yieqh"]
+[ext_resource type="Script" path="res://scripts/mission_list_item.gd" id="1_qhyax"]
+[ext_resource type="Script" path="res://scripts/enemy_type_icon_container.gd" id="2_yieqh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4mne6"]
 font_size = 48
@@ -31,7 +31,6 @@ label_settings = SubResource("LabelSettings_4mne6")
 custom_minimum_size = Vector2(256, 32)
 layout_mode = 2
 script = ExtResource("2_yieqh")
-metadata/_custom_type_script = "uid://cmb635xvganeu"
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

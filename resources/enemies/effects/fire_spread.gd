@@ -19,4 +19,5 @@ func resolve(ammo_type: AttackComponent.AmmoType, attacker: Player, target: Enem
 		instance.speed = particle_speed
 		instance.range = spread_range
 		instance.direction = Vector2.from_angle(randf()*2*PI)
+		instance.fuel_type = target.cloned_stats.fuel_type
 		target.get_parent().call_deferred("add_child", instance)

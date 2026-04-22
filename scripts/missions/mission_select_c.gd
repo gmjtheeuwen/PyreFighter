@@ -6,6 +6,7 @@ extends Control
 
 @onready var mission_list_container = $HBoxContainer/CenterContainer2/VBoxContainer/MissionListContainer
 @onready var map = $HBoxContainer/MapContainer/Map
+
 @onready var details_container = $HBoxContainer/CenterContainer/DetailsContainer
 @onready var title_label = $HBoxContainer/CenterContainer/DetailsContainer/Title
 @onready var description_label = $HBoxContainer/CenterContainer/DetailsContainer/Description
@@ -14,7 +15,7 @@ extends Control
 @onready var icon_container = $HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/IconContainer
 @onready var start_button: Button = $HBoxContainer/CenterContainer/DetailsContainer/StartButton
 
-var pin_locations : Array[Vector2]
+var pin_positions : Dictionary[Vector2, MissionPin]
 var mission_pin_texture_normal: Texture2D
 var mission_pin_texture_focus: Texture2D
 
@@ -28,13 +29,16 @@ func _ready() -> void:
 	
 	for i in range(mission_data.missions.size()):
 		var mission = mission_data.missions[i] as Mission
-		var pin: MissionPin = mission_pin_scene.instantiate()
-		pin.setup(mission)
-		pin.name = "Mission_%s" % i 
-		pin.position = mission.location * map.size
-		pin.focus_mode = Control.FOCUS_NONE
-		pin.texture_hover = pin.texture_normal
-		map.add_child(pin)
+		if not mission.is_locked:
+			if not pin_positions.keys().has(mission.location):
+				var pin: MissionPin = mission_pin_scene.instantiate()
+				pin.setup(mission)
+				pin.name = "Mission_%s" % i 
+				pin.position = mission.location * map.size
+				pin.focus_mode = Control.FOCUS_NONE
+				pin.texture_hover = pin.texture_normal
+				map.add_child(pin)
+				pin_positions[mission.location] = pin
 	
 	_update_pins(mission_data.missions[0])
 
@@ -52,11 +56,11 @@ func update_overview(mission: Mission):
 	_update_pins(mission)
 	
 func _update_pins(mission: Mission):
-	for pin: MissionPin in map.get_children():
-		if pin.mission == mission:
-			pin.focused = true
+	for pin: Vector2 in pin_positions:
+		if pin == mission.location:
+			pin_positions[pin].focused = true
 		else:
-			pin.focused = false
+			pin_positions[pin].focused = false
 	
 	
 func get_mission_list_item(mission: Mission) -> NodePath:

@@ -26,7 +26,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="PyreFighter"
-run/main_scene="uid://cerk1fb2dxohd"
+run/main_scene="uid://cfdjswvp4fl0y"
 config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="uid://cqhljh4l8xi4x"
@@ -39,8 +39,8 @@ HubManager="*uid://dsp6xi3ythiaa"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=1280
+window/size/viewport_height=720
 window/size/mode=3
 
 [dotnet]
@@ -175,3 +175,5 @@ ui_page_right={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

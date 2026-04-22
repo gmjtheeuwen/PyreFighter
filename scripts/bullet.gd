@@ -2,7 +2,7 @@ extends AttackComponent
 
 const MAX_SPEED := 800.0
 const FRICTION := 0.8
-const MIN_VELOCTIY := 16.0
+const MIN_VELOCTIY := 64.0
 
 var speed = MAX_SPEED
 

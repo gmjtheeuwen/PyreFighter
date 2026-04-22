@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Mission" format=3 uid="uid://dq1fxlh2h7xg5"]
+
+[ext_resource type="Script" uid="uid://c2kjpndudpyj0" path="res://resources/missions/mission.gd" id="1_t3n45"]
+
+[resource]
+script = ExtResource("1_t3n45")
+scene = &"res://scenes/missions/mission_4.tscn"
+title = &"First Deployment"
+description = &"Go out there and defeat those Pyres!"
+experience = 5
+difficulty = 3
+location = Vector2(0.5, 0.4)
+metadata/_custom_type_script = "uid://c2kjpndudpyj0"

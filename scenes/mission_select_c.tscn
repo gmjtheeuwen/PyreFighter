@@ -40,9 +40,10 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer2" unique_id=1719749821]
 layout_mode = 2
 
-[node name="MissionListContainer" type="CenterContainer" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=1759257464]
-custom_minimum_size = Vector2(440, 0)
+[node name="MissionListContainer" type="ScrollContainer" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=1311129081]
+custom_minimum_size = Vector2(452, 540)
 layout_mode = 2
+size_flags_vertical = 4
 
 [node name="Button" type="Button" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=689026539]
 layout_mode = 2

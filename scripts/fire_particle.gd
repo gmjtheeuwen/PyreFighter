@@ -8,8 +8,11 @@ var origin: Vector2
 var flame_scene = preload("res://scenes/flame.tscn")
 var fuel_type: Flame.FuelType
 
+@onready var sprite: AnimatedSprite2D = $"."
+
 func _ready() -> void:
 	global_position = origin
+	sprite.frame = fuel_type
 
 func _process(delta: float) -> void:
 	global_position += speed * direction * delta

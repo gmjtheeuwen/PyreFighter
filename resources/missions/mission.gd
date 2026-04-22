@@ -5,7 +5,7 @@ class_name Mission
 @export var title: StringName
 @export var description: StringName
 @export var experience: int = 0
-@export var is_locked = false
+@export var is_locked = true
 var is_finished = false
 
 @export var enemy_types: Array[Flame.FuelType]
