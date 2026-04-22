@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://scripts/missions/mission_select_b.gd" id="1_6twap"]
 [ext_resource type="Script" path="res://scripts/enemy_type_icon_container.gd" id="2_jr4rs"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_6twap"]
+[sub_resource type="LabelSettings" id="LabelSettings_jr4rs"]
 font_size = 64
 
-[sub_resource type="LabelSettings" id="LabelSettings_jr4rs"]
+[sub_resource type="LabelSettings" id="LabelSettings_mxjve"]
 font_size = 32
 font_color = Color(0.8, 0.8, 0.8, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_mxjve"]
+[sub_resource type="LabelSettings" id="LabelSettings_gmfmp"]
 font_size = 32
 
 [node name="MissionSelect" type="Control" unique_id=1196548030]
@@ -33,50 +33,62 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 alignment = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=751826806]
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer" unique_id=1076423809]
 layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer2" unique_id=36351610]
+layout_mode = 2
+
+[node name="MissionListContainer" type="CenterContainer" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=362718736]
+custom_minimum_size = Vector2(440, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=1683891974]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Back"
 
 [node name="Spacer" type="Control" parent="HBoxContainer" unique_id=1479355756]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer" unique_id=59896544]
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=59896544]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer2" unique_id=2057259213]
+[node name="DetailsContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer" unique_id=1879191637]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=939718558]
+[node name="Title" type="Label" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=982288290]
 layout_mode = 2
 text = "Title"
-label_settings = SubResource("LabelSettings_6twap")
+label_settings = SubResource("LabelSettings_jr4rs")
 
-[node name="Description" type="Label" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=1456850766]
+[node name="Description" type="Label" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=880580269]
 custom_minimum_size = Vector2(640, 0)
 layout_mode = 2
 text = "Description"
-label_settings = SubResource("LabelSettings_jr4rs")
+label_settings = SubResource("LabelSettings_mxjve")
 autowrap_mode = 2
 
-[node name="Rewards" type="Label" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=367264582]
+[node name="Rewards" type="Label" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=409142375]
 layout_mode = 2
 text = "Rewards"
-label_settings = SubResource("LabelSettings_mxjve")
+label_settings = SubResource("LabelSettings_gmfmp")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=1792053064]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=1354967048]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer" unique_id=1722461985]
+[node name="EnemyTypeLabel" type="Label" parent="HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer" unique_id=235098707]
 layout_mode = 2
 text = "Present Enemy Types:"
 
-[node name="EnemyTypeIconContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer2/VBoxContainer/HBoxContainer" unique_id=1928270570]
+[node name="IconContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer" unique_id=867897178]
 custom_minimum_size = Vector2(256, 64)
 layout_mode = 2
 script = ExtResource("2_jr4rs")
 
-[node name="StartButton" type="Button" parent="HBoxContainer/CenterContainer2/VBoxContainer" unique_id=405346280]
+[node name="StartButton" type="Button" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=177661544]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "Start Mission"

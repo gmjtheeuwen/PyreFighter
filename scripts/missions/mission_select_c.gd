@@ -14,6 +14,7 @@ extends Control
 @onready var icon_container = $HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/IconContainer
 @onready var start_button: Button = $HBoxContainer/CenterContainer/DetailsContainer/StartButton
 
+var pin_locations : Array[Vector2]
 var mission_pin_texture_normal: Texture2D
 var mission_pin_texture_focus: Texture2D
 
