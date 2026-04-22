@@ -32,6 +32,8 @@ var ammo_list = AttackComponent.AmmoType.values()
 var invincible = false
 @onready var hitflash = $AnimatedSprite2D/HitFlash
 
+@onready var hose_audio = $HoseAudio
+
 var ammo_switch_cooldown := 0.0
 const SCROLL_COOLDOWN := 0.15
 
@@ -57,6 +59,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and time_since_last_shot > fire_delay:
 		shoot()
 		time_since_last_shot = 0.0
+		if not hose_audio.is_firing:
+			hose_audio.start_hose()
+	
+	if Input.is_action_just_released("shoot"):
+		hose_audio.stop_hose()
 	
 	if Input.is_action_just_pressed("equipment"):
 		use_equipment()
@@ -135,6 +142,9 @@ func shoot():
 	
 	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, ammo_type, self)
 	
+	if not hose_audio.is_firing:
+		hose_audio.start_hose()
+	
 func use_equipment():
 	emit_signal("used_equipment", aim_direction)
 
@@ -157,3 +167,5 @@ func _switch_ammo(direction: int):
 	ammo_type = ammo_list[current_ammo]
 	emit_signal("ammo_changed", ammo_type)
 	emit_signal("change_ribbon", ammo_type)
+	
+	hose_audio.set_agent(current_ammo)

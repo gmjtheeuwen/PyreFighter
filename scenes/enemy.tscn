@@ -6,7 +6,7 @@
 [ext_resource type="Shader" uid="uid://bgmhar483cefk" path="res://shaders/hitflash.gdshader" id="2_xwavj"]
 [ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="4_xwavj"]
-[ext_resource type="PackedScene" path="res://scenes/explosion_emitter.tscn" id="5_c4w8v"]
+[ext_resource type="PackedScene" uid="uid://dsmjeru81rdu7" path="res://scenes/explosion_emitter.tscn" id="5_c4w8v"]
 [ext_resource type="Script" uid="uid://bchr0uicd0p2c" path="res://scripts/states/state_machine.gd" id="8_md484"]
 [ext_resource type="Script" uid="uid://gg4qaf331wqb" path="res://scripts/states/enemy/idle.gd" id="9_ipns3"]
 [ext_resource type="Script" uid="uid://clebqagstgvol" path="res://scripts/states/enemy/knocked.gd" id="10_w8i8w"]
