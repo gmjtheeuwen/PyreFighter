@@ -6,12 +6,15 @@
 [ext_resource type="Shader" uid="uid://bgmhar483cefk" path="res://shaders/hitflash.gdshader" id="2_xwavj"]
 [ext_resource type="PackedScene" uid="uid://cr2sqs8a0t2pf" path="res://ui/healthbar.tscn" id="3_4ra3w"]
 [ext_resource type="Script" uid="uid://bpc7ctncys7f7" path="res://scripts/components/health_component.gd" id="4_xwavj"]
-[ext_resource type="PackedScene" path="res://scenes/explosion_emitter.tscn" id="5_c4w8v"]
+[ext_resource type="PackedScene" uid="uid://dsmjeru81rdu7" path="res://scenes/explosion_emitter.tscn" id="5_c4w8v"]
 [ext_resource type="Script" uid="uid://bchr0uicd0p2c" path="res://scripts/states/state_machine.gd" id="8_md484"]
 [ext_resource type="Script" uid="uid://gg4qaf331wqb" path="res://scripts/states/enemy/idle.gd" id="9_ipns3"]
 [ext_resource type="Script" uid="uid://clebqagstgvol" path="res://scripts/states/enemy/knocked.gd" id="10_w8i8w"]
 [ext_resource type="Script" uid="uid://0bfvhp1kfqew" path="res://scripts/states/enemy/chase.gd" id="11_otmr2"]
 [ext_resource type="Script" uid="uid://bmbvlflja1708" path="res://scripts/states/enemy/investigate.gd" id="12_otmr2"]
+[ext_resource type="Script" uid="uid://n84y68sq0b16" path="res://scripts/audio/sfx/enemy_sfx.gd" id="13_wtq4b"]
+[ext_resource type="AudioStream" uid="uid://8fflp18i4a4o" path="res://assets/SFX/pyre hurt sound.mp3" id="14_g0wcc"]
+[ext_resource type="AudioStream" uid="uid://dm3kiqu3eelmm" path="res://assets/SFX/pyre death sound.mp3" id="15_s1ycm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c4w8v"]
 size = Vector2(28, 28)
@@ -196,6 +199,16 @@ metadata/_custom_type_script = "uid://dgt6b7ul0lqfa"
 [node name="investigate" type="Node" parent="StateMachine" unique_id=1060791857]
 script = ExtResource("12_otmr2")
 metadata/_custom_type_script = "uid://dgt6b7ul0lqfa"
+
+[node name="enemy_sfx" type="Node2D" parent="." unique_id=491915361]
+script = ExtResource("13_wtq4b")
+
+[node name="NoiseHurt" type="AudioStreamPlayer2D" parent="enemy_sfx" unique_id=1201347952]
+stream = ExtResource("14_g0wcc")
+volume_db = -15.0
+
+[node name="NoiseDeath" type="AudioStreamPlayer2D" parent="enemy_sfx" unique_id=2082126458]
+stream = ExtResource("15_s1ycm")
 
 [connection signal="body_entered" from="HitboxComponent" to="." method="_on_body_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D/HitFlash" to="." method="invincibility_ended"]

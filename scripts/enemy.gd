@@ -17,6 +17,9 @@ var invincible := false
 @onready var explosion_emitter: GPUParticles2D = $VFX/ExplosionEmitter
 @onready var raycast: RayCast2D = $RayCast2D
 
+@onready var hurt_player = $enemy_sfx/NoiseHurt
+@onready var death_player = $enemy_sfx/NoiseDeath
+
 func _ready() -> void:
 	cloned_stats = stats.duplicate()
 	health_component.MAX_HEALTH = cloned_stats.max_health
@@ -41,7 +44,7 @@ func _on_hit(attack: AttackComponent):
 		state_machine.state.on_hit(attack)
 	health_component.damage(attack.damage)
 	cloned_stats.resolve_effects(attack.attack_type, attack.source, self)
-	hitflash.play("hit_flash")	
+	hitflash.play("hit_flash")
 	invincible = true	
 
 func _on_body_entered(body: Node2D):
@@ -64,6 +67,24 @@ func _physics_process(_delta: float) -> void:
 	
 func invincibility_ended(anim_name: StringName):
 	invincible = false
+	if health_component.health > 0:
+		var temp_player = AudioStreamPlayer.new()
+		get_tree().current_scene.add_child(temp_player)
+		temp_player.stream = hurt_player.stream
+		temp_player.pitch_scale = randf_range(0.9, 1.1)
+		temp_player.volume_db = hurt_player.volume_db
+		temp_player.bus = hurt_player.bus
+		temp_player.play()
+		temp_player.finished.connect(temp_player.queue_free)
 
 func _on_death():
+	hurt_player.stop()
+	var temp_player = AudioStreamPlayer.new()
+	get_tree().current_scene.add_child(temp_player)
+	temp_player.stream = death_player.stream
+	temp_player.pitch_scale = randf_range(0.9, 1.1)
+	temp_player.volume_db = death_player.volume_db
+	temp_player.bus = death_player.bus
+	temp_player.play()
+	temp_player.finished.connect(temp_player.queue_free)
 	queue_free()
