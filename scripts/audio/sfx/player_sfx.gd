@@ -26,7 +26,7 @@ func play_death_static():
 	is_static_playing = false
 	death_static.stop()
 
-func _process(delta):
+func _process(_delta: float):
 	if is_static_playing and static_playback:
 		_fill_static()
 

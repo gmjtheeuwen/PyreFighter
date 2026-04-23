@@ -9,9 +9,8 @@ enum AmmoType{
 	CARBONDIOXIDE
 }
 
-@export var damage: float
-@export var knockback: float
+var damage: float
+var knockback: float
 var direction := Vector2.ZERO
 var source: Node2D
-
-@export var attack_type: AmmoType
+var attack_type: AmmoType

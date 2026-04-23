@@ -9,10 +9,10 @@
 [resource]
 script = ExtResource("2_i4ptp")
 fuel_type = 2
-max_health = 5.0
-max_speed = 64.0
+max_health = 3.0
+max_speed = 128.0
 damage = 2.5
 knockback = 128.0
-knockback_friction = 32.0
+knockback_friction = 64.0
 sprite_sheet = ExtResource("2_iq5p4")
 effects = Array[ExtResource("1_i4ptp")]([ExtResource("2_v01nq"), ExtResource("3_6db2f")])

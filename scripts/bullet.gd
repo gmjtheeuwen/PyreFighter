@@ -1,30 +1,29 @@
 extends AttackComponent
+class_name Bullet
 
 var MAX_SPEED : float = 800
 var FRICTION : float = 0.8
-const MIN_VELOCTIY := 16.0
+const MIN_VELOCTIY := 64.0
 @onready var sprite = $Sprite2D
 
 var speed = MAX_SPEED
 var lifetime: float = 2.0
 
-const AMMO_COLOR_MAP = {
-	AttackComponent.AmmoType.WATER: Color("#639bff"),
-	AttackComponent.AmmoType.FOAM: Color("#FFFDD0"),
-	AttackComponent.AmmoType.POWDER: Color("#F0EDE0"),
-	AttackComponent.AmmoType.CARBONDIOXIDE: Color("#7DD4E8")
-}
-
-var ammo_type:= AttackComponent.AmmoType.WATER
+const AMMO_COLOR_MAP = [
+	Color("#639bff"),
+	Color("#FFFDD0"),
+	Color("#F0EDE0"),
+	Color("#7DD4E8")
+]
 
 func _ready() -> void:
 	var timer = Timer.new()
-	sprite.self_modulate = AMMO_COLOR_MAP[ammo_type]
 	add_child(timer)
 	timer.wait_time = lifetime
 	timer.one_shot = true
 	timer.timeout.connect(_on_timer_timeout)
 	timer.start()
+	sprite.self_modulate = AMMO_COLOR_MAP[attack_type - 1]
 
 func _physics_process(delta: float) -> void:
 	if direction == Vector2.ZERO: return

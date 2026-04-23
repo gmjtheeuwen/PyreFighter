@@ -2,20 +2,30 @@
 
 [ext_resource type="Script" uid="uid://ysdxyr7vn6dk" path="res://scripts/missions/mission_select_c.gd" id="1_k2nh1"]
 [ext_resource type="Texture2D" uid="uid://bv6sr7575lmfd" path="res://assets/MiniMap.png" id="2_k2nh1"]
+[ext_resource type="FontFile" uid="uid://dfw142q287k7n" path="res://fonts/Lekton-Bold.ttf" id="2_p8ure"]
 [ext_resource type="Script" uid="uid://cmb635xvganeu" path="res://scripts/enemy_type_icon_container.gd" id="3_3g4a3"]
+[ext_resource type="LabelSettings" uid="uid://bm7ggvbsxt7x7" path="res://themes/label_h1.tres" id="4_te4rm"]
+[ext_resource type="LabelSettings" uid="uid://dqqwj4kcs5ex3" path="res://themes/label_h2.tres" id="5_dik3o"]
+[ext_resource type="LabelSettings" uid="uid://dwiy0j1edvjb5" path="res://themes/label_h3.tres" id="6_dik3o"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_p2k4l"]
-font_size = 64
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dik3o"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[sub_resource type="LabelSettings" id="LabelSettings_p31op"]
+[sub_resource type="LabelSettings" id="LabelSettings_dik3o"]
+font = ExtResource("2_p8ure")
 font_size = 32
-font_color = Color(0.8, 0.8, 0.8, 1)
+font_color = Color(0.6666667, 0.6666667, 0.6666667, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_j7eap"]
-font_size = 32
-
-[node name="MissionSelect" type="Control" unique_id=1560586422]
-layout_mode = 3
+[node name="MissionSelect" type="PanelContainer" unique_id=267280693]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,68 +33,86 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_k2nh1")
 
-[node name="Background" type="PanelContainer" parent="." unique_id=156855092]
-layout_mode = 0
-offset_right = 1924.0
-offset_bottom = 1080.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1382754420]
-layout_mode = 0
-offset_right = 1920.0
-offset_bottom = 1080.0
-alignment = 1
-
-[node name="MissionListContainer" type="CenterContainer" parent="HBoxContainer" unique_id=1759257464]
-custom_minimum_size = Vector2(440, 0)
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=381886983]
 layout_mode = 2
 
-[node name="MapContainer" type="CenterContainer" parent="HBoxContainer" unique_id=469432516]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer" unique_id=1382754420]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="CenterContainer2" type="CenterContainer" parent="CenterContainer/HBoxContainer" unique_id=36938941]
 layout_mode = 2
 
-[node name="Map" type="TextureRect" parent="HBoxContainer/MapContainer" unique_id=579657761]
-custom_minimum_size = Vector2(720, 720)
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer2" unique_id=1719749821]
+layout_mode = 2
+
+[node name="MissionListContainer" type="ScrollContainer" parent="CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer" unique_id=1311129081]
+custom_minimum_size = Vector2(360, 480)
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Button" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer" unique_id=689026539]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_p8ure")
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[node name="MapContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer" unique_id=469432516]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/HBoxContainer/MapContainer" unique_id=2072372310]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_dik3o")
+
+[node name="Map" type="TextureRect" parent="CenterContainer/HBoxContainer/MapContainer/PanelContainer" unique_id=579657761]
+custom_minimum_size = Vector2(420, 420)
 layout_mode = 2
 texture = ExtResource("2_k2nh1")
 expand_mode = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=1990209851]
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/HBoxContainer" unique_id=1990209851]
 layout_mode = 2
 
-[node name="DetailsContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer" unique_id=1187344693]
+[node name="DetailsContainer" type="VBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer" unique_id=1187344693]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=1268882792]
+[node name="Title" type="Label" parent="CenterContainer/HBoxContainer/CenterContainer/DetailsContainer" unique_id=1268882792]
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 text = "Title"
-label_settings = SubResource("LabelSettings_p2k4l")
-
-[node name="Description" type="Label" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=1201084206]
-custom_minimum_size = Vector2(640, 0)
-layout_mode = 2
-text = "Description"
-label_settings = SubResource("LabelSettings_p31op")
+label_settings = ExtResource("4_te4rm")
 autowrap_mode = 2
 
-[node name="Rewards" type="Label" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=2037736334]
+[node name="Description" type="Label" parent="CenterContainer/HBoxContainer/CenterContainer/DetailsContainer" unique_id=1201084206]
+custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
-text = "Rewards"
-label_settings = SubResource("LabelSettings_j7eap")
+theme_override_colors/font_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+text = "Description"
+label_settings = SubResource("LabelSettings_dik3o")
+autowrap_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=1204100120]
+[node name="Rewards" type="Label" parent="CenterContainer/HBoxContainer/CenterContainer/DetailsContainer" unique_id=2037736334]
+layout_mode = 2
+label_settings = ExtResource("5_dik3o")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer/DetailsContainer" unique_id=1204100120]
 layout_mode = 2
 
-[node name="EnemyTypeLabel" type="Label" parent="HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer" unique_id=2013056389]
+[node name="EnemyTypeLabel" type="Label" parent="CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer" unique_id=2013056389]
 layout_mode = 2
 text = "Present Enemy Types:"
+label_settings = ExtResource("6_dik3o")
 
-[node name="IconContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer" unique_id=968250317]
-custom_minimum_size = Vector2(256, 64)
+[node name="IconContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer" unique_id=968250317]
+custom_minimum_size = Vector2(180, 64)
 layout_mode = 2
 script = ExtResource("3_3g4a3")
-metadata/_custom_type_script = "uid://cmb635xvganeu"
 
-[node name="StartButton" type="Button" parent="HBoxContainer/CenterContainer/DetailsContainer" unique_id=1082422538]
+[node name="StartButton" type="Button" parent="CenterContainer/HBoxContainer/CenterContainer/DetailsContainer" unique_id=1082422538]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("2_p8ure")
+theme_override_font_sizes/font_size = 40
 text = "Start Mission"
+
+[connection signal="pressed" from="CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer/Button" to="." method="back_button_pressed"]

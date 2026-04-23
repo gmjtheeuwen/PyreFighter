@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name Enemy
 
+signal defeated
+
 @export var stats : EnemyStats
 var cloned_stats: EnemyStats
 
@@ -22,8 +24,8 @@ var invincible := false
 
 func _ready() -> void:
 	cloned_stats = stats.duplicate()
-	health_component.MAX_HEALTH = cloned_stats.max_health
-	health_component.health = health_component.MAX_HEALTH
+	health_component.max_health = cloned_stats.max_health
+	health_component.health = health_component.max_health
 	
 	var at = AtlasTexture.new()
 	at.atlas = cloned_stats.sprite_sheet
@@ -87,4 +89,5 @@ func _on_death():
 	temp_player.bus = death_player.bus
 	temp_player.play()
 	temp_player.finished.connect(temp_player.queue_free)
+	defeated.emit()
 	queue_free()

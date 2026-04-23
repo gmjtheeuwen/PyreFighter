@@ -7,10 +7,13 @@
 [ext_resource type="Script" uid="uid://brjfhqnqjsrup" path="res://scripts/bullet_manager.gd" id="3_fewcj"]
 [ext_resource type="PackedScene" uid="uid://cbe62met8hqlq" path="res://scenes/tutorial_ui.tscn" id="3_unuiy"]
 [ext_resource type="Resource" uid="uid://cwu7ymguiaebr" path="res://resources/tutorials/tutorial_solid_pyres.tres" id="4_jvd1y"]
-[ext_resource type="Script" uid="uid://b6p8qhmarrw4l" path="res://scripts/enemy_manager.gd" id="4_nb75p"]
 [ext_resource type="PackedScene" uid="uid://b20irxk87enkx" path="res://scenes/enemy.tscn" id="4_nc7i2"]
 [ext_resource type="Resource" uid="uid://bc58rov2bfbk1" path="res://resources/enemies/solid_enemy_stats.tres" id="5_fewcj"]
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="9_d36dx"]
+[ext_resource type="PackedScene" uid="uid://ba0kgofmt0jnq" path="res://scenes/enemy_manager.tscn" id="9_jvd1y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvd1y"]
+size = Vector2(128, 128)
 
 [node name="mission_1" type="Node2D" unique_id=1421702512]
 script = ExtResource("1_16hht")
@@ -39,15 +42,17 @@ START_TEXT = ""
 INTERACTION_TEXT = ""
 disabled = true
 
-[node name="EnemyManager" type="Node2D" parent="." unique_id=142538598 node_paths=PackedStringArray("player")]
-script = ExtResource("4_nb75p")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea" unique_id=32462471]
+shape = SubResource("RectangleShape2D_jvd1y")
+
+[node name="EnemyManager" parent="." unique_id=1376360526 node_paths=PackedStringArray("player") instance=ExtResource("9_jvd1y")]
 player = NodePath("../Player")
 
-[node name="Enemy" parent="EnemyManager" unique_id=2018764647 instance=ExtResource("4_nc7i2")]
+[node name="Enemy" parent="EnemyManager" unique_id=831774596 instance=ExtResource("4_nc7i2")]
 position = Vector2(-304, 208)
 stats = ExtResource("5_fewcj")
 
-[node name="Enemy2" parent="EnemyManager" unique_id=266001581 instance=ExtResource("4_nc7i2")]
+[node name="Enemy2" parent="EnemyManager" unique_id=1480668897 instance=ExtResource("4_nc7i2")]
 position = Vector2(416, 80)
 stats = ExtResource("5_fewcj")
 

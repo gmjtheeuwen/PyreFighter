@@ -11,5 +11,5 @@ experience = 5
 enemy_types = Array[int]([1])
 difficulty = 2
 location = Vector2(0.45, 0.3)
-unlocks = Array[int]([3])
+player_hub_position = 1
 metadata/_custom_type_script = "uid://c2kjpndudpyj0"

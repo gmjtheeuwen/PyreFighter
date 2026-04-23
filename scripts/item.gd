@@ -24,7 +24,7 @@ func _on_button_pressed() -> void:
 			i.is_equipped = false
 		item.is_equipped = true
 		inventory.equipped_item_id = item.id
-		print("succesfully equiped:", inventory.equipped_item_id)
+		print("succesfully equipped:", inventory.equipped_item_id)
 	
 	ResourceSaver.save(inventory, "res://resources/inventory.tres")
 	emit_signal("equipped_state_changed", item.is_equipped, item.display_name)

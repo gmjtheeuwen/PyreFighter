@@ -4,16 +4,18 @@ extends Control
 @onready var mission_pin_scene = preload("res://scenes/mission_pin.tscn")
 @onready var mission_list_scene = preload("res://scenes/mission_list.tscn")
 
-@onready var mission_list_container = $HBoxContainer/MissionListContainer
-@onready var map = $HBoxContainer/MapContainer/Map
-@onready var details_container = $HBoxContainer/CenterContainer/DetailsContainer
-@onready var title_label = $HBoxContainer/CenterContainer/DetailsContainer/Title
-@onready var description_label = $HBoxContainer/CenterContainer/DetailsContainer/Description
-@onready var reward_label = $HBoxContainer/CenterContainer/DetailsContainer/Rewards
-@onready var enemy_type_label = $HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/EnemyTypeLabel
-@onready var icon_container = $HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/IconContainer
-@onready var start_button: Button = $HBoxContainer/CenterContainer/DetailsContainer/StartButton
+@onready var mission_list_container = $CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer/MissionListContainer
+@onready var map = $CenterContainer/HBoxContainer/MapContainer/PanelContainer/Map
 
+@onready var details_container = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer
+@onready var title_label = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/Title
+@onready var description_label = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/Description
+@onready var reward_label = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/Rewards
+@onready var enemy_type_label = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/EnemyTypeLabel
+@onready var icon_container = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/IconContainer
+@onready var start_button: Button = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/StartButton
+
+var pin_positions : Dictionary[Vector2, MissionPin]
 var mission_pin_texture_normal: Texture2D
 var mission_pin_texture_focus: Texture2D
 
@@ -27,22 +29,24 @@ func _ready() -> void:
 	
 	for i in range(mission_data.missions.size()):
 		var mission = mission_data.missions[i] as Mission
-		var pin: MissionPin = mission_pin_scene.instantiate()
-		pin.setup(mission)
-		pin.name = "Mission_%s" % i 
-		pin.position = mission.location * map.size
-		pin.focus_mode = Control.FOCUS_NONE
-		pin.texture_hover = pin.texture_normal
-		map.add_child(pin)
+		if not mission.is_locked:
+			if not pin_positions.keys().has(mission.location):
+				var pin: MissionPin = mission_pin_scene.instantiate()
+				pin.setup(mission)
+				pin.name = "Mission_%s" % i 
+				pin.position = mission.location * map.size
+				pin.focus_mode = Control.FOCUS_NONE
+				pin.texture_hover = pin.texture_normal
+				map.add_child(pin)
+				pin_positions[mission.location] = pin
 	
 	_update_pins(mission_data.missions[0])
 
 func update_overview(mission: Mission):
 	title_label.text = mission.title
 	description_label.text = mission.description
-	reward_label.text = "Experience: %s" % mission.experience	
+	#reward_label.text = "Exp: %s" % mission.experience	
 	
-	enemy_type_label.visible = mission.enemy_types.size() > 0
 	icon_container.update_enemy_types(mission.enemy_types)
 	start_button.focus_neighbor_left = get_mission_list_item(mission)
 	if start_button.pressed.has_connections():
@@ -51,11 +55,11 @@ func update_overview(mission: Mission):
 	_update_pins(mission)
 	
 func _update_pins(mission: Mission):
-	for pin: MissionPin in map.get_children():
-		if pin.mission == mission:
-			pin.focused = true
+	for pin: Vector2 in pin_positions:
+		if pin == mission.location:
+			pin_positions[pin].focused = true
 		else:
-			pin.focused = false
+			pin_positions[pin].focused = false
 	
 	
 func get_mission_list_item(mission: Mission) -> NodePath:
@@ -79,3 +83,7 @@ func _on_selected_mission_changed(mission: Mission):
 
 func start_mission(mission: Mission):
 	get_tree().call_deferred("change_scene_to_file", mission.scene)
+	
+func back_button_pressed():
+	HubManager.set_player_position(Hub.Position.MISSION)
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/hub.tscn")

@@ -1,14 +1,13 @@
 extends CharacterBody2D	
 class_name Player
 
-signal fired_bullet(bullet, position, direction, source, bullet_type)
+signal fired_bullet(bullet: Bullet, position: Vector2, direction: Vector2, source: Node2D)
 signal used_equipment(direction)
 signal ammo_changed(ammo_type)
-signal change_ribbon(ammo_type)
 
 @export var has_control: bool
 
-var WALKSPEED: float = 224.0
+var WALKSPEED: float = 256.0
 var JOYSTICK_SENSITIVITY = 0.4
 var direction:= Vector2.ZERO
 var aim_direction:= Vector2.RIGHT
@@ -22,12 +21,17 @@ var time_since_last_shot = 0.0
 var ammo_type := AttackComponent.AmmoType.WATER
 var current_ammo = 1
 
-@export var Bullet: PackedScene
 @export var health_component: HealthComponent
 
 var bullet_scene = preload("res://scenes/bullet.tscn")
 
 var ammo_list = AttackComponent.AmmoType.values()
+@onready var gun = $Gun
+var gun_position: Vector2
+var last_direction: String = "down"
+var show_gun: bool = true
+
+@onready var sprite = $AnimatedSprite2D
 
 var invincible = false
 @onready var hitflash = $AnimatedSprite2D/HitFlash
@@ -38,8 +42,15 @@ var invincible = false
 var ammo_switch_cooldown := 0.0
 const SCROLL_COOLDOWN := 0.15
 
+@onready var pause_menu = $CanvasLayer/Control/PauseMenu
+
 func _ready() -> void:
 	set_process_input(has_control)
+	gun_position = gun.position
+	
+	hitflash.play("RESET")
+	get_node("CanvasLayer").visible = true
+	ammo_changed.emit(ammo_type)
 
 func _process(delta: float) -> void:
 	if ammo_switch_cooldown > 0.0:
@@ -75,8 +86,34 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_page_left"):
 		_switch_ammo(-1)
 		
-	if Input.is_action_just_pressed("ui_accept"):
-		player_audio.play_death_static()
+	if Input.is_action_just_pressed("pause"):
+		pause()
+	
+	if direction.y > 0.2:
+		sprite.play("walk_down")
+		last_direction = "down"
+		show_gun = true
+		gun_position = Vector2.ZERO
+	elif direction.y < -0.2:
+		sprite.play("walk_up")
+		last_direction = "up"
+		show_gun = false
+	elif direction.x > 0.2:
+		sprite.play("walk_right")
+		last_direction = "right"
+		show_gun = true
+		gun_position = Vector2(2, 0)*sprite.scale.x
+	elif direction.x < -0.2:
+		sprite.play("walk_left")
+		last_direction = "left"
+		show_gun = true
+		gun_position = Vector2(-2, 0)*sprite.scale.x
+	else:
+		sprite.play("idle_%s" % last_direction)
+		
+	if (gun):
+		gun.position = gun_position
+		gun.visible = show_gun
 
 func _physics_process(delta: float) -> void:	
 	if knocked:
@@ -124,6 +161,7 @@ func handle_keyboard_input() -> void:
 
 func on_hit(attack: AttackComponent):
 	if invincible: return
+	player_audio.play_hurt()
 	hitflash.play("hit_flash")	
 	invincible = true
 	health_component.damage(attack.damage)
@@ -132,35 +170,39 @@ func on_hit(attack: AttackComponent):
 		knocked = true
 		velocity = attack.direction * attack.knockback
 	
-	if hitflash.animation_finished:
-		invincibility_ended()
-	
 func _on_death():
-	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+	var level = get_parent()
+	if level != null:
+		MissionManager.call_deferred("on_mission_fail", get_parent().mission)
+	else:
+		get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")
 	
-func invincibility_ended():
+func invincibility_ended(anim_name: StringName):		
 	invincible = false
-	player_audio.play_hurt()
 
 func shoot():
-	if knocked or Bullet == null: return
-	var bullet_instance = Bullet.instantiate()
+	if knocked or bullet_scene == null: return
+	var bullet_instance = bullet_scene.instantiate()
 	var bullet_position = position + aim_direction * 16
-	bullet_instance.ammo_type = ammo_type
+	bullet_instance.attack_type = ammo_type
+	bullet_instance.source = self
 	
-	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, ammo_type, self)
+	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction)
 	
 	if not hose_audio.is_firing:
 		hose_audio.start_hose()
 	
 func use_equipment():
 	emit_signal("used_equipment", aim_direction)
-
-func handle_hit():
-	pass
-
-func _on_ammo_changed(ammo_type: Variant) -> void:
-	pass # Replace with function body.
+	
+func pause():
+	pause_menu.show()
+	Engine.time_scale = 0
+	
+func unpause():
+	pause_menu.hide()
+	Engine.time_scale = 1
+	
 func give_control():
 	set_process_input(true)
 
@@ -174,6 +216,5 @@ func _switch_ammo(direction: int):
 	current_ammo = next
 	ammo_type = ammo_list[current_ammo]
 	emit_signal("ammo_changed", ammo_type)
-	emit_signal("change_ribbon", ammo_type)
 	
 	hose_audio.set_agent(current_ammo)

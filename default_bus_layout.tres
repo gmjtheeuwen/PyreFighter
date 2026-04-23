@@ -86,7 +86,7 @@ band_db/8000_hz = 8.0
 band_db/16000_hz = 8.0
 
 [resource]
-bus/0/volume_db = 0.22502327
+bus/0/volume_db = -3.1173582
 bus/1/name = &"HoseLow"
 bus/1/solo = false
 bus/1/mute = false

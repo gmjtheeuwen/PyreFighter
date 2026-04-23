@@ -1,22 +1,22 @@
 class_name selected_ammo
-extends TextureRect
+extends Control
 
 var ammo_list = preload("res://scripts/components/attack_component.gd")
 
+var images: Dictionary[String, Resource]
+
+@onready var texture = $Panel/TextureRect
+@onready var label = $Panel/AmmoName
+
+func _ready():
+	for file_name in DirAccess.get_files_at("res://assets/ammo_types"):
+		if file_name.ends_with(".png"):
+			images[file_name.trim_suffix(".png")] = load("res://assets/ammo_types/%s" % file_name)
+
 func _on_player_ammo_changed(ammo_type: AttackComponent.AmmoType) -> void:
-	if ammo_type == AttackComponent.AmmoType.WATER:
-		var image = load("res://assets/ammo type water.png")
-		$".".texture = image 
-		$"../AmmoName".text = "water"
-	elif ammo_type == AttackComponent.AmmoType.FOAM:
-		var image = load("res://assets/ammo type foam.png")
-		$".".texture = image 
-		$"../AmmoName".text = "foam"
-	elif ammo_type == AttackComponent.AmmoType.CARBONDIOXIDE:
-		var image = load("res://assets/ammo type carbondioxide.png")
-		$".".texture = image
-		$"../AmmoName".text = "carbondioxide"
-	elif ammo_type == AttackComponent.AmmoType.POWDER:
-		var image = load("res://assets/ammo type powder.png")
-		$".".texture = image 
-		$"../AmmoName".text = "powder"
+	var ammo_name = str(AttackComponent.AmmoType.keys()[ammo_type]).to_lower()
+	if ammo_type == 0:
+		ammo_name = "water"
+	
+	texture.texture = images[ammo_name]
+	label.text = ammo_name
