@@ -27,7 +27,7 @@ func spawn():
 	var direction = Vector2.from_angle(randf()* 2 * PI)
 	enemy.global_position = global_position + direction * Vector2(64, 64)
 	enemy.defeated.connect(on_enemy_death)
-	get_parent().get_node("EnemyManager").add_child(enemy)
+	get_parent().add_child(enemy)
 	enemy_count += 1
 
 func on_enemy_death():
