@@ -31,6 +31,8 @@ var show_gun: bool = true
 var invincible = false
 @onready var hitflash = $AnimatedSprite2D/HitFlash
 
+@onready var pause_menu = $CanvasLayer/Control/PauseMenu
+
 func _ready() -> void:
 	set_process_input(has_control)
 	gun_position = gun.position
@@ -57,6 +59,9 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("equipment"):
 		use_equipment()
+		
+	if Input.is_action_just_pressed("pause"):
+		pause()
 	
 	if direction.y > 0.2:
 		sprite.play("walk_down")
@@ -158,6 +163,14 @@ func shoot():
 	
 func use_equipment():
 	emit_signal("used_equipment", aim_direction)
+	
+func pause():
+	pause_menu.show()
+	Engine.time_scale = 0
+	
+func unpause():
+	pause_menu.hide()
+	Engine.time_scale = 1
 
 func give_control():
 	set_process_input(true)

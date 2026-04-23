@@ -9,7 +9,7 @@ enum FuelType{
 }
 
 @export var fuel_type: FuelType = FuelType.SOLID
-@export var hp := 10.0
+@export var max_hp := 10.0
 
 @onready var sprite = $AnimatedSprite2D
 @onready var health_component = $HealthComponent
@@ -17,8 +17,8 @@ enum FuelType{
 func _ready() -> void:
 	var anim_name = str(FuelType.keys()[fuel_type]).to_lower()
 	sprite.play(anim_name)
-	health_component.health = hp
-	health_component.max_health = hp
+	health_component.health = max_hp
+	health_component.max_health = max_hp
 
 func _on_hit(attack: AttackComponent):
 	if attack.attack_type == AttackComponent.AmmoType.NONE: return

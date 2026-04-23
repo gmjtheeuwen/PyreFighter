@@ -259,6 +259,7 @@ size = Vector2(16, 16)
 
 [node name="Flame" type="Node2D" unique_id=1261260332 groups=["flame"]]
 script = ExtResource("2_hmmd7")
+max_hp = 3.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1481310199]
 position = Vector2(0, -16)
@@ -276,7 +277,6 @@ shape = SubResource("RectangleShape2D_hmmd7")
 
 [node name="HealthComponent" type="Node2D" parent="." unique_id=1621744978]
 script = ExtResource("4_rp4rw")
-MAX_HEALTH = 2.0
 metadata/_custom_type_script = "uid://bpc7ctncys7f7"
 
 [connection signal="health_changed" from="HealthComponent" to="." method="_on_health_changed"]

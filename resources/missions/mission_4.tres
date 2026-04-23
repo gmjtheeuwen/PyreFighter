@@ -9,5 +9,5 @@ title = &"First Deployment"
 description = &"Go out there and defeat those Pyres!"
 experience = 5
 difficulty = 3
-location = Vector2(0.5, 0.4)
+location = Vector2(0.45, 0.5)
 metadata/_custom_type_script = "uid://c2kjpndudpyj0"
