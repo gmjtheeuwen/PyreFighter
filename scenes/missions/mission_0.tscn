@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cbe62met8hqlq" path="res://scenes/tutorial_ui.tscn" id="3_1lrvk"]
 [ext_resource type="Resource" uid="uid://dct8fj6nqrgct" path="res://resources/tutorials/tutorial_basic_actions.tres" id="4_6lmdl"]
 [ext_resource type="PackedScene" uid="uid://cnq7ik3ol088w" path="res://scenes/tile_map_outside.tscn" id="5_88un8"]
-[ext_resource type="PackedScene" uid="uid://ckiqqe3qp8yc2" path="res://scenes/player.tscn" id="6_6nxiy"]
+[ext_resource type="PackedScene" uid="uid://ckiqqe3qp8yc2" path="res://scenes/player.tscn" id="6_ibu7v"]
 [ext_resource type="Script" uid="uid://brjfhqnqjsrup" path="res://scripts/bullet_manager.gd" id="7_8i01k"]
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="8_5xjhs"]
 
@@ -25,10 +25,7 @@ tile_map_data = PackedByteArray("AAD5/wEAAwAIAAEAAAD5/wIAAwAIAAEAAAD5/wMAAwAIAAE
 [node name="TileMapOutside" parent="." unique_id=188779714 instance=ExtResource("5_88un8")]
 tile_map_data = PackedByteArray("AAD5//7/BQACAAoAAAD5////BQACAAoAAAD5/wAABQACAAoAAAD5/wEABQACAAoAAAD5/wIABQACAAoAAAD6/wQABQAAAAoAAAD7/wQABQAAAAoAAAD8/wQABQAAAAoAAAD9/wQABQAAAAoAAAD+/wQABQAAAAoAAAD//wQABQAAAAoAAAAAAAQABQAAAAoAAAABAAQABQAAAAoAAAACAAQABQAAAAoAAAADAAQABQAAAAoAAAAEAAQABQAAAAoAAAAFAAQABQAAAAoAAAAGAAQABQAAAAoAAAAHAAQABQAAAAoAAAAIAAAABQACAAoAAAAIAAEABQACAAoAAAAIAAIABQACAAoAAAAIAAMABQACAAoAAAAIAP7/BQACAAoAAAAIAP//BQACAAoAAAD5/wMABQACAAoAAAD5/wQABQAAAAoAAAAIAAQABQAAAAoAAAAEAAEABQAPABAAAAAEAAIABQAPABEAAAAFAAEABQAQABAAAAAFAAIABQAQABEAAAD8/wEABQAWAA4AAAD8/wIABQAWAA8AAAA=")
 
-[node name="Player" parent="." unique_id=1149356595 instance=ExtResource("6_6nxiy")]
-position = Vector2(64, 48)
-knockback_friction = 0.0
-MIN_KNOCKBACK_SPEED = 0.0
+[node name="Player" parent="." unique_id=1149356595 instance=ExtResource("6_ibu7v")]
 
 [node name="BulletManager" type="Node2D" parent="." unique_id=711368761]
 script = ExtResource("7_8i01k")

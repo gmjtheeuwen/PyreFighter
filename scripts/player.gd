@@ -1,8 +1,10 @@
 extends CharacterBody2D	
 class_name Player
 
-signal fired_bullet(bullet, position, direction, source)
+signal fired_bullet(bullet, position, direction, source, bullet_type)
 signal used_equipment(direction)
+signal ammo_changed(ammo_type)
+signal change_ribbon(ammo_type)
 
 @export var has_control: bool
 
@@ -17,10 +19,15 @@ var knocked = false
 
 var fire_delay = 0.018
 var time_since_last_shot = 0.0
+var ammo_type := AttackComponent.AmmoType.WATER
+var current_ammo = 1
 
 @export var Bullet: PackedScene
 @export var health_component: HealthComponent
 
+var bullet_scene = preload("res://scenes/bullet.tscn")
+
+var ammo_list = AttackComponent.AmmoType.values()
 @onready var gun = $Gun
 var gun_position: Vector2
 var last_direction: String = "down"
@@ -30,6 +37,12 @@ var show_gun: bool = true
 
 var invincible = false
 @onready var hitflash = $AnimatedSprite2D/HitFlash
+
+@onready var hose_audio = $HoseAudio
+@onready var player_audio = $player_sfx
+
+var ammo_switch_cooldown := 0.0
+const SCROLL_COOLDOWN := 0.15
 
 @onready var pause_menu = $CanvasLayer/Control/PauseMenu
 
@@ -41,6 +54,9 @@ func _ready() -> void:
 	get_node("CanvasLayer").visible = true
 
 func _process(delta: float) -> void:
+	if ammo_switch_cooldown > 0.0:
+		ammo_switch_cooldown -= delta
+	
 	if health_component.health <= 0:
 		_on_death()
 		return
@@ -56,9 +72,20 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and time_since_last_shot > fire_delay:
 		shoot()
 		time_since_last_shot = 0.0
+		if not hose_audio.is_firing:
+			hose_audio.start_hose()
+	
+	if Input.is_action_just_released("shoot"):
+		hose_audio.stop_hose()
 	
 	if Input.is_action_just_pressed("equipment"):
 		use_equipment()
+		
+	if Input.is_action_just_pressed("ui_page_right"):
+		_switch_ammo(1)
+	
+	if Input.is_action_just_pressed("ui_page_left"):
+		_switch_ammo(-1)
 		
 	if Input.is_action_just_pressed("pause"):
 		pause()
@@ -98,7 +125,6 @@ func _physics_process(delta: float) -> void:
 		velocity = direction * WALKSPEED
 	move_and_slide()
 
-
 func handle_controller_input(joypads: Array[int]) -> void:
 	var primary_joypad = joypads[0]
 	var move_input_x = Input.get_joy_axis(primary_joypad, JoyAxis.JOY_AXIS_LEFT_X)
@@ -122,7 +148,6 @@ func handle_controller_input(joypads: Array[int]) -> void:
 	if (abs(aim_input_x) >= JOYSTICK_SENSITIVITY || abs(aim_input_y) >= JOYSTICK_SENSITIVITY):	
 		aim_direction = Vector2(aim_input_x, aim_input_y).normalized()
 
-
 func handle_keyboard_input() -> void:
 	var move_input_x = Input.get_axis("left", "right")
 	var move_input_y = Input.get_axis("up", "down")
@@ -145,6 +170,9 @@ func on_hit(attack: AttackComponent):
 		knocked = true
 		velocity = attack.direction * attack.knockback
 	
+	if hitflash.animation_finished:
+		invincibility_ended()
+	
 func _on_death():
 	var level = get_parent()
 	if level != null:
@@ -154,12 +182,18 @@ func _on_death():
 	
 func invincibility_ended(_anim_name: StringName):
 	invincible = false
+	player_audio.play_hurt()
 
 func shoot():
 	if knocked or Bullet == null: return
 	var bullet_instance = Bullet.instantiate()
 	var bullet_position = position + aim_direction * 16
-	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, self)
+	bullet_instance.ammo_type = ammo_type
+	
+	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, ammo_type, self)
+	
+	if not hose_audio.is_firing:
+		hose_audio.start_hose()
 	
 func use_equipment():
 	emit_signal("used_equipment", aim_direction)
@@ -171,9 +205,20 @@ func pause():
 func unpause():
 	pause_menu.hide()
 	Engine.time_scale = 1
-
+	
 func give_control():
 	set_process_input(true)
 
 func take_control():
 	set_process_input(false)
+
+func _switch_ammo(direction: int):
+	var next = (current_ammo + direction + ammo_list.size()) % ammo_list.size()
+	while not InventoryManager.inventory_data.unlocked_ammo[ammo_list[next]]:
+		next = (next + direction + ammo_list.size()) % ammo_list.size()
+	current_ammo = next
+	ammo_type = ammo_list[current_ammo]
+	emit_signal("ammo_changed", ammo_type)
+	emit_signal("change_ribbon", ammo_type)
+	
+	hose_audio.set_agent(current_ammo)
