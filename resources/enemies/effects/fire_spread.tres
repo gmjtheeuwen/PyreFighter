@@ -1,0 +1,13 @@
+[gd_resource type="Resource" format=3 uid="uid://ciavoaqv7dvww"]
+
+[ext_resource type="PackedScene" uid="uid://bbtwfwweug1qw" path="res://scenes/fire_particle.tscn" id="1_2f0dt"]
+[ext_resource type="Script" uid="uid://bey4e0j0x2r2g" path="res://resources/enemies/effects/fire_spread.gd" id="1_kxtmr"]
+
+[resource]
+script = ExtResource("1_kxtmr")
+fire_particle = ExtResource("1_2f0dt")
+particle_count = 2
+particle_speed = 80.0
+spread_range = 128.0
+damage = 0.5
+metadata/_custom_type_script = "uid://dtp4xir6rrequ"

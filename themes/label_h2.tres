@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dqqwj4kcs5ex3"]
+
+[ext_resource type="FontFile" uid="uid://dfw142q287k7n" path="res://fonts/Lekton-Bold.ttf" id="1_qhw8c"]
+
+[resource]
+font = ExtResource("1_qhw8c")
+font_size = 32

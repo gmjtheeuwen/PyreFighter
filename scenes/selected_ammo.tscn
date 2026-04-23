@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://e74j3ts2yaaj"]
+
+[ext_resource type="Texture2D" uid="uid://eo60pslovhc2" path="res://assets/ammo_types/water.png" id="1_c6mmf"]
+[ext_resource type="Script" uid="uid://din7ldsrdkf17" path="res://scripts/selected_ammo.gd" id="1_wppoj"]
+
+[node name="selected_ammo" type="TextureRect" unique_id=672286332]
+custom_minimum_size = Vector2(160, 160)
+anchors_preset = -1
+anchor_left = 0.9110001
+anchor_top = 0.84700006
+anchor_right = 0.97800004
+anchor_bottom = 0.966
+offset_left = -0.12011719
+offset_top = 0.2399292
+offset_right = -0.76013184
+offset_bottom = -0.2800293
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("1_c6mmf")
+script = ExtResource("1_wppoj")

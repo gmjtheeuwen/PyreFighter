@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Mission" format=3 uid="uid://dn07b6sdmpeqq"]
+
+[ext_resource type="Script" uid="uid://c2kjpndudpyj0" path="res://resources/missions/mission.gd" id="2_5yigp"]
+
+[resource]
+script = ExtResource("2_5yigp")
+scene = &"res://scenes/missions/mission_1.tscn"
+title = &"Solid Pyres"
+description = &"Defeat your first Pyre"
+experience = 5
+enemy_types = Array[int]([0])
+difficulty = 1
+location = Vector2(0.45, 0.3)
+player_hub_position = 1
+metadata/_custom_type_script = "uid://c2kjpndudpyj0"

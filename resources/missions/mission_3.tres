@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Mission" format=3 uid="uid://dctjw2a0nxho4"]
+
+[ext_resource type="Script" uid="uid://c2kjpndudpyj0" path="res://resources/missions/mission.gd" id="1_ekvuo"]
+
+[resource]
+script = ExtResource("1_ekvuo")
+scene = &"res://scenes/missions/mission_3.tscn"
+title = &"Gas Pyres"
+description = &"Watch out! These Pyres can spread fire and explode!"
+experience = 15
+enemy_types = Array[int]([2])
+difficulty = 2
+location = Vector2(0.45, 0.3)
+player_hub_position = 1
+unlocks = Array[int]([4])
+metadata/_custom_type_script = "uid://c2kjpndudpyj0"

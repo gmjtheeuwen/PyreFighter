@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c8m2kxy3vs2po"]
+
+[ext_resource type="Script" uid="uid://dhsp22jn2wqo3" path="res://scripts/audio/music/music_manager.gd" id="1_2qr2e"]
+[ext_resource type="AudioStream" uid="uid://f8jp1qwv11yo" path="res://assets/music/hub.mp3" id="2_2qr2e"]
+[ext_resource type="AudioStream" uid="uid://ds8a2f3lm3xts" path="res://assets/music/mission.mp3" id="3_de3cf"]
+
+[node name="audio_manager" type="Node2D" unique_id=1954092955]
+script = ExtResource("1_2qr2e")
+
+[node name="MusicHub" type="AudioStreamPlayer" parent="." unique_id=94879434]
+stream = ExtResource("2_2qr2e")
+
+[node name="MusicMission" type="AudioStreamPlayer" parent="." unique_id=940303236]
+stream = ExtResource("3_de3cf")

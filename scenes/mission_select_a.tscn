@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://c2y8672uwnui5"]
+
+[ext_resource type="Script" uid="uid://c26qckolpnq27" path="res://scripts/missions/mission_select.gd" id="1_nl0ch"]
+[ext_resource type="Texture2D" uid="uid://bv6sr7575lmfd" path="res://assets/MiniMap.png" id="2_nl0ch"]
+[ext_resource type="Script" uid="uid://c005168h7m23y" path="res://addons/button_prompts_for_godot/Scripts/ui_button_prompt.gd" id="3_drwh8"]
+[ext_resource type="Script" path="res://scripts/enemy_type_icon_container.gd" id="3_vd516"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_waxou"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_k6jl5"]
+font_size = 32
+font_color = Color(0.8, 0.8, 0.8, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iht3j"]
+font_size = 32
+
+[node name="MissionSelect" type="Control" unique_id=249058742]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_nl0ch")
+
+[node name="Background" type="PanelContainer" parent="." unique_id=119231478]
+layout_mode = 0
+offset_right = 1924.0
+offset_bottom = 1080.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=197223050]
+layout_mode = 0
+offset_right = 1924.0
+offset_bottom = 1080.0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=1976893364]
+custom_minimum_size = Vector2(1080, 0)
+layout_mode = 2
+
+[node name="Map" type="TextureRect" parent="HBoxContainer/CenterContainer" unique_id=19707004]
+custom_minimum_size = Vector2(960, 960)
+layout_mode = 2
+texture = ExtResource("2_nl0ch")
+expand_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=605552849]
+layout_mode = 2
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/VBoxContainer" unique_id=628419353]
+layout_mode = 2
+
+[node name="DetailsContainer" type="VBoxContainer" parent="HBoxContainer/VBoxContainer/CenterContainer2" unique_id=1496595166]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="HBoxContainer/VBoxContainer/CenterContainer2/DetailsContainer" unique_id=955339383]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_waxou")
+
+[node name="Description" type="Label" parent="HBoxContainer/VBoxContainer/CenterContainer2/DetailsContainer" unique_id=1605065323]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+text = "Description"
+label_settings = SubResource("LabelSettings_k6jl5")
+autowrap_mode = 2
+
+[node name="Rewards" type="Label" parent="HBoxContainer/VBoxContainer/CenterContainer2/DetailsContainer" unique_id=479024423]
+layout_mode = 2
+text = "Rewards"
+label_settings = SubResource("LabelSettings_iht3j")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/CenterContainer2/DetailsContainer" unique_id=171120129]
+layout_mode = 2
+
+[node name="EnemyTypeLabel" type="Label" parent="HBoxContainer/VBoxContainer/CenterContainer2/DetailsContainer/HBoxContainer" unique_id=147645219]
+layout_mode = 2
+text = "Present Enemy Types:"
+
+[node name="IconContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/CenterContainer2/DetailsContainer/HBoxContainer" unique_id=1681629377]
+custom_minimum_size = Vector2(256, 64)
+layout_mode = 2
+script = ExtResource("3_vd516")
+
+[node name="StartButton" type="Button" parent="HBoxContainer/VBoxContainer/CenterContainer2/DetailsContainer" unique_id=703838248]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start Mission"
+
+[node name="ButtonPromptLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer" unique_id=1078564281]
+layout_mode = 2
+bbcode_enabled = true
+text = "Press {ui_accept} to start"
+fit_content = true
+scroll_active = false
+script = ExtResource("3_drwh8")
+metadata/_custom_type_script = "uid://c005168h7m23y"

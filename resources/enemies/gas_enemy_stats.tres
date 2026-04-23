@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bqcslvt2daksb"]
+
+[ext_resource type="Script" uid="uid://dtp4xir6rrequ" path="res://resources/enemies/effects/effect.gd" id="1_i4ptp"]
+[ext_resource type="Script" uid="uid://tdihdt4rkmdq" path="res://resources/enemies/enemy_stats.gd" id="2_i4ptp"]
+[ext_resource type="Texture2D" uid="uid://buvx8smucssa1" path="res://assets/Pyre_Gas_Sheet.png" id="2_iq5p4"]
+[ext_resource type="Resource" uid="uid://hwf1u3ygseqx" path="res://resources/enemies/effects/explosion.tres" id="2_v01nq"]
+[ext_resource type="Resource" uid="uid://ciavoaqv7dvww" path="res://resources/enemies/effects/fire_spread.tres" id="3_6db2f"]
+
+[resource]
+script = ExtResource("2_i4ptp")
+fuel_type = 2
+max_health = 3.0
+max_speed = 128.0
+damage = 2.5
+knockback = 128.0
+knockback_friction = 64.0
+sprite_sheet = ExtResource("2_iq5p4")
+effects = Array[ExtResource("1_i4ptp")]([ExtResource("2_v01nq"), ExtResource("3_6db2f")])

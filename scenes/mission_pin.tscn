@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://cu3752jkl53o2"]
+
+[ext_resource type="Texture2D" uid="uid://cb23srn3bsu4g" path="res://assets/mission_markers/MissionMarkerGreen.png" id="1_gsbse"]
+[ext_resource type="Script" uid="uid://o1gre5pv5v14" path="res://scripts/missions/mission_pin.gd" id="2_uswk2"]
+[ext_resource type="Texture2D" uid="uid://d1f3bwue2qwls" path="res://assets/mission_markers/MissionMarkerLocked.png" id="2_vco76"]
+[ext_resource type="Texture2D" uid="uid://b7e6pbr8htkja" path="res://assets/mission_markers/MissionMarkerRed.png" id="3_1bops"]
+[ext_resource type="Texture2D" uid="uid://cu7xtk1fkldaj" path="res://assets/mission_markers/MissionMarkerOrange.png" id="4_vco76"]
+[ext_resource type="Texture2D" uid="uid://dhh3e08wm6loc" path="res://assets/mission_markers/MissionMarkerYellow.png" id="5_ueyi8"]
+[ext_resource type="Texture2D" uid="uid://cocht8beqrqog" path="res://assets/mission_markers/MissionMarkerGreenFocus.png" id="6_2dpcg"]
+[ext_resource type="Texture2D" uid="uid://b3ltk0cpf0gdy" path="res://assets/mission_markers/MissionMarkerRedFocus.png" id="7_lcx68"]
+[ext_resource type="Texture2D" uid="uid://cpxn1kjip4r6q" path="res://assets/mission_markers/MissionMarkerOrangeFocus.png" id="8_gr0ot"]
+[ext_resource type="Texture2D" uid="uid://drt0lp3alax6v" path="res://assets/mission_markers/MissionMarkerYellowFocus.png" id="9_u3j0q"]
+
+[node name="MissionPin" type="TextureButton" unique_id=1968096164]
+offset_right = 16.0
+offset_bottom = 16.0
+scale = Vector2(4, 4)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("2_uswk2")
+FinishedMarker = ExtResource("2_vco76")
+LockedMarker = ExtResource("2_vco76")
+Markers = Array[CompressedTexture2D]([ExtResource("1_gsbse"), ExtResource("5_ueyi8"), ExtResource("4_vco76"), ExtResource("3_1bops")])
+MarkersFocus = Array[CompressedTexture2D]([ExtResource("6_2dpcg"), ExtResource("9_u3j0q"), ExtResource("8_gr0ot"), ExtResource("7_lcx68")])
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://cqgmntbbvsinv"]
+
+[ext_resource type="Script" uid="uid://qgq2kusyrit1" path="res://scripts/mission_failed_screen.gd" id="1_5wr3w"]
+[ext_resource type="LabelSettings" uid="uid://bm7ggvbsxt7x7" path="res://themes/label_h1.tres" id="2_gsgx7"]
+[ext_resource type="LabelSettings" uid="uid://dqqwj4kcs5ex3" path="res://themes/label_h2.tres" id="3_yndoq"]
+[ext_resource type="FontFile" uid="uid://dfw142q287k7n" path="res://fonts/Lekton-Bold.ttf" id="4_yndoq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wr3w"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jfc48"]
+bg_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.53333336, 0, 0, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[node name="mission_failed_screen" type="CenterContainer" unique_id=80916475]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5wr3w")
+
+[node name="Panel" type="Panel" parent="." unique_id=1854987053]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5wr3w")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1722768135]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jfc48")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1396846440]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=1669147108]
+layout_mode = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=584539125]
+layout_mode = 2
+text = "Mission Failed"
+label_settings = ExtResource("2_gsgx7")
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=306598911]
+custom_minimum_size = Vector2(560, 0)
+layout_mode = 2
+text = "Your colleagues had to extract you!
+
+Your progress at the mission location was lost"
+label_settings = ExtResource("3_yndoq")
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1754825695]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_yndoq")
+theme_override_font_sizes/font_size = 32
+text = "Back to Hub"
+
+[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

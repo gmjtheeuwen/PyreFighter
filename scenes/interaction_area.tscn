@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://ba1618oeqjo"]
+
+[ext_resource type="Script" uid="uid://qoj4nlblpqc4" path="res://scripts/interaction_area.gd" id="1_40t11"]
+[ext_resource type="Script" uid="uid://c005168h7m23y" path="res://addons/button_prompts_for_godot/Scripts/ui_button_prompt.gd" id="2_8sep7"]
+
+[node name="InteractionArea" type="Area2D" unique_id=712516511]
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_40t11")
+
+[node name="Label" type="RichTextLabel" parent="." unique_id=120078035]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -48.0
+offset_right = 43.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "{interact}"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+script = ExtResource("2_8sep7")
+PROMPT_SCALE = 40.0
+metadata/_custom_type_script = "uid://c005168h7m23y"
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="body_exited" from="." to="." method="on_body_exited"]

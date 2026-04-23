@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://ck608u5y31ner"]
+
+[ext_resource type="Script" uid="uid://bwbqv1ojhy4l4" path="res://scripts/inventory.gd" id="1_nmp5a"]
+[ext_resource type="PackedScene" uid="uid://cq3sngv24i0n0" path="res://scenes/category.tscn" id="2_jk4bm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_yo0xd"]
+font_size = 48
+
+[node name="inventory_list" type="Control" unique_id=1017678389]
+custom_minimum_size = Vector2(1920, 800)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 720.0
+mouse_filter = 1
+script = ExtResource("1_nmp5a")
+CATEGORY = ExtResource("2_jk4bm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1160910990]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 800.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer" unique_id=677679624]
+custom_minimum_size = Vector2(1200, 720)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/ScrollContainer" unique_id=920373232]
+custom_minimum_size = Vector2(1200, 720)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer" unique_id=1311948801]
+layout_mode = 2
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Control" type="VBoxContainer" parent="HBoxContainer/MarginContainer" unique_id=247421047]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 2
+
+[node name="limit_label" type="Label" parent="HBoxContainer/MarginContainer/Control" unique_id=584151137]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "equipment limit 0 / 1"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="equipped_label" type="Label" parent="HBoxContainer/MarginContainer/Control" unique_id=1681573127]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "currently equipped: 
+none"
+label_settings = SubResource("LabelSettings_yo0xd")
+horizontal_alignment = 2
+vertical_alignment = 2
+autowrap_mode = 2

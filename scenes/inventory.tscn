@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://c7qejvx6r0k8c"]
+
+[ext_resource type="Script" path="res://scripts/sorting_buttons.gd" id="1_yyk2a"]
+[ext_resource type="PackedScene" uid="uid://ck608u5y31ner" path="res://scenes/inventory_list.tscn" id="2_hj2ta"]
+[ext_resource type="PackedScene" uid="uid://cbxuo5pmdq37p" path="res://scenes/category_select_button.tscn" id="2_ty45s"]
+[ext_resource type="Script" uid="uid://5iaanl5tubhd" path="res://scripts/menu_input.gd" id="4_53g1v"]
+
+[node name="Control" type="Control" unique_id=2038558900]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1763031687]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HFlowContainer" type="HFlowContainer" parent="VBoxContainer" unique_id=1265546953]
+custom_minimum_size = Vector2(1920, 160)
+layout_mode = 2
+theme_override_constants/h_separation = 40
+script = ExtResource("1_yyk2a")
+category_button = ExtResource("2_ty45s")
+
+[node name="inventory_list" parent="VBoxContainer" unique_id=1017678389 instance=ExtResource("2_hj2ta")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=1833795955]
+custom_minimum_size = Vector2(360, 120)
+layout_mode = 0
+offset_left = 1504.0
+offset_top = 960.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 48
+text = "Confirm selection
+"
+
+[node name="InputHandler" type="Control" parent="." unique_id=2073318609]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_53g1v")
+
+[connection signal="selected_category_changed" from="VBoxContainer/HFlowContainer" to="VBoxContainer/inventory_list" method="_on_category_selected"]
+[connection signal="category_changed" from="VBoxContainer/inventory_list" to="InputHandler" method="_on_category_changed"]
+[connection signal="pressed" from="Button" to="VBoxContainer/inventory_list" method="on_confirm_button_pressed"]

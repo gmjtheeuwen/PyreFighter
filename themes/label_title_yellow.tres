@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://01tyhms40jw5"]
+
+[ext_resource type="FontFile" uid="uid://ca3w7iu3p5qhs" path="res://fonts/BungeeInline-Regular.ttf" id="1_oiuky"]
+
+[resource]
+font = ExtResource("1_oiuky")
+font_size = 120
+font_color = Color(1, 1, 0, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)

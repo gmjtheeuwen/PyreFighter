@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://6aptfisjhfsi"]
+
+[ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="1_qv1cg"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_v5dfw"]
+size = Vector2(16, 16)
+
+[node name="InteractionTest" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("PlaceholderTexture2D_v5dfw")
+
+[node name="InteractionArea" parent="." instance=ExtResource("1_qv1cg")]
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="on_body_exited"]

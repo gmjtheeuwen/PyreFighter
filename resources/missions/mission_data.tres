@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MissionData" format=3 uid="uid://c63xq28iaaba1"]
+
+[ext_resource type="Script" uid="uid://c2kjpndudpyj0" path="res://resources/missions/mission.gd" id="1_xv4du"]
+[ext_resource type="Script" uid="uid://bay5gs8d6fhht" path="res://resources/missions/mission_data.gd" id="2_24wbs"]
+[ext_resource type="Resource" uid="uid://d4kr1tlcxkseu" path="res://resources/missions/mission_0.tres" id="2_hqv6d"]
+[ext_resource type="Resource" uid="uid://dn07b6sdmpeqq" path="res://resources/missions/mission_1.tres" id="3_dkues"]
+[ext_resource type="Resource" uid="uid://cgfokupr7xfl8" path="res://resources/missions/mission_2.tres" id="4_dkues"]
+[ext_resource type="Resource" uid="uid://dctjw2a0nxho4" path="res://resources/missions/mission_3.tres" id="5_boyee"]
+[ext_resource type="Resource" uid="uid://dq1fxlh2h7xg5" path="res://resources/missions/mission_4.tres" id="6_2wcgw"]
+
+[resource]
+script = ExtResource("2_24wbs")
+missions = Array[ExtResource("1_xv4du")]([ExtResource("2_hqv6d"), ExtResource("3_dkues"), ExtResource("4_dkues"), ExtResource("5_boyee"), ExtResource("6_2wcgw")])

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://c2f4f4auysrp4"]
+
+[sub_resource type="Animation" id="Animation_fgpka"]
+resource_name = "hit_flash"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a2ovi"]
+_data = {
+&"hit_flash": SubResource("Animation_fgpka")
+}
+
+[node name="HitFlash" type="AnimationPlayer" unique_id=1452202564]
+libraries/ = SubResource("AnimationLibrary_a2ovi")
