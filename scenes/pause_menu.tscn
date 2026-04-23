@@ -1,72 +1,57 @@
 [gd_scene format=3 uid="uid://dcx1ei3px3dwb"]
 
 [ext_resource type="Script" uid="uid://dxlucl1rwd81e" path="res://scripts/pause_menu.gd" id="1_n87rw"]
+[ext_resource type="LabelSettings" uid="uid://bm7ggvbsxt7x7" path="res://themes/label_h1.tres" id="2_myx47"]
+[ext_resource type="FontFile" uid="uid://dfw142q287k7n" path="res://fonts/Lekton-Bold.ttf" id="3_kukqi"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uahpa"]
-bg_color = Color(0, 0, 0, 0.53333336)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n87rw"]
-bg_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="LabelSettings" id="LabelSettings_myx47"]
-font_size = 64
-
-[node name="PauseMenu" type="CenterContainer" unique_id=1936173653]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="PauseMenu" type="PanelContainer" unique_id=892473527]
+custom_minimum_size = Vector2(640, 360)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -124.0
+offset_right = 196.0
+offset_bottom = 124.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_n87rw")
 
-[node name="Panel" type="Panel" parent="." unique_id=1498717434]
-custom_minimum_size = Vector2(1280, 720)
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1784292421]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_uahpa")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1755681305]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_n87rw")
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1784292421]
-layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=526064235]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=526064235]
 layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1443489446]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1443489446]
 layout_mode = 2
 text = "Game Paused"
-label_settings = SubResource("LabelSettings_myx47")
+label_settings = ExtResource("2_myx47")
+horizontal_alignment = 1
 
-[node name="Resume" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1632590439]
+[node name="Resume" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1632590439]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_kukqi")
 theme_override_font_sizes/font_size = 32
 text = "Resume"
 
-[node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1083203254]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1083203254]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_kukqi")
 theme_override_font_sizes/font_size = 32
 text = "Quit"
 
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Resume" to="." method="_on_continue_button_pressed"]
-[connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_continue_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_button_pressed"]

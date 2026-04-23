@@ -4,16 +4,16 @@ extends Control
 @onready var mission_pin_scene = preload("res://scenes/mission_pin.tscn")
 @onready var mission_list_scene = preload("res://scenes/mission_list.tscn")
 
-@onready var mission_list_container = $HBoxContainer/CenterContainer2/VBoxContainer/MissionListContainer
-@onready var map = $HBoxContainer/MapContainer/Map
+@onready var mission_list_container = $CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer/MissionListContainer
+@onready var map = $CenterContainer/HBoxContainer/MapContainer/PanelContainer/Map
 
-@onready var details_container = $HBoxContainer/CenterContainer/DetailsContainer
-@onready var title_label = $HBoxContainer/CenterContainer/DetailsContainer/Title
-@onready var description_label = $HBoxContainer/CenterContainer/DetailsContainer/Description
-@onready var reward_label = $HBoxContainer/CenterContainer/DetailsContainer/Rewards
-@onready var enemy_type_label = $HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/EnemyTypeLabel
-@onready var icon_container = $HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/IconContainer
-@onready var start_button: Button = $HBoxContainer/CenterContainer/DetailsContainer/StartButton
+@onready var details_container = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer
+@onready var title_label = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/Title
+@onready var description_label = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/Description
+@onready var reward_label = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/Rewards
+@onready var enemy_type_label = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/EnemyTypeLabel
+@onready var icon_container = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/HBoxContainer/IconContainer
+@onready var start_button: Button = $CenterContainer/HBoxContainer/CenterContainer/DetailsContainer/StartButton
 
 var pin_positions : Dictionary[Vector2, MissionPin]
 var mission_pin_texture_normal: Texture2D

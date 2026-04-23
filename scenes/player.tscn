@@ -309,6 +309,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Healthbar" type="Control" parent="CanvasLayer/Control" unique_id=375241332]
 layout_mode = 1
@@ -353,8 +355,7 @@ offset_top = -160.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="PauseMenu" parent="CanvasLayer/Control" unique_id=1936173653 instance=ExtResource("9_ur7pv")]
-visible = false
+[node name="PauseMenu" parent="CanvasLayer/Control" unique_id=892473527 instance=ExtResource("9_ur7pv")]
 layout_mode = 1
 
 [connection signal="used_equipment" from="." to="Equipment" method="on_use_equipment"]

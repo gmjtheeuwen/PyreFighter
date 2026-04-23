@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://cqgmntbbvsinv"]
 
 [ext_resource type="Script" uid="uid://qgq2kusyrit1" path="res://scripts/mission_failed_screen.gd" id="1_5wr3w"]
+[ext_resource type="LabelSettings" uid="uid://bm7ggvbsxt7x7" path="res://themes/label_h1.tres" id="2_gsgx7"]
+[ext_resource type="LabelSettings" uid="uid://dqqwj4kcs5ex3" path="res://themes/label_h2.tres" id="3_yndoq"]
+[ext_resource type="FontFile" uid="uid://dfw142q287k7n" path="res://fonts/Lekton-Bold.ttf" id="4_yndoq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5wr3w"]
 bg_color = Color(0, 0, 0, 1)
@@ -16,12 +19,6 @@ corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
-
-[sub_resource type="LabelSettings" id="LabelSettings_jfc48"]
-font_size = 64
-
-[sub_resource type="LabelSettings" id="LabelSettings_5wr3w"]
-font_size = 32
 
 [node name="mission_failed_screen" type="CenterContainer" unique_id=80916475]
 anchors_preset = 15
@@ -55,7 +52,7 @@ alignment = 1
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=584539125]
 layout_mode = 2
 text = "Mission Failed"
-label_settings = SubResource("LabelSettings_jfc48")
+label_settings = ExtResource("2_gsgx7")
 
 [node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=306598911]
 custom_minimum_size = Vector2(560, 0)
@@ -63,13 +60,14 @@ layout_mode = 2
 text = "Your colleagues had to extract you!
 
 Your progress at the mission location was lost"
-label_settings = SubResource("LabelSettings_5wr3w")
+label_settings = ExtResource("3_yndoq")
 autowrap_mode = 2
 
 [node name="Button" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1754825695]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("4_yndoq")
 theme_override_font_sizes/font_size = 32
 text = "Back to Hub"
 

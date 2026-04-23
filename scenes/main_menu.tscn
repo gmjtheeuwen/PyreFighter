@@ -1,24 +1,21 @@
 [gd_scene format=3 uid="uid://b24a4kuv3ckoy"]
 
 [ext_resource type="Script" uid="uid://dkg1hifcw7win" path="res://scripts/main_menu.gd" id="1_l6cm7"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uahpa"]
-bg_color = Color(0, 0, 0, 0.53333336)
+[ext_resource type="LabelSettings" uid="uid://cv7h84uhd0klj" path="res://themes/label_title_orange.tres" id="2_bqqt6"]
+[ext_resource type="LabelSettings" uid="uid://01tyhms40jw5" path="res://themes/label_title_yellow.tres" id="3_wu84c"]
+[ext_resource type="FontFile" uid="uid://dfw142q287k7n" path="res://fonts/Lekton-Bold.ttf" id="4_wu84c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n87rw"]
-bg_color = Color(0.26666668, 0.26666668, 0.26666668, 1)
+bg_color = Color(0.4, 0.4, 0.4, 1)
 border_width_left = 8
 border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
-border_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
+border_color = Color(0.8, 0.6666667, 0, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
-
-[sub_resource type="LabelSettings" id="LabelSettings_myx47"]
-font_size = 64
 
 [node name="MainMenu" type="CenterContainer" unique_id=1936173653]
 anchors_preset = 15
@@ -28,44 +25,50 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_l6cm7")
 
-[node name="Panel" type="Panel" parent="." unique_id=1498717434]
-custom_minimum_size = Vector2(1280, 720)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_uahpa")
-
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1755681305]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_n87rw")
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1784292421]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/MarginContainer" unique_id=526064235]
 layout_mode = 2
 theme_override_constants/separation = 32
 alignment = 1
 
-[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1443489446]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1702807376]
 layout_mode = 2
-text = "PyreFighter"
-label_settings = SubResource("LabelSettings_myx47")
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1443489446]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.49803922, 0, 1)
+text = "Pyre"
+label_settings = ExtResource("2_bqqt6")
+
+[node name="Label2" type="Label" parent="PanelContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=270711079]
+layout_mode = 2
+text = "Fighter"
+label_settings = ExtResource("3_wu84c")
 
 [node name="Start" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1632590439]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(720, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("4_wu84c")
+theme_override_font_sizes/font_size = 64
 text = "Start Game"
 
 [node name="Quit" type="Button" parent="PanelContainer/MarginContainer/VBoxContainer" unique_id=1083203254]
-custom_minimum_size = Vector2(320, 0)
+custom_minimum_size = Vector2(720, 100)
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 32
+theme_override_fonts/font = ExtResource("4_wu84c")
+theme_override_font_sizes/font_size = 64
 text = "Quit Game"
 
 [connection signal="pressed" from="PanelContainer/MarginContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
