@@ -1,13 +1,13 @@
-[gd_scene format=4 uid="uid://cfdjswvp4fl0y"]
+[gd_scene format=4 uid="uid://t0cl7t562pmm"]
 
 [ext_resource type="Script" uid="uid://cjo8f6ugq4akq" path="res://scripts/missions/mission.gd" id="1_cnw47"]
 [ext_resource type="Resource" uid="uid://dq1fxlh2h7xg5" path="res://resources/missions/mission_4.tres" id="2_houpm"]
 [ext_resource type="PackedScene" uid="uid://cnq7ik3ol088w" path="res://scenes/tile_map_outside.tscn" id="2_n6d41"]
 [ext_resource type="PackedScene" uid="uid://ckiqqe3qp8yc2" path="res://scenes/player.tscn" id="3_asj7i"]
-[ext_resource type="Script" uid="uid://67qmrivfwbdj" path="res://scripts/roof.gd" id="3_mls70"]
+[ext_resource type="Script" path="res://scripts/roof.gd" id="3_mls70"]
 [ext_resource type="Script" uid="uid://brjfhqnqjsrup" path="res://scripts/bullet_manager.gd" id="4_asj7i"]
-[ext_resource type="PackedScene" uid="uid://ba0kgofmt0jnq" path="res://scenes/enemy_manager.tscn" id="6_f2yj0"]
-[ext_resource type="PackedScene" uid="uid://cbve5hsrghgsx" path="res://scenes/mother_flame.tscn" id="7_kbfwe"]
+[ext_resource type="PackedScene" path="res://scenes/enemy_manager.tscn" id="6_f2yj0"]
+[ext_resource type="PackedScene" path="res://scenes/mother_flame.tscn" id="7_kbfwe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2yj0"]
 size = Vector2(768, 224)
@@ -70,46 +70,57 @@ script = ExtResource("4_asj7i")
 [node name="MotherFlame" parent="EnemyManager" unique_id=858913458 instance=ExtResource("7_kbfwe")]
 position = Vector2(1344, 288)
 fuel_type = 0
+max_hp = 30.0
 
 [node name="MotherFlame2" parent="EnemyManager" unique_id=1999280374 instance=ExtResource("7_kbfwe")]
 position = Vector2(512, 784)
 fuel_type = 0
+max_hp = 30.0
 
 [node name="MotherFlame3" parent="EnemyManager" unique_id=1804242544 instance=ExtResource("7_kbfwe")]
 position = Vector2(960, 1904)
 fuel_type = 1
+max_hp = 30.0
 
 [node name="MotherFlame4" parent="EnemyManager" unique_id=1604447082 instance=ExtResource("7_kbfwe")]
 position = Vector2(-32, 1904)
 fuel_type = 2
+max_hp = 30.0
 
 [node name="MotherFlame5" parent="EnemyManager" unique_id=358505626 instance=ExtResource("7_kbfwe")]
 position = Vector2(-928, 1920)
 fuel_type = 0
+max_hp = 30.0
 
 [node name="MotherFlame6" parent="EnemyManager" unique_id=257279460 instance=ExtResource("7_kbfwe")]
 position = Vector2(-1056, 1920)
 fuel_type = 1
+max_hp = 30.0
 
 [node name="MotherFlame7" parent="EnemyManager" unique_id=701327508 instance=ExtResource("7_kbfwe")]
 position = Vector2(-1728, 1328)
 fuel_type = 1
+max_hp = 30.0
 
 [node name="MotherFlame8" parent="EnemyManager" unique_id=1558946717 instance=ExtResource("7_kbfwe")]
 position = Vector2(-1728, 1232)
 fuel_type = 2
+max_hp = 30.0
 
 [node name="MotherFlame9" parent="EnemyManager" unique_id=1672734522 instance=ExtResource("7_kbfwe")]
 position = Vector2(-1152, 512)
 fuel_type = 0
+max_hp = 30.0
 
 [node name="MotherFlame10" parent="EnemyManager" unique_id=1317024456 instance=ExtResource("7_kbfwe")]
 position = Vector2(-1552, 224)
 fuel_type = 1
+max_hp = 30.0
 
 [node name="MotherFlame11" parent="EnemyManager" unique_id=57632302 instance=ExtResource("7_kbfwe")]
 position = Vector2(-1664, 432)
 fuel_type = 2
+max_hp = 30.0
 
 [connection signal="area_entered" from="TileMapRoofLayer/Roof/Area2D" to="TileMapRoofLayer/Roof" method="_on_area_entered"]
 [connection signal="area_exited" from="TileMapRoofLayer/Roof/Area2D" to="TileMapRoofLayer/Roof" method="_on_area_exited"]

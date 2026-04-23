@@ -10,6 +10,6 @@ fuel_type = 3
 max_health = 6.0
 max_speed = 160.0
 damage = 3.0
-knockback = 80.0
+knockback = 128.0
 knockback_friction = 128.0
 sprite_sheet = ExtResource("2_oemkm")

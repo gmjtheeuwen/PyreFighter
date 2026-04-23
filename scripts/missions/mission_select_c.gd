@@ -45,9 +45,8 @@ func _ready() -> void:
 func update_overview(mission: Mission):
 	title_label.text = mission.title
 	description_label.text = mission.description
-	reward_label.text = "Experience: %s" % mission.experience	
+	#reward_label.text = "Exp: %s" % mission.experience	
 	
-	enemy_type_label.visible = mission.enemy_types.size() > 0
 	icon_container.update_enemy_types(mission.enemy_types)
 	start_button.focus_neighbor_left = get_mission_list_item(mission)
 	if start_button.pressed.has_connections():

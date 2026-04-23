@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cnq7ik3ol088w" path="res://scenes/tile_map_outside.tscn" id="5_3fsu6"]
 [ext_resource type="PackedScene" uid="uid://ckiqqe3qp8yc2" path="res://scenes/player.tscn" id="6_hngef"]
 [ext_resource type="Script" uid="uid://brjfhqnqjsrup" path="res://scripts/bullet_manager.gd" id="7_eu6g1"]
-[ext_resource type="PackedScene" uid="uid://ba0kgofmt0jnq" path="res://scenes/enemy_manager.tscn" id="8_fklxf"]
+[ext_resource type="PackedScene" path="res://scenes/enemy_manager.tscn" id="8_fklxf"]
 [ext_resource type="PackedScene" uid="uid://b20irxk87enkx" path="res://scenes/enemy.tscn" id="9_ncnu2"]
 [ext_resource type="Resource" uid="uid://bqcslvt2daksb" path="res://resources/enemies/gas_enemy_stats.tres" id="10_yeh78"]
 [ext_resource type="PackedScene" uid="uid://ba1618oeqjo" path="res://scenes/interaction_area.tscn" id="11_t2p7o"]
@@ -35,8 +35,7 @@ has_control = false
 [node name="BulletManager" type="Node2D" parent="." unique_id=1429464225]
 script = ExtResource("7_eu6g1")
 
-[node name="EnemyManager" parent="." unique_id=1376360526 node_paths=PackedStringArray("player") instance=ExtResource("8_fklxf")]
-player = NodePath("../Player")
+[node name="EnemyManager" parent="." unique_id=1376360526 instance=ExtResource("8_fklxf")]
 
 [node name="Enemy" parent="EnemyManager" unique_id=831774596 instance=ExtResource("9_ncnu2")]
 position = Vector2(-304, 208)

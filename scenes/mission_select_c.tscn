@@ -20,6 +20,11 @@ corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
+[sub_resource type="LabelSettings" id="LabelSettings_dik3o"]
+font = ExtResource("2_p8ure")
+font_size = 32
+font_color = Color(0.6666667, 0.6666667, 0.6666667, 1)
+
 [node name="MissionSelect" type="PanelContainer" unique_id=267280693]
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,7 +47,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MissionListContainer" type="ScrollContainer" parent="CenterContainer/HBoxContainer/CenterContainer2/VBoxContainer" unique_id=1311129081]
-custom_minimum_size = Vector2(360, 360)
+custom_minimum_size = Vector2(360, 480)
 layout_mode = 2
 size_flags_vertical = 4
 
@@ -84,12 +89,11 @@ custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.53333336, 0.53333336, 0.53333336, 1)
 text = "Description"
-label_settings = ExtResource("5_dik3o")
+label_settings = SubResource("LabelSettings_dik3o")
 autowrap_mode = 2
 
 [node name="Rewards" type="Label" parent="CenterContainer/HBoxContainer/CenterContainer/DetailsContainer" unique_id=2037736334]
 layout_mode = 2
-text = "Rewards"
 label_settings = ExtResource("5_dik3o")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer/CenterContainer/DetailsContainer" unique_id=1204100120]

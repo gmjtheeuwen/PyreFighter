@@ -8,7 +8,16 @@ var current_player: AudioStreamPlayer = null
 var is_transitioning: bool = false
 
 func _ready():
-	play_hub()
+	hub_player.play()
+	current_player = hub_player
+	get_tree().scene_changed.connect(on_scene_changed)
+
+func on_scene_changed():
+	var current_scene = get_tree().current_scene
+	if current_scene is MissionScene:
+		play_mission()
+	else:
+		play_hub()
 
 func play_hub():
 	_crossfade(hub_player)
@@ -22,15 +31,12 @@ func _crossfade(new_player: AudioStreamPlayer):
 	is_transitioning = true
 	
 	if current_player != null:
-		var fade_out = create_tween()
-		fade_out.tween_property(current_player, "volume_db", -80.0, 1.0)
-		await fade_out.finished
 		current_player.stop()
 	
 	new_player.volume_db = -80.0
 	new_player.play()
 	var fade_in = create_tween()
-	fade_in.tween_property(new_player, "volume_db", 0.0, 1.0)
+	fade_in.tween_property(new_player, "volume_db", 0.0, 2.0)
 	await fade_in.finished
 	
 	current_player = new_player

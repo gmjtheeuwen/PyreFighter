@@ -1,10 +1,9 @@
 extends CharacterBody2D	
 class_name Player
 
-signal fired_bullet(bullet, position, direction, source, bullet_type)
+signal fired_bullet(bullet: Bullet, position: Vector2, direction: Vector2, source: Node2D)
 signal used_equipment(direction)
 signal ammo_changed(ammo_type)
-signal change_ribbon(ammo_type)
 
 @export var has_control: bool
 
@@ -22,7 +21,6 @@ var time_since_last_shot = 0.0
 var ammo_type := AttackComponent.AmmoType.WATER
 var current_ammo = 1
 
-@export var Bullet: PackedScene
 @export var health_component: HealthComponent
 
 var bullet_scene = preload("res://scenes/bullet.tscn")
@@ -52,6 +50,7 @@ func _ready() -> void:
 	
 	hitflash.play("RESET")
 	get_node("CanvasLayer").visible = true
+	ammo_changed.emit(ammo_type)
 
 func _process(delta: float) -> void:
 	if ammo_switch_cooldown > 0.0:
@@ -162,6 +161,7 @@ func handle_keyboard_input() -> void:
 
 func on_hit(attack: AttackComponent):
 	if invincible: return
+	player_audio.play_hurt()
 	hitflash.play("hit_flash")	
 	invincible = true
 	health_component.damage(attack.damage)
@@ -170,9 +170,6 @@ func on_hit(attack: AttackComponent):
 		knocked = true
 		velocity = attack.direction * attack.knockback
 	
-	if hitflash.animation_finished:
-		invincibility_ended()
-	
 func _on_death():
 	var level = get_parent()
 	if level != null:
@@ -180,17 +177,17 @@ func _on_death():
 	else:
 		get_tree().call_deferred("change_scene_to_file", "res://scenes/game_over.tscn")
 	
-func invincibility_ended(_anim_name: StringName):
+func invincibility_ended(anim_name: StringName):		
 	invincible = false
-	player_audio.play_hurt()
 
 func shoot():
-	if knocked or Bullet == null: return
-	var bullet_instance = Bullet.instantiate()
+	if knocked or bullet_scene == null: return
+	var bullet_instance = bullet_scene.instantiate()
 	var bullet_position = position + aim_direction * 16
-	bullet_instance.ammo_type = ammo_type
+	bullet_instance.attack_type = ammo_type
+	bullet_instance.source = self
 	
-	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction, ammo_type, self)
+	emit_signal("fired_bullet", bullet_instance, bullet_position, aim_direction)
 	
 	if not hose_audio.is_firing:
 		hose_audio.start_hose()
@@ -219,6 +216,5 @@ func _switch_ammo(direction: int):
 	current_ammo = next
 	ammo_type = ammo_list[current_ammo]
 	emit_signal("ammo_changed", ammo_type)
-	emit_signal("change_ribbon", ammo_type)
 	
 	hose_audio.set_agent(current_ammo)

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://e74j3ts2yaaj"]
 
-[ext_resource type="Texture2D" uid="uid://eo60pslovhc2" path="res://assets/ammo type water.png" id="1_c6mmf"]
+[ext_resource type="Texture2D" uid="uid://eo60pslovhc2" path="res://assets/ammo_types/water.png" id="1_c6mmf"]
 [ext_resource type="Script" uid="uid://din7ldsrdkf17" path="res://scripts/selected_ammo.gd" id="1_wppoj"]
 
 [node name="selected_ammo" type="TextureRect" unique_id=672286332]
