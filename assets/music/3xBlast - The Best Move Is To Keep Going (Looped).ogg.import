@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://brf4sbwahabu5"
+path="res://.godot/imported/3xBlast - The Best Move Is To Keep Going (Looped).ogg-360dc809fddbec9b9fd4928101b1b940.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/music/3xBlast - The Best Move Is To Keep Going (Looped).ogg"
+dest_files=["res://.godot/imported/3xBlast - The Best Move Is To Keep Going (Looped).ogg-360dc809fddbec9b9fd4928101b1b940.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

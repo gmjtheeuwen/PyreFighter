@@ -33,6 +33,7 @@ var invincible = false
 @onready var hitflash = $AnimatedSprite2D/HitFlash
 
 @onready var hose_audio = $HoseAudio
+@onready var player_audio = $player_sfx
 
 var ammo_switch_cooldown := 0.0
 const SCROLL_COOLDOWN := 0.15
@@ -73,6 +74,9 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("ui_page_left"):
 		_switch_ammo(-1)
+		
+	if Input.is_action_just_pressed("ui_accept"):
+		player_audio.play_death_static()
 
 func _physics_process(delta: float) -> void:	
 	if knocked:
@@ -128,11 +132,15 @@ func on_hit(attack: AttackComponent):
 		knocked = true
 		velocity = attack.direction * attack.knockback
 	
+	if hitflash.animation_finished:
+		invincibility_ended()
+	
 func _on_death():
 	get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	
-func invincibility_ended(anim_name: StringName):
+func invincibility_ended():
 	invincible = false
+	player_audio.play_hurt()
 
 func shoot():
 	if knocked or Bullet == null: return

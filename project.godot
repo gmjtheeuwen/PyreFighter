@@ -31,11 +31,16 @@ config/features=PackedStringArray("4.6", "Mobile")
 config/icon="res://icon.svg"
 <<<<<<<HEADrun/main_scene="uid://cqhljh4l8xi4x"
 
+[audio]
+
+buses/default_bus_layout="uid://dolhiojy0jev3"
+
 [autoload]
 
 button_prompts_manager="*uid://cy31x45v8vmkc"
 MissionManager="*uid://d0rr0opwrd7u4"
 InventoryManager="*uid://viltf725m7mv"
+AudioManager="*uid://c8m2kxy3vs2po"
 
 [display]
 
