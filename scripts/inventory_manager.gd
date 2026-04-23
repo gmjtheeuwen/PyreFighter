@@ -1,4 +1,3 @@
-class_name inventory_manager
 extends Node
 
 var inventory_data = preload("res://resources/inventory/inventory.tres")

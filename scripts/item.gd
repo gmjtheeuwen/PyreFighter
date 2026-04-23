@@ -6,6 +6,8 @@ signal equipped_state_changed(is_equipped: bool, equipment_name: String)
 signal fade_completed
 signal fade_back_completed
 
+@onready var inventory: InventoryData = preload("res://resources/inventory.tres")
+
 func _setup(data: ItemData):
 	item = data
 	$PanelContainer/TextureRect.texture = data.icon
@@ -13,9 +15,7 @@ func _setup(data: ItemData):
 	$PanelContainer/VBoxContainer/Desc.text = data.description
 
 
-func _on_button_pressed() -> void:
-	var inventory: inventory_data = load("res://resources/inventory.tres")
-	
+func _on_button_pressed() -> void:	
 	if item.is_equipped:
 		item.is_equipped = false
 		inventory.equipped_item_id = ""
