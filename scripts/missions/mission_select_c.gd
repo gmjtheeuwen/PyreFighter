@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 	for i in range(mission_data.missions.size()):
 		var mission = mission_data.missions[i] as Mission
-		if not mission.is_locked:
+		if not (mission.is_locked or mission.is_finished):
 			if not pin_positions.keys().has(mission.location):
 				var pin: MissionPin = mission_pin_scene.instantiate()
 				pin.setup(mission)

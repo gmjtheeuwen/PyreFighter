@@ -43,6 +43,7 @@ var ammo_switch_cooldown := 0.0
 const SCROLL_COOLDOWN := 0.15
 
 @onready var pause_menu = $CanvasLayer/Control/PauseMenu
+@onready var hud = $CanvasLayer
 
 func _ready() -> void:
 	set_process_input(has_control)
