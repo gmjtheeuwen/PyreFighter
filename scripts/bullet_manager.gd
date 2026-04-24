@@ -11,7 +11,8 @@ func _on_player_fired_bullet(bullet: Bullet, bullet_position: Vector2, bullet_di
 		b.speed = config["speed"]
 		b.lifetime = config["lifetime"]
 		b.FRICTION = config["friction"]
-		b.damage = bullet.damage / config["projectiles"]
+		b.damage = config["damage"] / config["projectiles"]
+		b.knockback = config["knockback"]
 		b.attack_type = bullet.attack_type
 		b.source = bullet.source
 		add_child(b)

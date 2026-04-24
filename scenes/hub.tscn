@@ -38,12 +38,4 @@ texture = ExtResource("4_bfqb0")
 [node name="Player" parent="." unique_id=1149356595 instance=ExtResource("4_7wvbm")]
 position = Vector2(0, 144)
 
-[node name="InteractionArea2" parent="." unique_id=593969481 instance=ExtResource("3_7wvbm")]
-position = Vector2(352, 112)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2" unique_id=335002637]
-visible = false
-shape = SubResource("RectangleShape2D_hlsmc")
-
 [connection signal="interacted" from="InteractionArea" to="." method="on_mission_select_interact"]
-[connection signal="interacted" from="InteractionArea2" to="." method="on_equipment_interact"]
