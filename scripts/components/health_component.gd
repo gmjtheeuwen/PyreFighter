@@ -13,7 +13,6 @@ func _ready() -> void:
 func damage(damage_amount: float):
 	health -= damage_amount
 	
-	print(health)
 	if health <= 0:
 		heatlh_depleted.emit()
 	

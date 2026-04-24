@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://ckiqqe3qp8yc2" path="res://scenes/player.tscn" id="3_asj7i"]
 [ext_resource type="Script" path="res://scripts/roof.gd" id="3_mls70"]
 [ext_resource type="Script" uid="uid://brjfhqnqjsrup" path="res://scripts/bullet_manager.gd" id="4_asj7i"]
-[ext_resource type="PackedScene" path="res://scenes/enemy_manager.tscn" id="6_f2yj0"]
-[ext_resource type="PackedScene" path="res://scenes/mother_flame.tscn" id="7_kbfwe"]
+[ext_resource type="PackedScene" uid="uid://ba0kgofmt0jnq" path="res://scenes/enemy_manager.tscn" id="6_f2yj0"]
+[ext_resource type="PackedScene" uid="uid://cbve5hsrghgsx" path="res://scenes/mother_flame.tscn" id="7_kbfwe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2yj0"]
 size = Vector2(768, 224)
